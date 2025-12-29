@@ -13,6 +13,8 @@ use geo::{
     Length, LineLocatePoint, LineString, Point,
 };
 
+use geo::algorithm::haversine_distance::HaversineDistance;
+
 #[cfg(test)]
 use {
     crate::navigation_controller::test_helpers::gen_dummy_route_step,
@@ -243,6 +245,38 @@ pub(crate) fn advance_step(remaining_steps: &[RouteStep]) -> StepAdvanceStatus {
         None => EndOfRoute,
     }
 }
+
+/// Find bearing (deg) of the segment in `line` that is nearest to point `p`.
+pub fn nearest_segment_bearing_deg(p: &Point<f64>, line: &LineString<f64>) -> Option<f64> {
+    let mut best: Option<(f64, f64)> = None;
+    for w in line.0.windows(2) {
+        let a = Point::new(w[0].x, w[0].y);
+        let b = Point::new(w[1].x, w[1].y);
+        let mid = Point::new((a.x() + b.x()) * 0.5, (a.y() + b.y()) * 0.5);
+
+        // New API: Distance::<Haversine>
+        let d = p.haversine_distance(&a)
+            .min(p.haversine_distance(&b))
+            .min(p.haversine_distance(&mid));
+
+        let bearing = initial_bearing_deg(&a, &b);
+        match best {
+            None => best = Some((d, bearing)),
+            Some((best_d, _)) if d < best_d => best = Some((d, bearing)),
+            _ => {}
+        }
+    }
+    best.map(|(_, brg)| brg)
+}
+
+pub fn initial_bearing_deg(a: &Point<f64>, b: &Point<f64>) -> f64 {
+    let (lat1, lon1) = (a.y().to_radians(), a.x().to_radians());
+    let (lat2, lon2) = (b.y().to_radians(), b.x().to_radians());
+    let y = (lon2 - lon1).sin() * lat2.cos();
+    let x = lat1.cos() * lat2.sin() - lat1.sin() * lat2.cos() * (lon2 - lon1).cos();
+    (y.atan2(x).to_degrees() + 360.0) % 360.0
+}
+
 
 /// Computes the distance that a point lies along a linestring,
 /// assuming that units are latitude and longitude for the geometries.

@@ -215,6 +215,36 @@ impl Route {
 }
 
 impl RouteStep {
+    fn exit_numbers_from_banner_or_step(
+    banner_content: &BannerContent,
+    step: &OsrmRouteStep,
+    ) -> Vec<String> {
+        // 1) Try components first (what you already do)
+        let mut nums = Self::extract_exit_numbers(banner_content);
+        if !nums.is_empty() {
+            return nums;
+        }
+
+        // 2) Fall back to OSRM rotary exit index if present
+        if let Some(exit_idx) = step.maneuver.exit {
+            nums.push(exit_idx.to_string());
+            return nums;
+        }
+
+        // 3) As a last resort, fall back to step.exits (motorway-style; may not be roundabout)
+        if let Some(exits_text) = &step.exits {
+            let extra: Vec<String> = exits_text
+                .split(';')
+                .map(|s| s.trim().to_string())
+                .filter(|s| !s.is_empty())
+                .collect();
+            if !extra.is_empty() {
+                nums.extend(extra);
+            }
+        }
+
+        nums
+    }
     fn extract_exit_numbers(banner_content: &BannerContent) -> Vec<String> {
         banner_content
             .components
@@ -240,7 +270,7 @@ impl RouteStep {
                     maneuver_modifier: banner.primary.maneuver_modifier,
                     roundabout_exit_degrees: banner.primary.roundabout_exit_degrees,
                     lane_info: None,
-                    exit_numbers: Self::extract_exit_numbers(&banner.primary),
+                    exit_numbers: Self::exit_numbers_from_banner_or_step(&banner.primary, value),
                 },
                 secondary_content: banner.secondary.as_ref().map(|secondary| {
                     VisualInstructionContent {
@@ -249,7 +279,7 @@ impl RouteStep {
                         maneuver_modifier: secondary.maneuver_modifier,
                         roundabout_exit_degrees: banner.primary.roundabout_exit_degrees,
                         lane_info: None,
-                        exit_numbers: Self::extract_exit_numbers(&secondary),
+                        exit_numbers: Self::exit_numbers_from_banner_or_step(&secondary, value),
                     }
                 }),
                 sub_content: banner.sub.as_ref().map(|sub| VisualInstructionContent {
@@ -262,7 +292,7 @@ impl RouteStep {
                             .components
                             .iter()
                             .filter(|component| component.component_type.as_deref() == Some("lane"))
-                            .map(|component| LaneInfo {
+                            .map(|component: &models::BannerContentComponent| LaneInfo {
                                 active: component.active.unwrap_or(false),
                                 directions: component.directions.clone().unwrap_or_default(),
                                 active_direction: component.active_direction.clone(),
@@ -275,7 +305,7 @@ impl RouteStep {
                             Some(lane_infos)
                         }
                     },
-                    exit_numbers: Self::extract_exit_numbers(&sub),
+                    exit_numbers: Self::exit_numbers_from_banner_or_step(&sub, value),
                 }),
                 trigger_distance_before_maneuver: banner.distance_along_geometry,
             })

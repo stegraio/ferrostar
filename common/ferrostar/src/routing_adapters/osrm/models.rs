@@ -124,10 +124,12 @@ pub struct RouteStep {
     /// The distance from the start of the current maneuver to the following step, in meters.
     pub distance: f64,
     /// The estimated travel time, in seconds.
+    #[serde(default)]
     pub duration: f64,
     /// The (unsimplified) geometry of the route segment.
     ///
     /// NOTE: This library assumes that the geometry will always be a polyline.
+    #[serde(default)]
     pub geometry: String,
     /// The name of the way along which travel proceeds.
     pub name: Option<String>,
@@ -141,6 +143,8 @@ pub struct RouteStep {
     /// The maneuver for this step
     pub maneuver: StepManeuver,
     /// List of intersections at which the route passes through.
+    
+    #[serde(default)]
     pub intersections: Vec<Intersections>,
 
     /// A list of exits (name or number), separated by semicolons.
@@ -218,9 +222,11 @@ pub struct StepManeuver {
     pub location: Coordinate,
     /// The clockwise angle from true north to the direction of travel immediately *before*
     /// the maneuver.
+    #[serde(default)]
     pub bearing_before: u16,
     /// The clockwise angle from true north to the direction of travel immediately *after*
     /// the maneuver.
+    #[serde(default)]
     pub bearing_after: u16,
     /// A string indicating the type of maneuver.
     ///
@@ -235,6 +241,10 @@ pub struct StepManeuver {
     pub modifier: Option<String>,
     /// Non-standard extension in Mapbox and Valhalla where the instruction is computed server-side
     instruction: Option<String>,
+    /// OSRM: roundabout/rotary exit index (e.g., 2 for "take the 2nd exit").
+    /// Absent for non-roundabout maneuvers.
+    #[serde(default)]
+    pub exit: Option<u16>,
 }
 
 impl StepManeuver {

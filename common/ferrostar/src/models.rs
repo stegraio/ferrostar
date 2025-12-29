@@ -431,6 +431,7 @@ pub enum ManeuverType {
     ExitRoundabout,
     #[serde(rename = "exit rotary")]
     ExitRotary,
+    Bird,
 }
 
 /// Additional information to further specify a [`ManeuverType`].
@@ -453,6 +454,7 @@ pub enum ManeuverModifier {
     Left,
     #[serde(rename = "sharp left")]
     SharpLeft,
+    Bird,
 }
 
 /// The type of incident that has occurred.

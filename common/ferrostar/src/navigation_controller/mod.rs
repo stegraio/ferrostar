@@ -98,7 +98,34 @@ impl NavigationController {
 impl Navigator for NavigationController {
     /// Returns initial trip state as if the user had just started the route with no progress.
     fn get_initial_state(&self, location: UserLocation) -> NavState {
-        let remaining_steps = self.route.steps.clone();
+        let mut remaining_steps = self.route.steps.clone();
+        
+        // Check if the user is close to a specific step in the route
+        // and should start navigation from that step instead of the beginning
+        let user_point = location.into();
+        let mut closest_step_idx: Option<usize> = None;
+        let mut min_deviation = std::f64::MAX;
+        let max_deviation_threshold = 50.0; // User must be within 50 meters to be considered "on" a step
+        
+        // Find the closest step to the user's current location
+        for (idx, step) in remaining_steps.iter().enumerate() {
+            let linestring = step.get_linestring();
+            if let Some(deviation) = crate::algorithms::deviation_from_line(&user_point, &linestring) {
+                if deviation < min_deviation {
+                    min_deviation = deviation;
+                    closest_step_idx = Some(idx);
+                }
+            }
+        }
+        
+        // If user is close enough to a step, start navigation from that step
+        if min_deviation <= max_deviation_threshold && location.horizontal_accuracy <= 20.0 {
+            if let Some(idx) = closest_step_idx {
+                if idx > 0 && idx < remaining_steps.len() {
+                    remaining_steps.drain(0..idx);
+                }
+            }
+        }
 
         let initial_summary = TripSummary {
             distance_traveled: 0.0,

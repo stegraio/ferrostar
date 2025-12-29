@@ -13,6 +13,7 @@
 //! we suggest enforcing a similar separation of concerns.
 
 use crate::algorithms::deviation_from_line;
+use crate::algorithms::{nearest_segment_bearing_deg};
 use crate::models::{Route, RouteStep, UserLocation};
 #[cfg(feature = "alloc")]
 use alloc::sync::Arc;
@@ -55,6 +56,19 @@ pub enum RouteDeviationTracking {
         /// If the distance between the reported location and the expected route line
         /// is greater than this threshold, it will be flagged as an off route condition.
         max_acceptable_deviation: f64,
+    },
+    #[cfg_attr(feature = "wasm-bindgen", serde(rename_all = "camelCase"))]
+    WithHeading {
+        /// Minimum required horizontal accuracy (meters); otherwise ignore sample.
+        minimum_horizontal_accuracy: u16,
+        /// Max acceptable perpendicular deviation from the step line (meters).
+        max_acceptable_deviation: f64,
+        /// If within this distance (meters), also check heading vs. segment.
+        close_snap_m: f64,
+        /// Ignore heading check when speed is below this (m/s).
+        min_speed_mps: f64,
+        /// Consider "wrong direction" if heading delta >= this many degrees.
+        opposite_heading_deg: f64,
     },
     // TODO: Standard variants that account for mode of travel. For example, `DefaultFor(modeOfTravel: ModeOfTravel)` with sensible defaults for walking, driving, cycling, etc.
     /// An arbitrary user-defined implementation.
@@ -102,8 +116,71 @@ impl RouteDeviationTracking {
             RouteDeviationTracking::Custom { detector } => {
                 detector.check_route_deviation(location, route.clone(), current_route_step.clone())
             }
+            RouteDeviationTracking::WithHeading {
+                minimum_horizontal_accuracy,
+                max_acceptable_deviation,
+                close_snap_m,
+                min_speed_mps,
+                opposite_heading_deg,
+            } => {
+                // 1) Same accuracy gate as StaticThreshold
+                if location.horizontal_accuracy >= f64::from(*minimum_horizontal_accuracy) {
+                    return RouteDeviation::NoDeviation;
+                }
+
+                let step_ls = current_route_step.get_linestring();
+                if step_ls.0.len() < 2 {
+                    return RouteDeviation::NoDeviation;
+                }
+
+                let user_pt = Point::from(location);
+
+                // 2) Distance to current step line (meters) — reuse your helper
+                let deviation_m = match deviation_from_line(&user_pt, &step_ls) {
+                    Some(d) => d,
+                    None => return RouteDeviation::NoDeviation,
+                };
+
+                // 2a) Keep original static distance behavior
+                if deviation_m > 0.0 && deviation_m > *max_acceptable_deviation {
+                    return RouteDeviation::OffRoute { deviation_from_route_line: deviation_m };
+                }
+
+                // 3) Heading rule: only when close to line AND moving
+                let speed_mps = location.speed.map(|s| s.value).unwrap_or(0.0);
+                let user_heading = match location.course_over_ground {
+                    Some(cog) => normalize_deg(cog.degrees as f64),
+                    None => return RouteDeviation::NoDeviation, // no heading → skip heading logic
+                };
+
+                if deviation_m <= *close_snap_m && speed_mps >= *min_speed_mps {
+                    // Bearing of the nearest segment to the user (implement this helper)
+                    let seg_bearing = nearest_segment_bearing_deg(&user_pt, &step_ls).map(normalize_deg);
+
+                    if let Some(seg_bearing) = seg_bearing {
+                        let delta = smallest_angle_diff_deg(user_heading, seg_bearing);
+                        if delta >= *opposite_heading_deg {
+                            // Wrong-way while on the line → OffRoute
+                            return RouteDeviation::OffRoute {
+                                deviation_from_route_line: deviation_m.max(1.0),
+                            };
+                        }
+                    }
+                }
+
+                RouteDeviation::NoDeviation
+            }
         }
     }
+}
+
+#[inline]
+fn normalize_deg(x: f64) -> f64 { ((x % 360.0) + 360.0) % 360.0 }
+
+#[inline]
+fn smallest_angle_diff_deg(a: f64, b: f64) -> f64 {
+    let d = (a - b + 540.0) % 360.0 - 180.0;
+    d.abs()
 }
 
 /// Status information that describes whether the user is proceeding according to the route or not.

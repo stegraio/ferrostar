@@ -17,12 +17,52 @@ import uniffi.ferrostar.ManeuverModifier
 import uniffi.ferrostar.ManeuverType
 import uniffi.ferrostar.VisualInstructionContent
 
+private fun roundaboutIconFromDegrees(degrees: UShort?): String {
+  if (degrees == null) return "direction_roundabout"
+
+  // Convert safely to Int
+  val d = (degrees.toInt() % 360 + 360) % 360
+
+  val isLeft = d > 180
+  val angleFromAxis = if (isLeft) 360 - d else d // 0..180 from straight ahead
+
+  // ktfmt forbids vertical alignment of arrows
+  val suffix =
+      when {
+        angleFromAxis < 15 -> "straight"
+        angleFromAxis < 45 -> if (isLeft) "sharp_left" else "sharp_right"
+        angleFromAxis < 90 -> if (isLeft) "left" else "right"
+        else -> if (isLeft) "slight_left" else "slight_right"
+      }
+
+  return "direction_roundabout_$suffix"
+}
+
 val VisualInstructionContent.maneuverIcon: String
   get() {
+    val typeName = maneuverType?.name?.lowercase()
+
+    // Handle your custom "Bird" type here!
+    if (typeName == "bird") {
+      return "direction_bird" // Ensure you have a drawable named 'direction_bird'
+    }
+
+    val isRoundabout =
+        when (typeName) {
+          "roundabout",
+          "exit_roundabout",
+          "rotary" -> true
+          else -> false
+        }
+    if (isRoundabout) {
+      return roundaboutIconFromDegrees(roundaboutExitDegrees)
+    }
+
     val descriptor =
         listOfNotNull(
                 maneuverType?.name?.replace(" ", "_"), maneuverModifier?.name?.replace(" ", "_"))
             .joinToString(separator = "_")
+
     return "direction_${descriptor}".lowercase()
   }
 

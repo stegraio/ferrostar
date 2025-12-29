@@ -226,6 +226,11 @@ fun UserLocation.toAndroidLocation(): android.location.Location {
   location.longitude = this.coordinates.lng
   location.accuracy = this.horizontalAccuracy.toFloat()
 
+  val speed = this.speed
+  if (speed != null) {
+    location.speed = speed.value.toFloat()
+  }
+
   // NOTE: We have a lot of checks in place which we could remove (+ improve correctness)
   // if we supported API 26.
   val course = this.courseOverGround
@@ -259,12 +264,16 @@ fun android.location.Location.toUserLocation(): UserLocation {
         },
         if (hasBearing() && hasBearingAccuracy()) {
           CourseOverGround(bearing.toUInt().toUShort(), bearingAccuracyDegrees.toUInt().toUShort())
+        } else if (hasBearing()) {
+          CourseOverGround(bearing.toUInt().toUShort(), null)
         } else {
           null
         },
         Instant.ofEpochMilli(time),
         if (hasSpeed() && hasSpeedAccuracy()) {
           Speed(speed.toDouble(), speedAccuracyMetersPerSecond.toDouble())
+        } else if (hasSpeed()) {
+          Speed(speed.toDouble(), null)
         } else {
           null
         })
