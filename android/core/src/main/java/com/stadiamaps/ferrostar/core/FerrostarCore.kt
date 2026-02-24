@@ -1,10 +1,12 @@
 package com.stadiamaps.ferrostar.core
 
+import androidx.annotation.VisibleForTesting
 import com.stadiamaps.ferrostar.core.http.HttpClientProvider
 import com.stadiamaps.ferrostar.core.service.ForegroundServiceManager
-import java.net.URL
 import java.time.Instant
 import java.util.concurrent.Executors
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,15 +14,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.serialization.builtins.MapSerializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 import uniffi.ferrostar.GeographicCoordinate
 import uniffi.ferrostar.Heading
 import uniffi.ferrostar.NavState
 import uniffi.ferrostar.NavigationControllerConfig
-import uniffi.ferrostar.Navigator
+import uniffi.ferrostar.NavigationSession
 import uniffi.ferrostar.Route
 import uniffi.ferrostar.RouteAdapter
 import uniffi.ferrostar.RouteDeviation
@@ -28,7 +26,7 @@ import uniffi.ferrostar.TripState
 import uniffi.ferrostar.UserLocation
 import uniffi.ferrostar.Uuid
 import uniffi.ferrostar.Waypoint
-import uniffi.ferrostar.createNavigator
+import uniffi.ferrostar.WellKnownRouteProvider
 
 /** Represents the complete state of the navigation session provided by FerrostarCore-RS. */
 data class NavigationState(
@@ -49,32 +47,6 @@ fun NavigationState.isNavigating(): Boolean =
       is TripState.Navigating -> true
     }
 
-private val json = Json { ignoreUnknownKeys = true }
-
-private fun Map<String, Any>.toJsonElement(): JsonElement = Json.parseToJsonElement(this.toJson())
-
-private fun Map<String, Any>.toJson(): String =
-    json.encodeToString(
-        MapSerializer(String.serializer(), JsonElement.serializer()),
-        mapValues { (_, v) ->
-          when (v) {
-            is String -> Json.encodeToJsonElement(String.serializer(), v)
-            is Int -> Json.encodeToJsonElement(Int.serializer(), v)
-            is Boolean -> Json.encodeToJsonElement(Boolean.serializer(), v)
-            is Double -> Json.encodeToJsonElement(Double.serializer(), v)
-            is Float -> Json.encodeToJsonElement(Float.serializer(), v)
-            is Long -> Json.encodeToJsonElement(Long.serializer(), v)
-            is Map<*, *> -> {
-              @Suppress("UNCHECKED_CAST")
-              (v as? Map<String, Any>)?.toJsonElement()
-                  ?: throw IllegalArgumentException("Unsupported map value type: ${v::class}")
-            }
-
-            null -> Json.encodeToJsonElement(String.serializer(), "null")
-            else -> throw IllegalArgumentException("Unsupported value type: ${v::class}")
-          }
-        })
-
 /**
  * This is the entrypoint for end users of Ferrostar on Android, and is responsible for "driving"
  * the navigation with location updates and other events.
@@ -93,19 +65,21 @@ class FerrostarCore(
     val locationProvider: LocationProvider,
     val foregroundServiceManager: ForegroundServiceManager? = null,
     navigationControllerConfig: NavigationControllerConfig,
+    val sessionBuilder: FerrostarSessionBuilder =
+        FerrostarSessionBuilder(navigationControllerConfig),
 ) : LocationUpdateListener {
   companion object {
     private const val TAG = "FerrostarCore"
   }
 
   /**
-   * The minimum time to wait before initiating another route recalculation.
+   * The minimum duration to wait before initiating another route recalculation.
    *
    * This matters in the case that a user is off route, the framework calculates a new route, and
    * the user is determined to still be off the new route. This adds a minimum delay (default 5
    * seconds).
    */
-  var minimumTimeBeforeRecalculaton: Long = 5
+  var minimumTimeBeforeRecalculation: Duration = 5.seconds
 
   /**
    * The minimum distance (in meters) the user must move before performing another route
@@ -156,10 +130,13 @@ class FerrostarCore(
 
   private val _executor = Executors.newSingleThreadScheduledExecutor()
   private val _scope = CoroutineScope(Dispatchers.IO)
-  private var _navigationController: Navigator? = null
+
+  private var _navigationSession: NavigationSession? = null
   private val _navState: MutableStateFlow<NavState?> = MutableStateFlow(null)
   private var _state: MutableStateFlow<NavigationState> = MutableStateFlow(NavigationState())
   private var _routeRequestInFlight = false
+  // The last timestamp at which we triggered a recalculation,
+  // measured via System.nanoTime().
   private var _lastAutomaticRecalculation: Long? = null
   private var _lastLocation: UserLocation? = null
 
@@ -176,16 +153,13 @@ class FerrostarCore(
   var state: StateFlow<NavigationState> = _state.asStateFlow()
 
   constructor(
-      valhallaEndpointURL: URL,
-      profile: String,
+      wellKnownRouteProvider: WellKnownRouteProvider,
       httpClient: HttpClientProvider,
       locationProvider: LocationProvider,
       navigationControllerConfig: NavigationControllerConfig,
       foregroundServiceManager: ForegroundServiceManager? = null,
-      options: Map<String, Any> = emptyMap(),
   ) : this(
-      RouteProvider.RouteAdapter(
-          RouteAdapter.newValhallaHttp(valhallaEndpointURL.toString(), profile, options.toJson())),
+      RouteProvider.RouteAdapter(RouteAdapter.fromWellKnownRouteProvider(wellKnownRouteProvider)),
       httpClient,
       locationProvider,
       foregroundServiceManager,
@@ -270,22 +244,49 @@ class FerrostarCore(
     // Apply the new config if provided, otherwise use the original.
     _config = config ?: _config
 
-    val controller: Navigator =
-        createNavigator(
-            route,
-            _config,
-            false,
-        )
+    val navigationSession = sessionBuilder.build(route, config)
+    _navigationSession = navigationSession
+
     val startingLocation =
         locationProvider.lastLocation
             ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
 
-    val initialNavState = controller.getInitialState(startingLocation)
+    val initialNavState = navigationSession.getInitialState(startingLocation)
     val newState = NavigationState(tripState = initialNavState.tripState, route.geometry, false)
     handleStateUpdate(initialNavState, startingLocation)
 
-    _navigationController = controller
     _navState.value = initialNavState
+    _state.value = newState
+
+    locationProvider.addListener(this, _executor)
+  }
+
+  /**
+   * Resumes a previously started navigation session from the last known state.
+   *
+   * Important! This feature is experimental and may exhibit unexpected behavior. Please report any
+   * issues you encounter to help us improve it.
+   *
+   * @throws NoCachedSession if there is no cached session to resume from.
+   * @throws UserLocationUnknown if the location provider has no last known location.
+   */
+  fun resumeNavigation() {
+    stopNavigation()
+
+    // Start the foreground notification service
+    foregroundServiceManager?.startService(this::stopNavigation)
+
+    val (navigationSession, route, navState) = sessionBuilder.buildResumedSession()
+    _navigationSession = navigationSession
+
+    val startingLocation =
+        locationProvider.lastLocation
+            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
+
+    val newState = NavigationState(tripState = navState.tripState, route.geometry, false)
+    handleStateUpdate(navState, startingLocation)
+
+    _navState.value = navState
     _state.value = newState
 
     locationProvider.addListener(this, _executor)
@@ -305,12 +306,9 @@ class FerrostarCore(
     // Apply the new config if provided, otherwise use the original.
     _config = config ?: _config
 
-    val controller: Navigator =
-        createNavigator(
-            route,
-            _config,
-            false,
-        )
+    val navigationSession = sessionBuilder.build(route, config)
+    _navigationSession = navigationSession
+
     val startingLocation =
         locationProvider.lastLocation
             ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
@@ -318,9 +316,7 @@ class FerrostarCore(
     _queuedUtteranceIds.clear()
     spokenInstructionObserver?.stopAndClearQueue()
 
-    _navigationController = controller
-
-    val newState = controller.getInitialState(startingLocation)
+    val newState = navigationSession.getInitialState(startingLocation)
 
     handleStateUpdate(newState, startingLocation)
 
@@ -329,12 +325,12 @@ class FerrostarCore(
   }
 
   fun advanceToNextStep() {
-    val controller = _navigationController
+    val session = _navigationSession
     val location = _lastLocation
 
-    if (controller != null && location != null) {
+    if (session != null && location != null) {
       _navState.value?.let {
-        val newState = controller.advanceToNextStep(state = it)
+        val newState = session.advanceToNextStep(state = it)
         handleStateUpdate(newState, location)
 
         _navState.update { newState }
@@ -351,8 +347,8 @@ class FerrostarCore(
     if (stopLocationUpdates) {
       locationProvider.removeListener(this)
     }
-    _navigationController?.destroy()
-    _navigationController = null
+    _navigationSession?.destroy()
+    _navigationSession = null
     _state.value = NavigationState()
     _queuedUtteranceIds.clear()
     spokenInstructionObserver?.stopAndClearQueue()
@@ -370,15 +366,9 @@ class FerrostarCore(
     if (tripState is TripState.Navigating) {
       if (tripState.deviation is RouteDeviation.OffRoute) {
         if (!_routeRequestInFlight && // We can't have a request in flight already
-            _lastAutomaticRecalculation?.let {
-              // Ensure a minimum cool down before a new route fetch
-              System.nanoTime() - it > minimumTimeBeforeRecalculaton
-            } != false &&
-            _lastRecalculationLocation?.let {
-              // Don't recalculate again if the user hasn't moved much
-              it.toAndroidLocation().distanceTo(location.toAndroidLocation()) >
-                  minimumMovementBeforeRecalculation
-            } != false) {
+            hasWaitedMinimumRecalculationDelay(
+                _lastAutomaticRecalculation, minimumTimeBeforeRecalculation) &&
+            hasUserMovedSignificantlySinceLastRecalc(location)) {
           val action =
               deviationHandler?.correctiveActionForDeviation(
                   this, tripState.deviation.deviationFromRouteLine, tripState.remainingWaypoints)
@@ -433,13 +423,25 @@ class FerrostarCore(
     foregroundServiceManager?.onNavigationStateUpdated(_state.value)
   }
 
+  /**
+   * Has the user moved enough since the time we recalculated the route?
+   *
+   * This predicate avoids rapid recomputation when the route is unlikely to change.
+   */
+  private fun hasUserMovedSignificantlySinceLastRecalc(location: UserLocation): Boolean {
+    return _lastRecalculationLocation?.let {
+      it.toAndroidLocation().distanceTo(location.toAndroidLocation()) >
+          minimumMovementBeforeRecalculation
+    } ?: true // Default to true if no prior automatic recalculation
+  }
+
   override fun onLocationUpdated(location: UserLocation) {
     _lastLocation = location
-    val controller = _navigationController
+    val session = _navigationSession
 
-    if (controller != null) {
+    if (session != null) {
       _navState.value?.let {
-        val newState = controller.updateUserLocation(location = location, state = it)
+        val newState = session.updateUserLocation(location = location, state = it)
         handleStateUpdate(newState, location)
 
         _navState.update { newState }
@@ -454,4 +456,19 @@ class FerrostarCore(
   override fun onHeadingUpdated(heading: Heading) {
     // TODO: Publish new heading to flow
   }
+}
+
+/**
+ * Has enough time elapsed since the last automatic recalculation?
+ *
+ * This ensures a minimum cool down before fetching a new route.
+ */
+@VisibleForTesting
+internal fun hasWaitedMinimumRecalculationDelay(
+    lastAutomaticRecalculation: Long?,
+    minimumCooldown: Duration
+): Boolean {
+  return lastAutomaticRecalculation?.let {
+    System.nanoTime() - it > minimumCooldown.inWholeNanoseconds
+  } ?: true // Default to true if no prior automatic recalculation
 }

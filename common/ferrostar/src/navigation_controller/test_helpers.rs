@@ -1,38 +1,48 @@
-use crate::models::{BoundingBox, GeographicCoordinate, Route, RouteStep, Waypoint, WaypointKind};
-use crate::routing_adapters::{osrm::OsrmResponseParser, RouteResponseParser};
+use std::sync::Arc;
+
+use crate::deviation_detection::RouteDeviation;
+use crate::deviation_detection::RouteDeviationTracking;
+use crate::models::{
+    BoundingBox, GeographicCoordinate, Route, RouteStep, UserLocation, Waypoint, WaypointKind,
+};
+use crate::navigation_controller::models::{
+    CourseFiltering, NavigationControllerConfig, TripProgress, TripState, TripSummary,
+    WaypointAdvanceMode,
+};
+use crate::navigation_controller::step_advance::StepAdvanceCondition;
+use crate::navigation_controller::step_advance::conditions::DistanceToEndOfStepCondition;
 #[cfg(feature = "alloc")]
 use alloc::string::ToString;
 use chrono::{DateTime, Utc};
-use geo::{point, BoundingRect, Coord, Distance, Haversine, LineString, Point};
-use insta::{dynamic_redaction, Settings};
+use geo::{BoundingRect, Coord, Distance, Haversine, LineString, Point, point};
+use insta::{Settings, dynamic_redaction};
 
-pub enum TestRoute {
-    /// Gets a longer + more complex route.
-    Extended,
-    /// Gets a self-intersecting route.
-    SelfIntersecting,
-}
-
-impl TestRoute {
-    pub fn file_content(&self) -> &'static str {
-        match self {
-            TestRoute::Extended => include_str!("fixtures/valhalla_extended_osrm_response.json"),
-            TestRoute::SelfIntersecting => {
-                include_str!("fixtures/valhalla_self_intersecting_osrm_response.json")
-            }
-        }
+pub fn get_test_navigation_controller_config(
+    step_advance_condition: Arc<dyn StepAdvanceCondition>,
+) -> NavigationControllerConfig {
+    NavigationControllerConfig {
+        waypoint_advance: WaypointAdvanceMode::WaypointWithinRange(100.0),
+        // Careful setup: if the user is ever off the route
+        // (ex: because of an improper automatic step advance),
+        // we want to know about it.
+        route_deviation_tracking: RouteDeviationTracking::StaticThreshold {
+            minimum_horizontal_accuracy: 0,
+            max_acceptable_deviation: 0.0,
+        },
+        snapped_location_course_filtering: CourseFiltering::Raw,
+        step_advance_condition,
+        arrival_step_advance_condition: Arc::new(DistanceToEndOfStepCondition {
+            distance: 5,
+            minimum_horizontal_accuracy: 0,
+        }),
     }
 }
 
-/// The accuracy of each parser is tested separately in the routing_adapters module;
-/// this function simply returns a route for an extended test of the state machine.
-pub fn get_test_route(test_route: TestRoute) -> Route {
-    let parser = OsrmResponseParser::new(6);
-    parser
-        .parse_response(test_route.file_content().into())
-        .expect("Unable to parse OSRM response")
-        .pop()
-        .expect("Expected at least one route")
+pub fn get_test_step_advance_condition(distance: u16) -> Arc<dyn StepAdvanceCondition> {
+    Arc::new(DistanceToEndOfStepCondition {
+        distance,
+        minimum_horizontal_accuracy: 0,
+    })
 }
 
 pub fn gen_dummy_route_step(
@@ -64,6 +74,8 @@ pub fn gen_dummy_route_step(
         spoken_instructions: vec![],
         annotations: None,
         incidents: vec![],
+        driving_side: None,
+        roundabout_exit_number: None,
     }
 }
 
@@ -110,6 +122,8 @@ pub fn gen_route_step_with_coords(coordinates: Vec<Coord>) -> RouteStep {
         spoken_instructions: vec![],
         annotations: None,
         incidents: vec![],
+        driving_side: None,
+        roundabout_exit_number: None,
     }
 }
 
@@ -135,21 +149,23 @@ pub fn gen_route_from_steps(steps: Vec<RouteStep>) -> Route {
             Waypoint {
                 coordinate: steps.first().unwrap().geometry.first().cloned().unwrap(),
                 kind: WaypointKind::Break,
+                properties: None,
             },
             Waypoint {
                 coordinate: steps.last().unwrap().geometry.last().cloned().unwrap(),
                 kind: WaypointKind::Break,
+                properties: None,
             },
         ],
         steps,
     }
 }
 
-fn create_timestamp_redaction(
-) -> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> &'static str
-       + Send
-       + Sync
-       + 'static {
+fn create_timestamp_redaction()
+-> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> &'static str
++ Send
++ Sync
++ 'static {
     |value, _path| {
         if value.is_nil() {
             "[none]"
@@ -169,11 +185,11 @@ fn create_timestamp_redaction(
     }
 }
 
-fn create_distance_redaction(
-) -> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> String
-       + Send
-       + Sync
-       + 'static {
+fn create_distance_redaction()
+-> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> String
++ Send
++ Sync
++ 'static {
     |value, _path| {
         if value.is_nil() {
             "[none]".to_string()
@@ -236,4 +252,42 @@ pub(crate) fn nav_controller_insta_settings() -> Settings {
     settings.add_redaction(".version", "[version]");
 
     settings
+}
+
+/// Creates a TripState::Navigating for testing purposes.
+///
+/// This is a convenience function to reduce boilerplate in tests that need a navigating state.
+///
+/// # Parameters
+///
+/// * `user_location` - The user's current location
+/// * `remaining_waypoints` - The remaining waypoints in the trip
+pub fn get_navigating_trip_state(
+    user_location: UserLocation,
+    remaining_steps: Vec<RouteStep>,
+    remaining_waypoints: Vec<Waypoint>,
+    deviation: RouteDeviation,
+) -> TripState {
+    TripState::Navigating {
+        current_step_geometry_index: Some(0),
+        user_location: user_location.clone(),
+        snapped_user_location: user_location,
+        remaining_steps,
+        remaining_waypoints,
+        progress: TripProgress {
+            distance_to_next_maneuver: 100.0,
+            distance_remaining: 1000.0,
+            duration_remaining: 600.0,
+        },
+        deviation,
+        summary: TripSummary {
+            distance_traveled: 0.0,
+            snapped_distance_traveled: 0.0,
+            started_at: Utc::now(),
+            ended_at: None,
+        },
+        visual_instruction: None,
+        spoken_instruction: None,
+        annotation_json: None,
+    }
 }

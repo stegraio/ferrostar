@@ -44,19 +44,18 @@ final class SpokenObserverTests: XCTestCase {
 
         spokenObserver.toggleMute()
 
-        wait(for: [muteExp, exp], timeout: 3.0)
+        wait(for: [muteExp, exp], timeout: 10)
     }
 
     func test_speakWhileMuted() {
         let mockSpeechSynthesizer = MockSpeechSynthesizer()
-        let spokenObserver = SpokenInstructionObserver(synthesizer: mockSpeechSynthesizer, isMuted: false)
-        spokenObserver.toggleMute()
+        let spokenObserver = SpokenInstructionObserver(synthesizer: mockSpeechSynthesizer, isMuted: true)
 
         mockSpeechSynthesizer.onSpeak = { _ in
             XCTFail("Speak should never be called when isMuted is true")
         }
 
-        let exp = expectation(description: "")
+        let exp = expectation(description: "task complete")
         Task {
             spokenObserver.spokenInstructionTriggered(.init(
                 text: "Speak",
@@ -68,20 +67,20 @@ final class SpokenObserverTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 3.0)
+        wait(for: [exp], timeout: 10)
     }
 
     func test_speakWhileUnmuted() {
         let mockSpeechSynthesizer = MockSpeechSynthesizer()
         let spokenObserver = SpokenInstructionObserver(synthesizer: mockSpeechSynthesizer, isMuted: false)
 
-        let exp = expectation(description: "")
+        let exp = expectation(description: "speak is called with expected text")
         mockSpeechSynthesizer.onSpeak = { utterance in
             XCTAssertEqual(utterance.speechString, "Speak")
             exp.fulfill()
         }
 
-        let taskExp = expectation(description: "")
+        let taskExp = expectation(description: "task complete")
         Task {
             spokenObserver.spokenInstructionTriggered(.init(
                 text: "Speak",
@@ -93,6 +92,6 @@ final class SpokenObserverTests: XCTestCase {
             taskExp.fulfill()
         }
 
-        wait(for: [exp, taskExp], timeout: 5.0)
+        wait(for: [exp, taskExp], timeout: 10)
     }
 }

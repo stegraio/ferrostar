@@ -46,11 +46,13 @@ let mockRoute = Route(
         )],
         spokenInstructions: [],
         annotations: nil,
-        incidents: []
+        incidents: [],
+        drivingSide: .left,
+        roundaboutExitNumber: nil
     )]
 )
 
-// Mocked route adapters
+/// Mocked route adapters
 let mockPOSTRouteAdapter = RouteAdapter(
     requestGenerator: MockPOSTRouteRequestGenerator(),
     responseParser: MockRouteResponseParser(routes: [mockRoute])
@@ -241,8 +243,11 @@ final class FerrostarCoreTests: XCTestCase {
         // The main feature of this test is that it uses this constructor,
         // which can throw, and similarly getRoutes may not always work with invalid input
         let core = try FerrostarCore(
-            valhallaEndpointUrl: valhallaEndpointUrl,
-            profile: "low_speed_vehicle",
+            wellKnownRouteProvider: .valhalla(
+                endpointUrl: valhallaEndpointUrl.absoluteString,
+                profile: "low_speed_vehicle"
+            )
+            .withJsonOptions(options: ["costing_options": ["low_speed_vehicle": ["vehicle_type": "golf_cart"]]]),
             locationProvider: SimulatedLocationProvider(),
             navigationControllerConfig: .init(
                 waypointAdvance: .waypointWithinRange(100.0),
@@ -251,7 +256,6 @@ final class FerrostarCoreTests: XCTestCase {
                 routeDeviationTracking: .none,
                 snappedLocationCourseFiltering: .raw
             ),
-            options: ["costing_options": ["low_speed_vehicle": ["vehicle_type": "golf_cart"]]],
             networkSession: mockSession
         )
 
@@ -406,14 +410,14 @@ final class FerrostarCoreTests: XCTestCase {
                 minimumHorizontalAccuracy: 32
             ),
             arrivalStepAdvanceCondition: stepAdvanceDistanceToEndOfStep(distance: 10, minimumHorizontalAccuracy: 32),
-            routeDeviationTracking: .custom(detector: { _, _, _ in
+            routeDeviationTracking: .custom(detector: { _, _ in
                 // Pretend that the user is always off route
                 .offRoute(deviationFromRouteLine: 42)
             }),
             snappedLocationCourseFiltering: .raw
         )
 
-        try core.startNavigation(route: routes.first!, config: config)
+        try core.startNavigation(route: XCTUnwrap(routes.first), config: config)
 
         await fulfillment(of: [routeDeviationCallbackExp], timeout: 1.0)
         await fulfillment(of: [loadedAltRoutesExp], timeout: 1.0)

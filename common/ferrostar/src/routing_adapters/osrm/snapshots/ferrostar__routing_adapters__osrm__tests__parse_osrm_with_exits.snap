@@ -100,10 +100,12 @@ expression: routes
         lat: 45.377106
         lng: -122.584167
       kind: Break
+      properties: "{\"name\":\"I 205 South\",\"distance\":5.288}"
     - coordinate:
         lat: 45.371508
         lng: -122.585901
       kind: Break
+      properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
   steps:
     - geometry:
         - lat: 45.377106
@@ -159,6 +161,8 @@ expression: routes
       spoken_instructions: []
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~
     - geometry:
         - lat: 45.375411
           lng: -122.586549
@@ -239,6 +243,8 @@ expression: routes
       spoken_instructions: []
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~
     - geometry:
         - lat: 45.375703
           lng: -122.588114
@@ -293,6 +299,8 @@ expression: routes
       spoken_instructions: []
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~
     - geometry:
         - lat: 45.371508
           lng: -122.585901
@@ -307,3 +315,5 @@ expression: routes
       spoken_instructions: []
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~

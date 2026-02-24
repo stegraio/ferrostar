@@ -2,8 +2,12 @@ use std::sync::Arc;
 
 use super::{StepAdvanceCondition, StepAdvanceConditionSerializable, StepAdvanceResult};
 use crate::{
-    algorithms::{deviation_from_line, is_within_threshold_to_end_of_linestring},
-    models::{RouteStep, UserLocation},
+    algorithms::{
+        deviation_from_line, get_linestring, is_within_threshold_to_end_of_linestring,
+        snap_user_location_to_line,
+    },
+    deviation_detection::RouteDeviation,
+    navigation_controller::models::TripState,
 };
 use geo::Point;
 
@@ -11,14 +15,12 @@ use geo::Point;
 use proptest::prelude::*;
 
 #[cfg(test)]
-use crate::test_utils::{arb_coord, make_user_location};
-
-#[cfg(feature = "wasm-bindgen")]
-use serde::{Deserialize, Serialize};
+use crate::{
+    navigation_controller::test_helpers::get_navigating_trip_state,
+    test_utils::{arb_coord, make_user_location},
+};
 
 use super::SerializableStepAdvanceCondition;
-#[cfg(feature = "wasm-bindgen")]
-use tsify::Tsify;
 
 /// Never advances to the next step automatically;
 /// requires calling [`NavigationController::advance_to_next_step`](super::NavigationController::advance_to_next_step).
@@ -30,12 +32,7 @@ pub struct ManualStepCondition;
 
 impl StepAdvanceCondition for ManualStepCondition {
     #[allow(unused_variables)]
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
         StepAdvanceResult::continue_with_state(Arc::new(ManualStepCondition))
     }
 
@@ -67,13 +64,24 @@ pub struct DistanceToEndOfStepCondition {
 }
 
 impl StepAdvanceCondition for DistanceToEndOfStepCondition {
-    #[allow(unused_variables)]
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
+        self.should_advance_inner(&trip_state)
+            .unwrap_or(StepAdvanceResult::continue_with_state(self.new_instance()))
+    }
+
+    fn new_instance(&self) -> Arc<dyn StepAdvanceCondition> {
+        Arc::new(DistanceToEndOfStepCondition {
+            distance: self.distance,
+            minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
+        })
+    }
+}
+
+impl DistanceToEndOfStepCondition {
+    fn should_advance_inner(&self, trip_state: &TripState) -> Option<StepAdvanceResult> {
+        let user_location = trip_state.user_location()?;
+        let current_step = trip_state.current_step()?;
+
         let should_advance =
             if user_location.horizontal_accuracy > self.minimum_horizontal_accuracy.into() {
                 false
@@ -85,18 +93,13 @@ impl StepAdvanceCondition for DistanceToEndOfStepCondition {
                 )
             };
 
-        if should_advance {
+        let result = if should_advance {
             StepAdvanceResult::advance_to_new_instance(self)
         } else {
             StepAdvanceResult::continue_with_state(self.new_instance())
-        }
-    }
+        };
 
-    fn new_instance(&self) -> Arc<dyn StepAdvanceCondition> {
-        Arc::new(DistanceToEndOfStepCondition {
-            distance: self.distance,
-            minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
-        })
+        Some(result)
     }
 }
 
@@ -127,41 +130,52 @@ pub struct DistanceFromStepCondition {
     /// The minimum required horizontal accuracy of the user location, in meters.
     /// Values larger than this cannot ever trigger a step advance.
     pub minimum_horizontal_accuracy: u16,
+    /// Whether the condition can succeed when the user is off route.
+    pub calculate_while_off_route: bool,
 }
 
 impl StepAdvanceCondition for DistanceFromStepCondition {
-    #[allow(unused_variables)]
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
-        // Exit early if the user location is not accurate enough.
-        let should_advance =
-            if user_location.horizontal_accuracy > self.minimum_horizontal_accuracy.into() {
-                false
-            } else {
-                let current_position: Point = user_location.into();
-                let current_step_linestring = current_step.get_linestring();
-
-                deviation_from_line(&current_position, &current_step_linestring)
-                    .map(|deviation| deviation > self.distance.into())
-                    .unwrap_or(false)
-            };
-
-        if should_advance {
-            StepAdvanceResult::advance_to_new_instance(self)
-        } else {
-            StepAdvanceResult::continue_with_state(self.new_instance())
-        }
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
+        self.should_advance_inner(&trip_state)
+            .unwrap_or(StepAdvanceResult::continue_with_state(self.new_instance()))
     }
 
     fn new_instance(&self) -> Arc<dyn StepAdvanceCondition> {
         Arc::new(DistanceFromStepCondition {
             distance: self.distance,
             minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
+            calculate_while_off_route: self.calculate_while_off_route,
         })
+    }
+}
+
+impl DistanceFromStepCondition {
+    fn should_advance_inner(&self, trip_state: &TripState) -> Option<StepAdvanceResult> {
+        let deviation = trip_state.deviation()?;
+        let user_location = trip_state.user_location()?;
+        let current_step = trip_state.current_step()?;
+
+        let should_advance =
+            // If the user is not on route and we don't allow calculating while off route, don't advance
+            if (!self.calculate_while_off_route && deviation != RouteDeviation::NoDeviation)
+                // If the user location isn't accurate enough, don't advance
+                || (user_location.horizontal_accuracy > self.minimum_horizontal_accuracy.into()){
+                false
+            } else {
+                let current_position: Point = user_location.into();
+                let current_step_linestring = current_step.get_linestring();
+
+                deviation_from_line(&current_position, &current_step_linestring)
+                    .is_some_and(|deviation| deviation > self.distance.into())
+            };
+
+        let result = if should_advance {
+            StepAdvanceResult::advance_to_new_instance(self)
+        } else {
+            StepAdvanceResult::continue_with_state(self.new_instance())
+        };
+
+        Some(result)
     }
 }
 
@@ -170,6 +184,7 @@ impl StepAdvanceConditionSerializable for DistanceFromStepCondition {
         SerializableStepAdvanceCondition::DistanceFromStep {
             distance: self.distance,
             minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
+            calculate_while_off_route: self.calculate_while_off_route,
         }
     }
 }
@@ -188,21 +203,12 @@ pub struct OrAdvanceConditions {
 }
 
 impl StepAdvanceCondition for OrAdvanceConditions {
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
         let mut should_advance = false;
         let mut next_conditions = Vec::with_capacity(self.conditions.len());
 
         for condition in &self.conditions {
-            let result = condition.should_advance_step(
-                user_location,
-                current_step.clone(),
-                next_step.clone(),
-            );
+            let result = condition.should_advance_step(trip_state.clone());
             should_advance = should_advance || result.should_advance;
             next_conditions.push(result.next_iteration);
         }
@@ -248,21 +254,12 @@ pub struct AndAdvanceConditions {
 }
 
 impl StepAdvanceCondition for AndAdvanceConditions {
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
         let mut should_advance = true;
         let mut next_conditions = Vec::with_capacity(self.conditions.len());
 
         for condition in &self.conditions {
-            let result = condition.should_advance_step(
-                user_location,
-                current_step.clone(),
-                next_step.clone(),
-            );
+            let result = condition.should_advance_step(trip_state.clone());
             should_advance = should_advance && result.should_advance;
             next_conditions.push(result.next_iteration);
         }
@@ -315,7 +312,7 @@ pub struct DistanceEntryAndExitCondition {
     /// Values larger than this cannot ever trigger a step advance.
     pub(super) minimum_horizontal_accuracy: u16,
     /// Internal state for tracking when the user is within `distance_to_end_of_step` meters from the end of the step.
-    /// This allows for stateful advance only after entering a reasonable radues of the goal
+    /// This allows for stateful advance only after entering a reasonable radius of the goal
     /// and then exiting the area by a separate trigger threshold.
     pub(super) has_reached_end_of_current_step: bool,
     // TODO: Do we want a speed multiplier
@@ -345,21 +342,16 @@ impl DistanceEntryAndExitCondition {
 }
 
 impl StepAdvanceCondition for DistanceEntryAndExitCondition {
-    #[allow(unused_variables)]
-    fn should_advance_step(
-        &self,
-        user_location: UserLocation,
-        current_step: RouteStep,
-        next_step: Option<RouteStep>,
-    ) -> StepAdvanceResult {
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
         if self.has_reached_end_of_current_step {
             let distance_from_end = DistanceFromStepCondition {
                 minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
                 distance: self.distance_after_end_of_step,
+                calculate_while_off_route: false,
             };
 
             let should_advance = distance_from_end
-                .should_advance_step(user_location, current_step, next_step)
+                .should_advance_step(trip_state)
                 .should_advance;
 
             if should_advance {
@@ -386,7 +378,7 @@ impl StepAdvanceCondition for DistanceEntryAndExitCondition {
                 distance_to_end_of_step: self.distance_to_end_of_step,
                 distance_after_end_of_step: self.distance_after_end_of_step,
                 has_reached_end_of_current_step: distance_to_end
-                    .should_advance_step(user_location, current_step, next_step)
+                    .should_advance_step(trip_state)
                     .should_advance,
             };
 
@@ -415,10 +407,176 @@ impl StepAdvanceConditionSerializable for DistanceEntryAndExitCondition {
     }
 }
 
+/// A stateful condition that requires the user to reach the end of the step then proceed past it to advance.
+///
+/// This variant uses route snapping (snapping to the combined current+next step geometry) for the exit check,
+/// making it more robust for pedestrian/hiking navigation where users may walk on the opposite side of the street
+/// or wander around the optimal path. The route-snapped exit check prevents premature advancement while still
+/// allowing natural pedestrian movement patterns.
+/// The exit distance is measured from the current step to the route-snapped position.
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "uniffi", derive(uniffi::Object))]
+pub struct DistanceEntryAndSnappedExitCondition {
+    /// Mark the arrival at the end of the step once the user is within this distance.
+    pub(super) distance_to_end_of_step: u16,
+    /// Advance only after the route-snapped position has moved this distance from the current step.
+    ///
+    /// This uses a snapped position to the combined route (current+next steps) which provides
+    /// better handling of pedestrian scenarios like walking on the opposite side of the street.
+    /// Values of 2-5m work well for pedestrian navigation.
+    pub(super) distance_after_end_of_step: u16,
+    /// The minimum required horizontal accuracy of the user location, in meters.
+    /// Values larger than this cannot ever trigger a step advance.
+    pub(super) minimum_horizontal_accuracy: u16,
+    /// Internal state for tracking when the user is within `distance_to_end_of_step` meters from the end of the step.
+    pub(super) has_reached_end_of_current_step: bool,
+}
+
+impl Default for DistanceEntryAndSnappedExitCondition {
+    fn default() -> Self {
+        Self {
+            distance_to_end_of_step: 20,
+            distance_after_end_of_step: 2,
+            minimum_horizontal_accuracy: 25,
+            has_reached_end_of_current_step: false,
+        }
+    }
+}
+
+#[cfg(test)]
+impl DistanceEntryAndSnappedExitCondition {
+    pub fn exact() -> Self {
+        Self {
+            distance_to_end_of_step: 0,
+            distance_after_end_of_step: 0,
+            minimum_horizontal_accuracy: 0,
+            has_reached_end_of_current_step: false,
+        }
+    }
+}
+
+impl StepAdvanceCondition for DistanceEntryAndSnappedExitCondition {
+    #[allow(unused_variables)]
+    fn should_advance_step(&self, trip_state: TripState) -> StepAdvanceResult {
+        let result = if self.has_reached_end_of_current_step {
+            // EXIT CHECK: Use existing distance to end logic
+            self.check_exit_result(&trip_state)
+        } else {
+            // ENTRY CHECK: Use existing distance to end logic
+            self.check_entry_result(&trip_state)
+        };
+
+        result.unwrap_or(StepAdvanceResult::continue_with_state(self.new_instance()))
+    }
+
+    fn new_instance(&self) -> Arc<dyn StepAdvanceCondition> {
+        Arc::new(DistanceEntryAndSnappedExitCondition {
+            has_reached_end_of_current_step: false, // Always reset this to the initial state
+            ..*self
+        })
+    }
+}
+
+impl DistanceEntryAndSnappedExitCondition {
+    fn check_exit_result(&self, trip_state: &TripState) -> Option<StepAdvanceResult> {
+        let user_location = trip_state.user_location()?;
+        let current_step = trip_state.current_step()?;
+        let next_step = trip_state.next_step();
+
+        let should_advance = if user_location.horizontal_accuracy
+            > self.minimum_horizontal_accuracy.into()
+        {
+            false
+        } else if let Some(next) = next_step {
+            // Build combined linestring from current + N next steps
+            // Accumulate steps until we have enough distance for meaningful exit check
+            let mut combined_coords = current_step.geometry.clone();
+            let mut accumulated_distance = next.distance;
+            let mut step_index = 1;
+
+            // Add first next step
+            combined_coords.extend(next.geometry.clone());
+
+            // Keep adding subsequent steps until we have sufficient distance
+            // or run out of steps. Use 2x multiplier to increase chances of handling
+            // U-turns and complex geometries in future steps.
+            let target_distance = (self.distance_after_end_of_step as f64) * 2.0;
+            while accumulated_distance < target_distance {
+                if let Some(future_step) = trip_state.get_step(step_index + 1) {
+                    combined_coords.extend(future_step.geometry.clone());
+                    accumulated_distance += future_step.distance;
+                    step_index += 1;
+                } else {
+                    break;
+                }
+            }
+
+            let combined_linestring = get_linestring(&combined_coords);
+
+            // Snap to the combined route
+            let snapped_to_route = snap_user_location_to_line(user_location, &combined_linestring);
+
+            // Measure distance from CURRENT step only
+            let current_step_linestring = current_step.get_linestring();
+            let deviation =
+                deviation_from_line(&Point::from(snapped_to_route), &current_step_linestring)
+                    .unwrap_or(0.0);
+
+            // Use the minimum of configured exit distance and accumulated distance
+            // to handle cases where there aren't enough future steps
+            let effective_exit_distance =
+                (self.distance_after_end_of_step as f64).min(accumulated_distance);
+
+            deviation >= effective_exit_distance
+        } else {
+            // Advance because no next step.
+            true
+        };
+
+        // EXIT CHECK: Use route-snapped position
+        if should_advance {
+            Some(StepAdvanceResult::advance_to_new_instance(self))
+        } else {
+            None
+        }
+    }
+
+    fn check_entry_result(&self, trip_state: &TripState) -> Option<StepAdvanceResult> {
+        let distance_to_end = DistanceToEndOfStepCondition {
+            minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
+            distance: self.distance_to_end_of_step,
+        };
+
+        let next_iteration = DistanceEntryAndSnappedExitCondition {
+            has_reached_end_of_current_step: distance_to_end
+                .should_advance_step(trip_state.clone())
+                .should_advance,
+            ..*self
+        };
+
+        let result = StepAdvanceResult::continue_with_state(Arc::new(next_iteration));
+        Some(result)
+    }
+}
+
+impl StepAdvanceConditionSerializable for DistanceEntryAndSnappedExitCondition {
+    fn to_js(&self) -> SerializableStepAdvanceCondition {
+        SerializableStepAdvanceCondition::DistanceEntryAndSnappedExit {
+            minimum_horizontal_accuracy: self.minimum_horizontal_accuracy,
+            distance_to_end_of_step: self.distance_to_end_of_step,
+            distance_after_end_step: self.distance_after_end_of_step,
+            has_reached_end_of_current_step: self.has_reached_end_of_current_step,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::navigation_controller::test_helpers::gen_route_step_with_coords;
+    use crate::models::{RouteStep, UserLocation};
+    use crate::navigation_controller::test_helpers::{
+        gen_route_step_with_coords, get_navigating_trip_state,
+    };
     use crate::test_utils::make_user_location;
     use geo::coord;
     use std::sync::LazyLock;
@@ -439,12 +597,15 @@ mod tests {
     fn test_manual_step_advance() {
         let condition = ManualStepCondition;
 
-        // Test the condition - we should NOT advance since we're far from the end
-        let result = condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_START_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we should NOT advance since we're far from the end
+        let result = condition.should_advance_step(trip_state);
 
         // We should never advance to the next step in manual mode,
         // so the list should always be empty.
@@ -462,12 +623,15 @@ mod tests {
             distance: 20, // Must be within 20 meters of the end to advance
         };
 
-        // Test the condition - we should NOT advance since we're far from the end
-        let result = condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_START_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we should NOT advance since we're far from the end
+        let result = condition.should_advance_step(trip_state);
 
         assert!(
             !result.should_advance,
@@ -483,16 +647,81 @@ mod tests {
             distance: 20, // Must be within 20 meters of the end to advance
         };
 
-        // Test the condition - we SHOULD advance since we're close to the end
-        let result = condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we SHOULD advance since we're close to the end
+        let result = condition.should_advance_step(trip_state);
 
         assert!(
             result.should_advance,
             "Should advance when close to the end of the step"
+        );
+    }
+
+    #[test]
+    fn test_distance_from_step_advance_with_deviation() {
+        // Create a location that's far from the route (500+ meters north)
+        // At the equator, 0.005° latitude is approximately 555 meters
+        let user_location = make_user_location(coord!(x: 0.005, y: 0.0005), 5.0);
+
+        // Set up the condition with a minimum deviation of 100 meters to advance
+        let condition = DistanceFromStepCondition {
+            minimum_horizontal_accuracy: 10,
+            distance: 100, // Must be at least 100 meters from route to advance
+            calculate_while_off_route: true,
+        };
+
+        let trip_state = get_navigating_trip_state(
+            user_location,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::OffRoute {
+                deviation_from_route_line: 10.0,
+            },
+        );
+
+        // Test the condition - we SHOULD advance since we're far from the route
+        let result = condition.should_advance_step(trip_state);
+
+        assert!(
+            result.should_advance,
+            "Should advance when far from the route"
+        );
+    }
+
+    #[test]
+    fn test_distance_from_step_advance_with_deviation_off() {
+        // Create a location that's far from the route (500+ meters north)
+        // At the equator, 0.005° latitude is approximately 555 meters
+        let user_location = make_user_location(coord!(x: 0.005, y: 0.0005), 5.0);
+
+        // Set up the condition with a minimum deviation of 100 meters to advance
+        let condition = DistanceFromStepCondition {
+            minimum_horizontal_accuracy: 10,
+            distance: 100, // Must be at least 100 meters from route to advance
+            calculate_while_off_route: false,
+        };
+
+        let trip_state = get_navigating_trip_state(
+            user_location,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::OffRoute {
+                deviation_from_route_line: 10.0,
+            },
+        );
+
+        // Test the condition - we SHOULD advance since we're far from the route
+        let result = condition.should_advance_step(trip_state);
+
+        assert!(
+            !result.should_advance,
+            "Should not advance when far from the route"
         );
     }
 
@@ -506,14 +735,18 @@ mod tests {
         let condition = DistanceFromStepCondition {
             minimum_horizontal_accuracy: 10,
             distance: 100, // Must be at least 100 meters from route to advance
+            calculate_while_off_route: false,
         };
 
-        // Test the condition - we SHOULD advance since we're far from the route
-        let result = condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             user_location,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we SHOULD advance since we're far from the route
+        let result = condition.should_advance_step(trip_state);
 
         assert!(
             result.should_advance,
@@ -534,12 +767,15 @@ mod tests {
             conditions: vec![Arc::new(manual_condition1), Arc::new(manual_condition2)],
         };
 
-        // Test the condition - we should NOT advance since both conditions are false
-        let result = or_condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_START_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we should NOT advance since both conditions are false
+        let result = or_condition.should_advance_step(trip_state);
 
         assert!(
             !result.should_advance,
@@ -563,12 +799,15 @@ mod tests {
             conditions: vec![Arc::new(manual_condition), Arc::new(distance_condition)],
         };
 
-        // Test the condition - we SHOULD advance since one condition is true
-        let result = or_condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we SHOULD advance since one condition is true
+        let result = or_condition.should_advance_step(trip_state);
 
         assert!(
             result.should_advance,
@@ -595,12 +834,15 @@ mod tests {
             ],
         };
 
-        // Test the condition - we should NOT advance since one condition is false
-        let result = and_condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we should NOT advance since one condition is false
+        let result = and_condition.should_advance_step(trip_state);
 
         assert!(
             !result.should_advance,
@@ -626,12 +868,15 @@ mod tests {
             conditions: vec![Arc::new(distance_condition1), Arc::new(distance_condition2)],
         };
 
-        // Test the condition - we SHOULD advance since both conditions are true
-        let result = and_condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Test the condition - we SHOULD advance since both conditions are true
+        let result = and_condition.should_advance_step(trip_state);
 
         assert!(
             result.should_advance,
@@ -651,13 +896,16 @@ mod tests {
             has_reached_end_of_current_step: false,
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step...
         // Should not advance yet, but should update internal state
-        let result1 = condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -671,12 +919,15 @@ mod tests {
         // Get the next iteration from the first result
         let next_condition = result1.next_iteration;
 
-        // Should still not advance because we haven't moved far enough away
-        let result2 = next_condition.should_advance_step(
+        let trip_state2 = get_navigating_trip_state(
             user_location_still_close,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Should still not advance because we haven't moved far enough away
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             !result2.should_advance,
@@ -694,13 +945,16 @@ mod tests {
             has_reached_end_of_current_step: false,
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step...
         // Should not advance yet, but should update internal state
-        let result1 = condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -714,12 +968,15 @@ mod tests {
         // ~55 meters north of the route (0.0005 degrees latitude)
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
 
-        // Now should advance because we've satisfied both conditions sequentially
-        let result2 = next_condition.should_advance_step(
+        let trip_state2 = get_navigating_trip_state(
             user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Now should advance because we've satisfied both conditions sequentially
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -742,12 +999,15 @@ mod tests {
             conditions: vec![Arc::new(entry_exit_condition)],
         };
 
-        // First update: User is close to the end of the step
-        let result1 = and_condition.should_advance_step(
+        let trip_state = get_navigating_trip_state(
             *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // First update: User is close to the end of the step
+        let result1 = and_condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -759,11 +1019,15 @@ mod tests {
 
         // Second update: User moves far away - should advance now
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
-        let result2 = next_and_condition.should_advance_step(
+
+        let trip_state2 = get_navigating_trip_state(
             user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        let result2 = next_and_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -792,13 +1056,16 @@ mod tests {
             conditions: vec![Arc::new(entry_exit_condition), Arc::new(distance_condition)],
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step
         // Should not advance yet, but should update internal state of the entry/exit condition
-        let result1 = and_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = and_condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -812,13 +1079,16 @@ mod tests {
         // ~55 meters north of the route (0.0005 degrees latitude)
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
 
+        let trip_state2 = get_navigating_trip_state(
+            user_location_far,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Now should advance because the entry/exit condition has maintained its state
         // through the AND composite condition
-        let result2 = next_condition.should_advance_step(
-            user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -844,13 +1114,16 @@ mod tests {
             conditions: vec![Arc::new(entry_exit_condition), Arc::new(manual_condition)],
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step
         // Should not advance yet, but should update internal state of the entry/exit condition
-        let result1 = or_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = or_condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -864,13 +1137,16 @@ mod tests {
         // ~55 meters north of the route (0.0005 degrees latitude)
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
 
+        let trip_state2 = get_navigating_trip_state(
+            user_location_far,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Now should advance because the entry/exit condition has maintained its state
         // through the OR composite condition
-        let result2 = next_condition.should_advance_step(
-            user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -899,13 +1175,16 @@ mod tests {
             conditions: vec![Arc::new(entry_exit_condition), Arc::new(distance_condition)],
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step
         // Should not advance yet, but should update internal state of the entry/exit condition
-        let result1 = and_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = and_condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -919,13 +1198,16 @@ mod tests {
         // ~55 meters north of the route (0.0005 degrees latitude)
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
 
+        let trip_state2 = get_navigating_trip_state(
+            user_location_far,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Now should advance because the entry/exit condition has maintained its state
         // through the AND composite condition
-        let result2 = next_condition.should_advance_step(
-            user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -935,17 +1217,206 @@ mod tests {
         // The key test: verify that the next iteration after advancing has reset conditions
         let reset_condition = result2.next_iteration;
 
+        let trip_state3 = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Third update: User is near the end again, but the entry/exit condition should be reset
         // Since the entry/exit condition is reset, it should start over even though user is at end
-        let result3 = reset_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result3 = reset_condition.should_advance_step(trip_state3);
 
         assert!(
             !result3.should_advance,
             "Should not advance immediately after reset - entry/exit condition should restart its two-phase process"
+        );
+    }
+
+    #[test]
+    fn test_route_snapped_entry_and_exit_condition_advance() {
+        // Create a straight route with two steps
+        let step1 = gen_route_step_with_coords(vec![
+            coord!(x: 0.0, y: 0.0),   // Start
+            coord!(x: 0.001, y: 0.0), // 111m east (end of step 1)
+        ]);
+
+        let step2 = gen_route_step_with_coords(vec![
+            coord!(x: 0.001, y: 0.0),   // Start of step 2 (same as end of step 1)
+            coord!(x: 0.001, y: 0.001), // 111m north
+        ]);
+
+        let condition = DistanceEntryAndSnappedExitCondition {
+            distance_to_end_of_step: 10,
+            distance_after_end_of_step: 5,
+            minimum_horizontal_accuracy: 10,
+            has_reached_end_of_current_step: false,
+        };
+
+        // User near end of step 1
+        let location_near_end = make_user_location(coord!(x: 0.00099, y: 0.0), 5.0);
+        let trip_state = get_navigating_trip_state(
+            location_near_end,
+            vec![step1],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        // First update: Should enter the zone but not advance
+        let result1 = condition.should_advance_step(trip_state);
+
+        assert!(
+            !result1.should_advance,
+            "Should not advance on first update when entering end zone"
+        );
+
+        // Second update: User has turned onto step 2 (10m north of the corner)
+        let location_on_step2 = make_user_location(coord!(x: 0.001, y: 0.0001), 5.0);
+        let next_condition = result1.next_iteration;
+        let trip_state2 = get_navigating_trip_state(
+            location_on_step2,
+            vec![step2],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        let result2 = next_condition.should_advance_step(trip_state2);
+
+        assert!(
+            result2.should_advance,
+            "Should advance when route-snapped position has moved onto next step"
+        );
+    }
+
+    #[test]
+    fn test_route_snapped_entry_and_exit_with_short_next_step() {
+        // Create a route where step 1 is normal length, but step 2 and 3 are short
+        let step1 = gen_route_step_with_coords(vec![
+            coord!(x: 0.0, y: 0.0),   // Start
+            coord!(x: 0.001, y: 0.0), // 111m east (end of step 1)
+        ]);
+
+        // Step 2 is short - ~3 meters long
+        let step2 = gen_route_step_with_coords(vec![
+            coord!(x: 0.001, y: 0.0),      // Start of step 2
+            coord!(x: 0.001, y: 0.000027), // ~3m north
+        ]);
+
+        // Step 3 is also short - ~3 meters long
+        // Total accumulated distance: 3 + 3 = 6m, less than configured 10m
+        let step3 = gen_route_step_with_coords(vec![
+            coord!(x: 0.001, y: 0.000027), // Start of step 3
+            coord!(x: 0.001, y: 0.000054), // ~3m north
+        ]);
+
+        // Configure with 10m exit distance, but step 2 + step 3 = only 6m total
+        // The algorithm should cap the effective exit distance to min(10, 6) = 6m
+        let condition = DistanceEntryAndSnappedExitCondition {
+            distance_to_end_of_step: 10,
+            distance_after_end_of_step: 10, // Larger than accumulated distance!
+            minimum_horizontal_accuracy: 10,
+            has_reached_end_of_current_step: false,
+        };
+
+        // User near end of step 1
+        let location_near_end = make_user_location(coord!(x: 0.00099, y: 0.0), 5.0);
+        let trip_state = get_navigating_trip_state(
+            location_near_end,
+            vec![step1, step2.clone(), step3.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        // First update: Enter the end zone
+        let result1 = condition.should_advance_step(trip_state);
+
+        assert!(
+            !result1.should_advance,
+            "Should not advance on first update when entering end zone"
+        );
+
+        // Second update: User has moved 8m north from the turn (well past the short steps)
+        // With correct code using min(10, 6), effective_exit_distance is 6m
+        // The perpendicular deviation from step1 should exceed 6m, so should advance
+        let location_on_step2 = make_user_location(coord!(x: 0.001, y: 0.000072), 5.0);
+        let next_condition = result1.next_iteration;
+        let trip_state2 = get_navigating_trip_state(
+            location_on_step2,
+            vec![step2, step3],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        let result2 = next_condition.should_advance_step(trip_state2);
+
+        assert!(
+            result2.should_advance,
+            "Should advance with short next steps using min(configured, accumulated) distance"
+        );
+    }
+
+    #[test]
+    fn test_route_snapped_entry_and_exit_with_zero_length_via_waypoint() {
+        // Create a route with a normal step, a 0-length via waypoint step, and another normal step
+        let step1 = gen_route_step_with_coords(vec![
+            coord!(x: 0.0, y: 0.0),   // Start
+            coord!(x: 0.001, y: 0.0), // 111m east (end of step 1)
+        ]);
+
+        // Step 2 is a via waypoint with 0 distance (same start and end point)
+        let mut step2 = gen_route_step_with_coords(vec![
+            coord!(x: 0.001, y: 0.0), // Via waypoint location (duplicated)
+            coord!(x: 0.001, y: 0.0), // Same point
+        ]);
+        step2.distance = 0.0; // Explicitly set to 0 distance
+
+        // Step 3 is a normal step continuing from the via waypoint
+        let step3 = gen_route_step_with_coords(vec![
+            coord!(x: 0.001, y: 0.0),   // Start (via waypoint)
+            coord!(x: 0.001, y: 0.001), // 111m north
+        ]);
+
+        let condition = DistanceEntryAndSnappedExitCondition {
+            distance_to_end_of_step: 10,
+            distance_after_end_of_step: 5,
+            minimum_horizontal_accuracy: 10,
+            has_reached_end_of_current_step: false,
+        };
+
+        // User near end of step 1
+        let location_near_end = make_user_location(coord!(x: 0.00099, y: 0.0), 5.0);
+        let trip_state = get_navigating_trip_state(
+            location_near_end,
+            vec![step1, step2.clone(), step3.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        // First update: Should enter the zone but not advance
+        let result1 = condition.should_advance_step(trip_state);
+
+        assert!(
+            !result1.should_advance,
+            "Should not advance on first update when entering end zone"
+        );
+
+        // Second update: User has moved onto step 3 (past the 0-length via waypoint)
+        // The algorithm should accumulate geometry from step2 (0m) + step3 (111m) to have sufficient distance
+        let location_on_step3 = make_user_location(coord!(x: 0.001, y: 0.0001), 5.0);
+        let next_condition = result1.next_iteration;
+        let trip_state2 = get_navigating_trip_state(
+            location_on_step3,
+            vec![step2, step3],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        let result2 = next_condition.should_advance_step(trip_state2);
+
+        assert!(
+            result2.should_advance,
+            "Should advance when route-snapped position has moved onto step after 0-length via waypoint"
         );
     }
 
@@ -967,13 +1438,16 @@ mod tests {
             conditions: vec![Arc::new(entry_exit_condition), Arc::new(manual_condition)],
         };
 
+        let trip_state = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step
         // Should not advance yet, but should update internal state of the entry/exit condition
-        let result1 = or_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result1 = or_condition.should_advance_step(trip_state);
 
         assert!(
             !result1.should_advance,
@@ -987,12 +1461,15 @@ mod tests {
         // ~55 meters north of the route (0.0005 degrees latitude)
         let user_location_far = make_user_location(coord!(x: 0.001, y: 0.0005), 5.0);
 
-        // Now should advance because the entry/exit condition has maintained its state
-        let result2 = next_condition.should_advance_step(
+        let trip_state2 = get_navigating_trip_state(
             user_location_far,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
         );
+
+        // Now should advance because the entry/exit condition has maintained its state
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         assert!(
             result2.should_advance,
@@ -1002,13 +1479,16 @@ mod tests {
         // The key test: verify that the next iteration after advancing has reset conditions
         let reset_condition = result2.next_iteration;
 
+        let trip_state3 = get_navigating_trip_state(
+            *LOCATION_NEAR_END_OF_STEP,
+            vec![STRAIGHT_LINE_SHORT_ROUTE_STEP.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Third update: User is near the end again, but the entry/exit condition should be reset
         // Since the entry/exit condition is reset, it should start over even though user is at end
-        let result3 = reset_condition.should_advance_step(
-            *LOCATION_NEAR_END_OF_STEP,
-            STRAIGHT_LINE_SHORT_ROUTE_STEP.clone(),
-            None,
-        );
+        let result3 = reset_condition.should_advance_step(trip_state3);
 
         assert!(
             !result3.should_advance,
@@ -1034,8 +1514,15 @@ proptest! {
 
         let condition = ManualStepCondition;
 
+        let trip_state = get_navigating_trip_state(
+            user_location,
+            vec![route_step],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Test the condition - we should NOT advance since we're far from the end
-        let result = condition.should_advance_step(user_location, route_step, None);
+        let result = condition.should_advance_step(trip_state);
 
         // We should never advance to the next step in manual mode,
         // so the list should always be empty.
@@ -1065,10 +1552,16 @@ proptest! {
             has_reached_end_of_current_step: false,
         };
 
+        let trip_state = get_navigating_trip_state(
+            user_location,
+            vec![route_step.clone()],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // First update: User is close to the end of the step...
         // Should not advance yet, but should update internal state
-        let result1 =
-            condition.should_advance_step(user_location, route_step.clone(), None);
+        let result1 = condition.should_advance_step(trip_state);
 
         prop_assert!(
             !result1.should_advance,
@@ -1080,9 +1573,15 @@ proptest! {
         // Get the next iteration from the first result
         let next_condition = result1.next_iteration;
 
+        let trip_state2 = get_navigating_trip_state(
+            user_location,
+            vec![route_step],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
         // Should still not advance because we haven't moved far enough away
-        let result2 =
-            next_condition.should_advance_step(user_location, route_step, None);
+        let result2 = next_condition.should_advance_step(trip_state2);
 
         prop_assert!(
             !result2.should_advance,

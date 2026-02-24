@@ -16,8 +16,6 @@ public struct NavigationMapView: View {
     @Environment(\.navigationMapViewRouteOverlayConfiguration) private var routeConfig
     @Environment(\.navigationMapViewContentInsetConfiguration) private var contentInsetConfig
 
-    @State private var orientation = UIDevice.current.orientation
-
     let styleURL: URL
     var mapViewContentInset: UIEdgeInsets = .zero
     var onStyleLoaded: (MLNStyle) -> Void
@@ -74,22 +72,17 @@ public struct NavigationMapView: View {
                 // Overlay any additional user layers.
                 userLayers
             }
-            .mapViewContentInset(calculatedMapViewInsets(for: geometry).uiEdgeInsets)
+            .mapContentInset(calculatedMapViewInsets(for: geometry).uiEdgeInsets)
             .mapControls {
                 // No controls
             }
-            .onStyleLoaded(onStyleLoaded)
+            .onMapStyleLoaded(onStyleLoaded)
             .ignoresSafeArea(.all)
-        }
-        .onReceive(
-            NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-        ) { _ in
-            orientation = UIDevice.current.orientation
         }
     }
 
     private func calculatedMapViewInsets(for geometry: GeometryProxy) -> NavigationMapViewContentInsetMode {
-        contentInsetConfig.bundle.dynamicWithCameraState(camera.state, orientation: orientation)(geometry)
+        contentInsetConfig.bundle.dynamicWithCameraState(camera.state, isLandscape: geometry.isLandscape)(geometry)
     }
 
     private func updateCameraIfNeeded() {

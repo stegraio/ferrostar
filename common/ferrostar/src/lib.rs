@@ -30,6 +30,7 @@ pub mod algorithms;
 pub mod deviation_detection;
 pub mod models;
 pub mod navigation_controller;
+pub mod navigation_session;
 pub mod routing_adapters;
 pub mod simulation;
 
@@ -61,13 +62,13 @@ pub fn create_ferrostar_logger() {
 mod uniffi_deps {
     pub use crate::models::{Route, Waypoint};
     pub use crate::routing_adapters::{
+        RouteRequestGenerator, RouteResponseParser,
         error::{InstantiationError, ParsingError},
         osrm::{
-            models::{Route as OsrmRoute, Waypoint as OsrmWaypoint},
             OsrmResponseParser,
+            models::{Route as OsrmRoute, Waypoint as OsrmWaypoint},
         },
         valhalla::ValhallaHttpRequestGenerator,
-        RouteRequestGenerator, RouteResponseParser,
     };
     pub use chrono::{DateTime, Utc};
     pub use std::{str::FromStr, sync::Arc};

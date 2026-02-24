@@ -218,14 +218,17 @@ expression: routes
         lat: 28.795656
         lng: -82.036056
       kind: Break
+      properties: "{\"name\":\"\",\"distance\":0.095}"
     - coordinate:
         lat: 28.795446
         lng: -82.035862
       kind: Via
+      properties: "{\"name\":\"\",\"distance\":0.0}"
     - coordinate:
         lat: 28.790106
         lng: -82.018021
       kind: Break
+      properties: "{\"name\":\"\",\"distance\":4.898}"
   steps:
     - geometry:
         - lat: 28.795656
@@ -455,6 +458,8 @@ expression: routes
           trigger_distance_before_maneuver: 60
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~
     - geometry:
         - lat: 28.790106
           lng: -82.018021
@@ -479,3 +484,5 @@ expression: routes
       spoken_instructions: []
       annotations: redacted annotations json strings vec
       incidents: []
+      driving_side: right
+      roundabout_exit_number: ~
