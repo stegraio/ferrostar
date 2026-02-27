@@ -143,7 +143,7 @@ pub struct RouteStep {
     /// The maneuver for this step
     pub maneuver: StepManeuver,
     /// List of intersections at which the route passes through.
-    
+
     #[serde(default)]
     pub intersections: Vec<Intersections>,
 
@@ -243,10 +243,6 @@ pub struct StepManeuver {
     pub exit: Option<u8>,
     /// Non-standard extension in Mapbox and Valhalla where the instruction is computed server-side
     instruction: Option<String>,
-    /// OSRM: roundabout/rotary exit index (e.g., 2 for "take the 2nd exit").
-    /// Absent for non-roundabout maneuvers.
-    #[serde(default)]
-    pub exit: Option<u16>,
 }
 
 impl StepManeuver {

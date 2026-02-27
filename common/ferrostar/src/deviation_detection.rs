@@ -13,8 +13,7 @@
 //! we suggest enforcing a similar separation of concerns.
 
 use crate::algorithms::deviation_from_line;
-use crate::algorithms::{nearest_segment_bearing_deg};
-use crate::models::{Route, RouteStep, UserLocation};
+use crate::algorithms::nearest_segment_bearing_deg;
 use crate::models::Route;
 use crate::navigation_controller::models::TripState;
 #[cfg(test)]
@@ -136,54 +135,79 @@ impl RouteDeviationTracking {
                 close_snap_m,
                 min_speed_mps,
                 opposite_heading_deg,
-            } => {
-                // 1) Same accuracy gate as StaticThreshold
-                if location.horizontal_accuracy >= f64::from(*minimum_horizontal_accuracy) {
-                    return RouteDeviation::NoDeviation;
-                }
+            } => match trip_state {
+                TripState::Idle { .. } | TripState::Complete { .. } => RouteDeviation::NoDeviation,
+                TripState::Navigating {
+                    user_location,
+                    remaining_steps,
+                    ..
+                } => {
+                    // 1) Same accuracy gate as StaticThreshold
+                    if user_location.horizontal_accuracy >= f64::from(*minimum_horizontal_accuracy)
+                    {
+                        return RouteDeviation::NoDeviation;
+                    }
 
-                let step_ls = current_route_step.get_linestring();
-                if step_ls.0.len() < 2 {
-                    return RouteDeviation::NoDeviation;
-                }
+                    let user_pt = Point::from(*user_location);
 
-                let user_pt = Point::from(location);
+                    // Only check the CURRENT step (index 0) for deviation.
+                    // Previously, this loop checked all remaining steps and would
+                    // return NoDeviation if the user was close to ANY later step.
+                    // That caused a bug: when a route turns to a waypoint and comes
+                    // back to the same road, skipping the turn would match a later
+                    // step on the same road, suppressing the deviation. The step
+                    // advance would never fire (user never approached the turn),
+                    // leaving navigation stuck at the missed turn.
+                    //
+                    // By only checking the current step, we ensure deviation fires
+                    // when the user is off the current step, letting the app's
+                    // route snapper pick up navigation from the correct position.
+                    let Some(current_step) = remaining_steps.first() else {
+                        return RouteDeviation::NoDeviation;
+                    };
 
-                // 2) Distance to current step line (meters) — reuse your helper
-                let deviation_m = match deviation_from_line(&user_pt, &step_ls) {
-                    Some(d) => d,
-                    None => return RouteDeviation::NoDeviation,
-                };
+                    let step_ls = current_step.get_linestring();
+                    if step_ls.0.len() < 2 {
+                        return RouteDeviation::NoDeviation;
+                    }
 
-                // 2a) Keep original static distance behavior
-                if deviation_m > 0.0 && deviation_m > *max_acceptable_deviation {
-                    return RouteDeviation::OffRoute { deviation_from_route_line: deviation_m };
-                }
+                    // 2) Distance to current step line (meters)
+                    let deviation_m = match deviation_from_line(&user_pt, &step_ls) {
+                        Some(d) => d,
+                        None => return RouteDeviation::NoDeviation,
+                    };
 
-                // 3) Heading rule: only when close to line AND moving
-                let speed_mps = location.speed.map(|s| s.value).unwrap_or(0.0);
-                let user_heading = match location.course_over_ground {
-                    Some(cog) => normalize_deg(cog.degrees as f64),
-                    None => return RouteDeviation::NoDeviation, // no heading → skip heading logic
-                };
+                    // 2a) Static distance check
+                    if deviation_m > 0.0 && deviation_m > *max_acceptable_deviation {
+                        return RouteDeviation::OffRoute {
+                            deviation_from_route_line: deviation_m,
+                        };
+                    }
 
-                if deviation_m <= *close_snap_m && speed_mps >= *min_speed_mps {
-                    // Bearing of the nearest segment to the user (implement this helper)
-                    let seg_bearing = nearest_segment_bearing_deg(&user_pt, &step_ls).map(normalize_deg);
+                    // 3) Heading rule: close to line AND moving
+                    let speed_mps = user_location.speed.map(|s| s.value).unwrap_or(0.0);
+                    let user_heading = match user_location.course_over_ground {
+                        Some(cog) => normalize_deg(cog.degrees as f64),
+                        None => return RouteDeviation::NoDeviation,
+                    };
 
-                    if let Some(seg_bearing) = seg_bearing {
-                        let delta = smallest_angle_diff_deg(user_heading, seg_bearing);
-                        if delta >= *opposite_heading_deg {
-                            // Wrong-way while on the line → OffRoute
-                            return RouteDeviation::OffRoute {
-                                deviation_from_route_line: deviation_m.max(1.0),
-                            };
+                    if deviation_m <= *close_snap_m && speed_mps >= *min_speed_mps {
+                        let seg_bearing =
+                            nearest_segment_bearing_deg(&user_pt, &step_ls).map(normalize_deg);
+
+                        if let Some(seg_bearing) = seg_bearing {
+                            let delta = smallest_angle_diff_deg(user_heading, seg_bearing);
+                            if delta >= *opposite_heading_deg {
+                                return RouteDeviation::OffRoute {
+                                    deviation_from_route_line: deviation_m.max(1.0),
+                                };
+                            }
                         }
                     }
-                }
 
-                RouteDeviation::NoDeviation
-            }
+                    RouteDeviation::NoDeviation
+                }
+            },
         }
     }
 
@@ -208,7 +232,9 @@ impl RouteDeviationTracking {
 }
 
 #[inline]
-fn normalize_deg(x: f64) -> f64 { ((x % 360.0) + 360.0) % 360.0 }
+fn normalize_deg(x: f64) -> f64 {
+    ((x % 360.0) + 360.0) % 360.0
+}
 
 #[inline]
 fn smallest_angle_diff_deg(a: f64, b: f64) -> f64 {
