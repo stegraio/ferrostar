@@ -1,5 +1,6 @@
 ---
 source: ferrostar/src/routing_adapters/osrm/mod.rs
+assertion_line: 486
 expression: routes
 ---
 - geometry:
@@ -221,7 +222,8 @@ expression: routes
             maneuver_modifier: slight right
             roundabout_exit_degrees: ~
             lane_info: ~
-            exit_numbers: []
+            exit_numbers:
+              - "10"
           secondary_content: ~
           sub_content:
             text: ""
