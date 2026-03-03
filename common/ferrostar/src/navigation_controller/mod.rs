@@ -22,7 +22,7 @@ use crate::{
         models::TripSummary,
         waypoint_advance::{WaypointAdvanceChecker, WaypointAdvanceResult, WaypointCheckEvent},
     },
-    navigation_session::{NavigationObserver, NavigationSession, recording::NavigationRecorder},
+    navigation_session::{recording::NavigationRecorder, NavigationObserver, NavigationSession},
 };
 use chrono::Utc;
 use geo::geometry::LineString;
@@ -30,7 +30,7 @@ use models::{NavState, NavigationControllerConfig, StepAdvanceStatus, TripState}
 use std::clone::Clone;
 use std::sync::Arc;
 #[cfg(feature = "wasm-bindgen")]
-use wasm_bindgen::{JsValue, prelude::wasm_bindgen};
+use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 
 /// Core interface for navigation functionalities.
 ///
@@ -101,25 +101,27 @@ impl Navigator for NavigationController {
     /// Returns initial trip state as if the user had just started the route with no progress.
     fn get_initial_state(&self, location: UserLocation) -> NavState {
         let mut remaining_steps = self.route.steps.clone();
-        
+
         // Check if the user is close to a specific step in the route
         // and should start navigation from that step instead of the beginning
         let user_point = location.into();
         let mut closest_step_idx: Option<usize> = None;
         let mut min_deviation = std::f64::MAX;
         let max_deviation_threshold = 50.0; // User must be within 50 meters to be considered "on" a step
-        
+
         // Find the closest step to the user's current location
         for (idx, step) in remaining_steps.iter().enumerate() {
             let linestring = step.get_linestring();
-            if let Some(deviation) = crate::algorithms::deviation_from_line(&user_point, &linestring) {
+            if let Some(deviation) =
+                crate::algorithms::deviation_from_line(&user_point, &linestring)
+            {
                 if deviation < min_deviation {
                     min_deviation = deviation;
                     closest_step_idx = Some(idx);
                 }
             }
         }
-        
+
         // If user is close enough to a step, start navigation from that step
         if min_deviation <= max_deviation_threshold && location.horizontal_accuracy <= 20.0 {
             if let Some(idx) = closest_step_idx {
@@ -304,6 +306,13 @@ impl Navigator for NavigationController {
                     .config
                     .route_deviation_tracking
                     .check_route_deviation(&self.route, &state.trip_state());
+
+                eprintln!(
+                    "[NavController] update_user_location: new_loc=({:.6},{:.6}) speed={:?} cog={:?} | deviation_check used PREVIOUS state's user_location",
+                    location.coordinates.lng, location.coordinates.lat,
+                    location.speed.map(|s| s.value),
+                    location.course_over_ground.map(|c| c.degrees),
+                );
 
                 let is_arriving = remaining_steps.len() <= 2;
                 let intermediate_trip_state = self.create_intermediate_trip_state(
@@ -543,9 +552,9 @@ mod tests {
     };
     use crate::routing_adapters::osrm::models::OsrmWaypointProperties;
     use crate::simulation::{
-        LocationBias, advance_location_simulation, location_simulation_from_route,
+        advance_location_simulation, location_simulation_from_route, LocationBias,
     };
-    use crate::test_utils::{TestRoute, redact_properties};
+    use crate::test_utils::{redact_properties, TestRoute};
     use std::sync::Arc;
 
     fn test_full_route_state_snapshot(

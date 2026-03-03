@@ -1,8 +1,8 @@
 use crate::algorithms::deviation_from_line;
 use crate::models::RouteStep;
+use crate::navigation_controller::models::WaypointAdvanceMode;
 use crate::navigation_controller::TripState;
 use crate::navigation_controller::Waypoint;
-use crate::navigation_controller::models::WaypointAdvanceMode;
 use geo::{Distance, Haversine, Point};
 
 #[derive(Debug, Clone, PartialEq)]
@@ -112,7 +112,7 @@ mod tests {
     use crate::navigation_controller::test_helpers::{
         gen_route_step_with_coords, get_navigating_trip_state,
     };
-    use geo::{Destination, coord};
+    use geo::{coord, Destination};
     use proptest::prelude::*;
 
     #[cfg(all(test, feature = "std", not(feature = "web-time")))]

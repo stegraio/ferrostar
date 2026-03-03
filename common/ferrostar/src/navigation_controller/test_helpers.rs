@@ -9,13 +9,13 @@ use crate::navigation_controller::models::{
     CourseFiltering, NavigationControllerConfig, TripProgress, TripState, TripSummary,
     WaypointAdvanceMode,
 };
-use crate::navigation_controller::step_advance::StepAdvanceCondition;
 use crate::navigation_controller::step_advance::conditions::DistanceToEndOfStepCondition;
+use crate::navigation_controller::step_advance::StepAdvanceCondition;
 #[cfg(feature = "alloc")]
 use alloc::string::ToString;
 use chrono::{DateTime, Utc};
-use geo::{BoundingRect, Coord, Distance, Haversine, LineString, Point, point};
-use insta::{Settings, dynamic_redaction};
+use geo::{point, BoundingRect, Coord, Distance, Haversine, LineString, Point};
+use insta::{dynamic_redaction, Settings};
 
 pub fn get_test_navigation_controller_config(
     step_advance_condition: Arc<dyn StepAdvanceCondition>,
@@ -161,11 +161,11 @@ pub fn gen_route_from_steps(steps: Vec<RouteStep>) -> Route {
     }
 }
 
-fn create_timestamp_redaction()
--> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> &'static str
-+ Send
-+ Sync
-+ 'static {
+fn create_timestamp_redaction(
+) -> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> &'static str
+       + Send
+       + Sync
+       + 'static {
     |value, _path| {
         if value.is_nil() {
             "[none]"
@@ -185,11 +185,11 @@ fn create_timestamp_redaction()
     }
 }
 
-fn create_distance_redaction()
--> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> String
-+ Send
-+ Sync
-+ 'static {
+fn create_distance_redaction(
+) -> impl Fn(insta::internals::Content, insta::internals::ContentPath<'_>) -> String
+       + Send
+       + Sync
+       + 'static {
     |value, _path| {
         if value.is_nil() {
             "[none]".to_string()
