@@ -102,19 +102,23 @@ impl Navigator for NavigationController {
     fn get_initial_state(&self, location: UserLocation) -> NavState {
         let mut remaining_steps = self.route.steps.clone();
 
-        // Check if the user is close to a specific step in the route
-        // and should start navigation from that step instead of the beginning
+        // Find the closest step to the user's current location so we can
+        // start navigation from that step instead of the very beginning.
         let user_point = location.into();
         let mut closest_step_idx: Option<usize> = None;
         let mut min_deviation = std::f64::MAX;
-        let max_deviation_threshold = 50.0; // User must be within 50 meters to be considered "on" a step
 
-        // Find the closest step to the user's current location
         for (idx, step) in remaining_steps.iter().enumerate() {
             let linestring = step.get_linestring();
             if let Some(deviation) =
                 crate::algorithms::deviation_from_line(&user_point, &linestring)
             {
+                eprintln!(
+                    "[get_initial_state] step {} deviation={:.2}m (geometry points={})",
+                    idx,
+                    deviation,
+                    linestring.0.len()
+                );
                 if deviation < min_deviation {
                     min_deviation = deviation;
                     closest_step_idx = Some(idx);
@@ -122,13 +126,68 @@ impl Navigator for NavigationController {
             }
         }
 
-        // If user is close enough to a step, start navigation from that step
-        if min_deviation <= max_deviation_threshold && location.horizontal_accuracy <= 20.0 {
+        eprintln!(
+            "[get_initial_state] total_steps={}, closest_step_idx={:?}, min_deviation={:.2}m, accuracy={:.1}m",
+            remaining_steps.len(), closest_step_idx, min_deviation, location.horizontal_accuracy
+        );
+
+        // Always start from the closest step (no distance threshold).
+        // The snapper already verified the user is near the route; gating
+        // on a per-step distance caused fallback to step 0 when the user
+        // was between steps (e.g. mid-turn), leading to immediate 300m+
+        // deviation. The accuracy gate remains to avoid jumping on bad GPS.
+        if location.horizontal_accuracy <= 20.0 {
             if let Some(idx) = closest_step_idx {
                 if idx > 0 && idx < remaining_steps.len() {
+                    eprintln!(
+                        "[get_initial_state] Draining steps 0..{}, starting from step {}",
+                        idx, idx
+                    );
                     remaining_steps.drain(0..idx);
+                } else {
+                    eprintln!("[get_initial_state] Closest is step 0, no drain needed");
                 }
             }
+        } else {
+            eprintln!(
+                "[get_initial_state] Accuracy {:.1}m > 20m gate, skipping step-skip",
+                location.horizontal_accuracy
+            );
+        }
+
+        // Proactive step advancement: if the user is near the end of the
+        // selected step, advance past it now.  This prevents the "speed-run"
+        // recursion in update_user_location from chaining through multiple
+        // steps on the very first location update and landing on a step whose
+        // geometry is far from the user (causing an immediate deviation).
+        //
+        // We use 20m, slightly above the 15m DistanceToEndOfStep threshold
+        // used during navigation, so we always pre-advance past steps that
+        // would immediately trigger step-advance in update_user_location.
+        const NEAR_END_THRESHOLD: f64 = 20.0;
+        let mut proactive_advances = 0u32;
+        while remaining_steps.len() > 1 {
+            let step_linestring = remaining_steps[0].get_linestring();
+            if crate::algorithms::is_within_threshold_to_end_of_linestring(
+                &user_point,
+                &step_linestring,
+                NEAR_END_THRESHOLD,
+            ) {
+                proactive_advances += 1;
+                eprintln!(
+                    "[get_initial_state] Proactive advance #{}: user within {}m of end of step, draining",
+                    proactive_advances, NEAR_END_THRESHOLD
+                );
+                remaining_steps.drain(0..1);
+            } else {
+                break;
+            }
+        }
+        if proactive_advances > 0 {
+            eprintln!(
+                "[get_initial_state] Proactively advanced past {} step(s), now on step with {} remaining",
+                proactive_advances, remaining_steps.len()
+            );
         }
 
         let initial_summary = TripSummary {
@@ -341,12 +400,41 @@ impl Navigator for NavigationController {
 
                 if should_advance {
                     // Advance to the next step
-                    let updated_state = self.advance_to_next_step(intermediate_nav_state);
+                    let updated_state = self.advance_to_next_step(intermediate_nav_state.clone());
 
                     return if is_arriving {
                         updated_state
                     } else {
-                        // Recurse ("speed run" behavior)
+                        // Guard: before recursing ("speed run"), check if the user is
+                        // actually near the NEW step's polyline.  If they're farther
+                        // than the deviation threshold, the advance was wrong (e.g.
+                        // DistanceFromStepCondition fired because the user is >15 m
+                        // perpendicular to the current step, but the next step is an
+                        // offramp 300 m away).  In that case, reject the advance and
+                        // stay on the current step.
+                        if let Some(max_dev) = self
+                            .config
+                            .route_deviation_tracking
+                            .max_deviation_distance()
+                        {
+                            if let Some(new_step) = updated_state.trip_state().current_step() {
+                                let new_step_ls = new_step.get_linestring();
+                                let user_point = geo::Point::from(location);
+                                if let Some(dist) = crate::algorithms::deviation_from_line(
+                                    &user_point,
+                                    &new_step_ls,
+                                ) {
+                                    if dist > max_dev {
+                                        eprintln!(
+                                            "[NavController] speed-run BLOCKED: user is {:.1}m from new step polyline (threshold {:.1}m), staying on current step",
+                                            dist, max_dev
+                                        );
+                                        return intermediate_nav_state;
+                                    }
+                                }
+                            }
+                        }
+                        // User is close enough to the new step — recurse.
                         self.update_user_location(location, updated_state)
                     };
                 }

@@ -93,6 +93,25 @@ pub enum RouteDeviationTracking {
 }
 
 impl RouteDeviationTracking {
+    /// Returns the max acceptable deviation distance (in meters) if configured, or `None`.
+    ///
+    /// This is used by the navigation controller to guard speed-run step advancement:
+    /// if the user would be farther than this distance from the new step, the advance is rejected.
+    #[must_use]
+    pub(crate) fn max_deviation_distance(&self) -> Option<f64> {
+        match self {
+            RouteDeviationTracking::None | RouteDeviationTracking::Custom { .. } => None,
+            RouteDeviationTracking::StaticThreshold {
+                max_acceptable_deviation,
+                ..
+            } => Some(*max_acceptable_deviation),
+            RouteDeviationTracking::StaticThresholdWithHeading {
+                max_acceptable_deviation,
+                ..
+            } => Some(*max_acceptable_deviation),
+        }
+    }
+
     #[must_use]
     pub(crate) fn check_route_deviation(
         &self,

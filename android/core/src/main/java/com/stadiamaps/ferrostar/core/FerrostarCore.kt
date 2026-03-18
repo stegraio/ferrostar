@@ -252,6 +252,45 @@ class FerrostarCore(
             ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null, null, null)
 
     val initialNavState = navigationSession.getInitialState(startingLocation)
+
+    // Diagnostic logging for get_initial_state step matching
+    val tripState = initialNavState.tripState
+    if (tripState is TripState.Navigating) {
+      val totalSteps = route.steps.size
+      val remainingSteps = tripState.remainingSteps.size
+      val skippedSteps = totalSteps - remainingSteps
+      val deviation = tripState.deviation
+      val deviationDist =
+          if (deviation is RouteDeviation.OffRoute) deviation.deviationFromRouteLine else 0.0
+      val accuracy = startingLocation.horizontalAccuracy
+      val distToNext = tripState.progress.distanceToNextManeuver
+      android.util.Log.d(
+          TAG,
+          "[getInitialState] totalSteps=$totalSteps, remaining=$remainingSteps, " +
+              "skipped=$skippedSteps, accuracy=${"%.1f".format(accuracy)}m")
+      android.util.Log.d(
+          TAG,
+          "[getInitialState] deviation=$deviation, " +
+              "dist=${"%.2f".format(deviationDist)}m, " +
+              "distToNext=${"%.1f".format(distToNext)}m")
+      android.util.Log.d(
+          TAG,
+          "[getInitialState] loc=(${"%.6f".format(startingLocation.coordinates.lat)}, " +
+              "${"%.6f".format(startingLocation.coordinates.lng)})")
+      tripState.remainingSteps.firstOrNull()?.let { step ->
+        val geom = step.geometry
+        if (geom.isNotEmpty()) {
+          val f = geom.first()
+          val l = geom.last()
+          android.util.Log.d(
+              TAG,
+              "[getInitialState] step0: pts=${geom.size}, " +
+                  "start=(${"%.6f".format(f.lat)}, ${"%.6f".format(f.lng)}), " +
+                  "end=(${"%.6f".format(l.lat)}, ${"%.6f".format(l.lng)})")
+        }
+      }
+    }
+
     val newState = NavigationState(tripState = initialNavState.tripState, route.geometry, false)
     handleStateUpdate(initialNavState, startingLocation)
 
