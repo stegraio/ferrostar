@@ -5,7 +5,7 @@ use crate::models::{GeographicCoordinate, UserLocation, Waypoint, WaypointKind};
 use crate::routing_adapters::RouteRequestGenerator;
 #[cfg(all(not(feature = "std"), feature = "alloc"))]
 use alloc::collections::BTreeMap as HashMap;
-use serde_json::{Map, Value as JsonValue, json};
+use serde_json::{json, Map, Value as JsonValue};
 #[cfg(feature = "std")]
 use std::collections::HashMap;
 
@@ -269,6 +269,8 @@ pub struct ValhallaLocationSearchFilter {
 ///     course_over_ground: None,
 ///     timestamp: SystemTime::now(),
 ///     speed: None,
+///     altitude: None,
+///     vertical_accuracy: None,
 /// };
 ///
 /// // Waypoints
@@ -581,6 +583,8 @@ mod tests {
         course_over_ground: None,
         timestamp: SystemTime::UNIX_EPOCH,
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
     const USER_LOCATION_WITH_COURSE: UserLocation = UserLocation {
         coordinates: GeographicCoordinate { lat: 0.0, lng: 0.0 },
@@ -591,6 +595,8 @@ mod tests {
         }),
         timestamp: SystemTime::UNIX_EPOCH,
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
     static WAYPOINTS: LazyLock<[Waypoint; 2]> = LazyLock::new(|| {
         [
@@ -785,6 +791,8 @@ mod tests {
             course_over_ground: None,
             timestamp: SystemTime::now(),
             speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
 
         let RouteRequest::HttpPost {

@@ -183,6 +183,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.377106
                 lng: -122.584167
@@ -191,6 +192,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "0.0000000000"
@@ -198,6 +200,7 @@ events:
               snappedDistanceTraveled: "0.0000000000"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.377106
                 lng: -122.584167
@@ -206,6 +209,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -372,6 +376,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376869
                 lng: -122.584504
@@ -380,6 +385,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "37.2472440403"
@@ -387,6 +393,7 @@ events:
               snappedDistanceTraveled: "37.2472440403"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376869
                 lng: -122.584504
@@ -395,6 +402,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -561,6 +569,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376812
                 lng: -122.584584
@@ -569,6 +578,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "46.1476498220"
@@ -576,6 +586,7 @@ events:
               snappedDistanceTraveled: "46.1476498220"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376812
                 lng: -122.584584
@@ -584,6 +595,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -750,6 +762,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376755
                 lng: -122.584664
@@ -758,6 +771,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "55.0480600249"
@@ -765,6 +779,7 @@ events:
               snappedDistanceTraveled: "55.0480600249"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376755
                 lng: -122.584664
@@ -773,6 +788,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -939,6 +955,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376698
                 lng: -122.584744
@@ -947,6 +964,7 @@ events:
                 degrees: 224
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "63.9484746505"
@@ -954,6 +972,7 @@ events:
               snappedDistanceTraveled: "63.9484746505"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376698
                 lng: -122.584744
@@ -962,6 +981,7 @@ events:
                 degrees: 224
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -1128,6 +1148,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376641
                 lng: -122.584823
@@ -1136,6 +1157,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "72.7942316910"
@@ -1143,6 +1165,7 @@ events:
               snappedDistanceTraveled: "72.7942316910"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376641
                 lng: -122.584823
@@ -1151,6 +1174,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -1317,6 +1341,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376584
                 lng: -122.584903
@@ -1325,6 +1350,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "81.6946551602"
@@ -1332,6 +1358,7 @@ events:
               snappedDistanceTraveled: "81.6946551602"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376584
                 lng: -122.584903
@@ -1340,6 +1367,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -1506,6 +1534,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376527
                 lng: -122.584983
@@ -1514,6 +1543,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "90.5950830514"
@@ -1521,6 +1551,7 @@ events:
               snappedDistanceTraveled: "90.5950830514"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376527
                 lng: -122.584983
@@ -1529,6 +1560,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -1695,6 +1727,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376469
                 lng: -122.585064
@@ -1703,6 +1736,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "99.6295639542"
@@ -1710,6 +1744,7 @@ events:
               snappedDistanceTraveled: "99.6295639542"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376469
                 lng: -122.585064
@@ -1718,6 +1753,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -1884,6 +1920,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376411
                 lng: -122.585145
@@ -1892,6 +1929,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "108.6640494006"
@@ -1899,6 +1937,7 @@ events:
               snappedDistanceTraveled: "108.6640494006"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376411
                 lng: -122.585145
@@ -1907,6 +1946,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -2073,6 +2113,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376353
                 lng: -122.585226
@@ -2081,6 +2122,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "117.6985393917"
@@ -2088,6 +2130,7 @@ events:
               snappedDistanceTraveled: "117.6985393917"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376353
                 lng: -122.585226
@@ -2096,6 +2139,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -2262,6 +2306,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376295
                 lng: -122.585307
@@ -2270,6 +2315,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "126.7330339268"
@@ -2277,6 +2323,7 @@ events:
               snappedDistanceTraveled: "126.7330339268"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376295
                 lng: -122.585307
@@ -2285,6 +2332,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -2451,6 +2499,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376238
                 lng: -122.585389
@@ -2459,6 +2508,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "135.7438459033"
@@ -2466,6 +2516,7 @@ events:
               snappedDistanceTraveled: "135.7438459033"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376238
                 lng: -122.585389
@@ -2474,6 +2525,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -2640,6 +2692,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37618
                 lng: -122.58547
@@ -2648,6 +2701,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "144.7783494489"
@@ -2655,6 +2709,7 @@ events:
               snappedDistanceTraveled: "144.7783494489"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37618
                 lng: -122.58547
@@ -2663,6 +2718,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -2829,6 +2885,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376122
                 lng: -122.585551
@@ -2837,6 +2894,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "153.8128575383"
@@ -2844,6 +2902,7 @@ events:
               snappedDistanceTraveled: "153.8128575383"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376122
                 lng: -122.585551
@@ -2852,6 +2911,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3018,6 +3078,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376064
                 lng: -122.585632
@@ -3026,6 +3087,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "162.8473701734"
@@ -3033,6 +3095,7 @@ events:
               snappedDistanceTraveled: "162.8473701734"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376064
                 lng: -122.585632
@@ -3041,6 +3104,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3207,6 +3271,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376006
                 lng: -122.585713
@@ -3215,6 +3280,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "171.8818873521"
@@ -3222,6 +3288,7 @@ events:
               snappedDistanceTraveled: "171.8818873521"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.376006
                 lng: -122.585713
@@ -3230,6 +3297,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3396,6 +3464,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375948
                 lng: -122.585794
@@ -3404,6 +3473,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "180.9164090755"
@@ -3411,6 +3481,7 @@ events:
               snappedDistanceTraveled: "180.9164090755"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375948
                 lng: -122.585794
@@ -3419,6 +3490,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3585,6 +3657,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375888
                 lng: -122.585878
@@ -3593,6 +3666,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "190.2737950882"
@@ -3600,6 +3674,7 @@ events:
               snappedDistanceTraveled: "190.2737950882"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375888
                 lng: -122.585878
@@ -3608,6 +3683,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3774,6 +3850,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375829
                 lng: -122.585962
@@ -3782,6 +3859,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "199.5522328039"
@@ -3789,6 +3867,7 @@ events:
               snappedDistanceTraveled: "199.5522328039"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375829
                 lng: -122.585962
@@ -3797,6 +3876,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -3963,6 +4043,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375769
                 lng: -122.586046
@@ -3971,6 +4052,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "208.9096284992"
@@ -3978,6 +4060,7 @@ events:
               snappedDistanceTraveled: "208.9096284992"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375769
                 lng: -122.586046
@@ -3986,6 +4069,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -4152,6 +4236,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375709
                 lng: -122.58613
@@ -4160,6 +4245,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "218.2670290753"
@@ -4167,6 +4253,7 @@ events:
               snappedDistanceTraveled: "218.2670290753"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375709
                 lng: -122.58613
@@ -4175,6 +4262,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -4341,6 +4429,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37565
                 lng: -122.586213
@@ -4349,6 +4438,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "227.4904121090"
@@ -4356,6 +4446,7 @@ events:
               snappedDistanceTraveled: "227.4904121090"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37565
                 lng: -122.586213
@@ -4364,6 +4455,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -4530,6 +4622,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37559
                 lng: -122.586297
@@ -4538,6 +4631,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "236.8478223663"
@@ -4545,6 +4639,7 @@ events:
               snappedDistanceTraveled: "236.8478223663"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37559
                 lng: -122.586297
@@ -4553,6 +4648,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -4719,6 +4815,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37553
                 lng: -122.586381
@@ -4727,6 +4824,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "246.2052375055"
@@ -4734,6 +4832,7 @@ events:
               snappedDistanceTraveled: "246.2052375055"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37553
                 lng: -122.586381
@@ -4742,6 +4841,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -4908,6 +5008,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375471
                 lng: -122.586465
@@ -4916,6 +5017,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "255.4837045941"
@@ -4923,6 +5025,7 @@ events:
               snappedDistanceTraveled: "255.4837045941"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375471
                 lng: -122.586465
@@ -4931,6 +5034,7 @@ events:
                 degrees: 225
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5075,6 +5179,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375411
                 lng: -122.586549
@@ -5083,6 +5188,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "264.8411294140"
@@ -5090,6 +5196,7 @@ events:
               snappedDistanceTraveled: "264.8411294140"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375411
                 lng: -122.586549
@@ -5098,6 +5205,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5242,6 +5350,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37536
                 lng: -122.586652
@@ -5250,6 +5359,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "274.6842463362"
@@ -5257,6 +5367,7 @@ events:
               snappedDistanceTraveled: "274.6842463362"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37536
                 lng: -122.586652
@@ -5265,6 +5376,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5409,6 +5521,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375308
                 lng: -122.586754
@@ -5417,6 +5530,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "284.5285266366"
@@ -5424,6 +5538,7 @@ events:
               snappedDistanceTraveled: "284.5285266366"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375308
                 lng: -122.586754
@@ -5432,6 +5547,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5576,6 +5692,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375257
                 lng: -122.586857
@@ -5584,6 +5701,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "294.3716555361"
@@ -5591,6 +5709,7 @@ events:
               snappedDistanceTraveled: "294.3716555361"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375257
                 lng: -122.586857
@@ -5599,6 +5718,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5743,6 +5863,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375206
                 lng: -122.586959
@@ -5751,6 +5872,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "304.1510500528"
@@ -5758,6 +5880,7 @@ events:
               snappedDistanceTraveled: "304.1510500528"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375206
                 lng: -122.586959
@@ -5766,6 +5889,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -5910,6 +6034,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375154
                 lng: -122.587062
@@ -5918,6 +6043,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "314.0586707972"
@@ -5925,6 +6051,7 @@ events:
               snappedDistanceTraveled: "314.0586707972"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375154
                 lng: -122.587062
@@ -5933,6 +6060,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6077,6 +6205,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375103
                 lng: -122.587164
@@ -6085,6 +6214,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "323.8380771364"
@@ -6092,6 +6222,7 @@ events:
               snappedDistanceTraveled: "323.8380771364"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375103
                 lng: -122.587164
@@ -6100,6 +6231,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6244,6 +6376,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375051
                 lng: -122.587267
@@ -6252,6 +6385,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "333.7457097797"
@@ -6259,6 +6393,7 @@ events:
               snappedDistanceTraveled: "333.7457097797"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375051
                 lng: -122.587267
@@ -6267,6 +6402,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6411,6 +6547,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375
                 lng: -122.587369
@@ -6419,6 +6556,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "343.5251279413"
@@ -6426,6 +6564,7 @@ events:
               snappedDistanceTraveled: "343.5251279413"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375
                 lng: -122.587369
@@ -6434,6 +6573,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6578,6 +6718,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374949
                 lng: -122.587472
@@ -6586,6 +6727,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "353.3682926573"
@@ -6593,6 +6735,7 @@ events:
               snappedDistanceTraveled: "353.3682926573"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374949
                 lng: -122.587472
@@ -6601,6 +6744,7 @@ events:
                 degrees: 234
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6745,6 +6889,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374897
                 lng: -122.587574
@@ -6753,6 +6898,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "363.2126198216"
@@ -6760,6 +6906,7 @@ events:
               snappedDistanceTraveled: "363.2126198216"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374897
                 lng: -122.587574
@@ -6768,6 +6915,7 @@ events:
                 degrees: 235
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -6912,6 +7060,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374846
                 lng: -122.587677
@@ -6920,6 +7069,7 @@ events:
                 degrees: 246
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "373.0557965140"
@@ -6927,6 +7077,7 @@ events:
               snappedDistanceTraveled: "373.0557965140"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374846
                 lng: -122.587677
@@ -6935,6 +7086,7 @@ events:
                 degrees: 246
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7079,6 +7231,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374827
                 lng: -122.587737
@@ -7087,6 +7240,7 @@ events:
                 degrees: 245
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "378.1966290063"
@@ -7094,6 +7248,7 @@ events:
               snappedDistanceTraveled: "378.1966290063"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374827
                 lng: -122.587737
@@ -7102,6 +7257,7 @@ events:
                 degrees: 245
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7246,6 +7402,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374808
                 lng: -122.587796
@@ -7254,6 +7411,7 @@ events:
                 degrees: 254
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "383.2663548310"
@@ -7261,6 +7419,7 @@ events:
               snappedDistanceTraveled: "383.2663548310"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374808
                 lng: -122.587796
@@ -7269,6 +7428,7 @@ events:
                 degrees: 254
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7413,6 +7573,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374795
                 lng: -122.587862
@@ -7421,6 +7582,7 @@ events:
                 degrees: 253
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "388.6204943023"
@@ -7428,6 +7590,7 @@ events:
               snappedDistanceTraveled: "388.6204943023"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374795
                 lng: -122.587862
@@ -7436,6 +7599,7 @@ events:
                 degrees: 253
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7580,6 +7744,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374781
                 lng: -122.587928
@@ -7588,6 +7753,7 @@ events:
                 degrees: 264
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "394.0057203425"
@@ -7595,6 +7761,7 @@ events:
               snappedDistanceTraveled: "394.0057203425"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374781
                 lng: -122.587928
@@ -7603,6 +7770,7 @@ events:
                 degrees: 264
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7747,6 +7915,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374774
                 lng: -122.588028
@@ -7755,6 +7924,7 @@ events:
                 degrees: 275
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "401.8554872785"
@@ -7762,6 +7932,7 @@ events:
               snappedDistanceTraveled: "401.8554872785"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374774
                 lng: -122.588028
@@ -7770,6 +7941,7 @@ events:
                 degrees: 275
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -7914,6 +8086,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37478
                 lng: -122.588136
@@ -7922,6 +8095,7 @@ events:
                 degrees: 280
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "410.3177958848"
@@ -7929,6 +8103,7 @@ events:
               snappedDistanceTraveled: "410.3177958848"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37478
                 lng: -122.588136
@@ -7937,6 +8112,7 @@ events:
                 degrees: 280
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8081,6 +8257,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374789
                 lng: -122.588209
@@ -8089,6 +8266,7 @@ events:
                 degrees: 291
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "416.1070380874"
@@ -8096,6 +8274,7 @@ events:
               snappedDistanceTraveled: "416.1070380874"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374789
                 lng: -122.588209
@@ -8104,6 +8283,7 @@ events:
                 degrees: 291
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8248,6 +8428,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374812
                 lng: -122.588294
@@ -8256,6 +8437,7 @@ events:
                 degrees: 300
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "423.2219932486"
@@ -8263,6 +8445,7 @@ events:
               snappedDistanceTraveled: "423.2219932486"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374812
                 lng: -122.588294
@@ -8271,6 +8454,7 @@ events:
                 degrees: 300
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8415,6 +8599,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374849
                 lng: -122.588384
@@ -8423,6 +8608,7 @@ events:
                 degrees: 303
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "431.3673733596"
@@ -8430,6 +8616,7 @@ events:
               snappedDistanceTraveled: "431.3673733596"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374849
                 lng: -122.588384
@@ -8438,6 +8625,7 @@ events:
                 degrees: 303
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8582,6 +8770,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37488
                 lng: -122.588451
@@ -8590,6 +8779,7 @@ events:
                 degrees: 312
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "437.6340138016"
@@ -8597,6 +8787,7 @@ events:
               snappedDistanceTraveled: "437.6340138016"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37488
                 lng: -122.588451
@@ -8605,6 +8796,7 @@ events:
                 degrees: 312
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8749,6 +8941,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374919
                 lng: -122.588512
@@ -8757,6 +8950,7 @@ events:
                 degrees: 326
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "444.0767620462"
@@ -8764,6 +8958,7 @@ events:
               snappedDistanceTraveled: "444.0767620462"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374919
                 lng: -122.588512
@@ -8772,6 +8967,7 @@ events:
                 degrees: 326
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -8916,6 +9112,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374978
                 lng: -122.588569
@@ -8924,6 +9121,7 @@ events:
                 degrees: 328
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "452.0053992494"
@@ -8931,6 +9129,7 @@ events:
               snappedDistanceTraveled: "452.0053992494"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374978
                 lng: -122.588569
@@ -8939,6 +9138,7 @@ events:
                 degrees: 328
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9083,6 +9283,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375024
                 lng: -122.58861
@@ -9091,6 +9292,7 @@ events:
                 degrees: 337
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "458.0402280022"
@@ -9098,6 +9300,7 @@ events:
               snappedDistanceTraveled: "458.0402280022"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375024
                 lng: -122.58861
@@ -9106,6 +9309,7 @@ events:
                 degrees: 337
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9250,6 +9454,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375075
                 lng: -122.58864
@@ -9258,6 +9463,7 @@ events:
                 degrees: 348
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "464.1762511198"
@@ -9265,6 +9471,7 @@ events:
               snappedDistanceTraveled: "464.1762511198"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375075
                 lng: -122.58864
@@ -9273,6 +9480,7 @@ events:
                 degrees: 348
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9417,6 +9625,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375143
                 lng: -122.588661
@@ -9425,6 +9634,7 @@ events:
                 degrees: 347
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "471.9133937784"
@@ -9432,6 +9642,7 @@ events:
               snappedDistanceTraveled: "471.9133937784"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375143
                 lng: -122.588661
@@ -9440,6 +9651,7 @@ events:
                 degrees: 347
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9584,6 +9796,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375203
                 lng: -122.588681
@@ -9592,6 +9805,7 @@ events:
                 degrees: 346
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "478.7655562476"
@@ -9599,6 +9813,7 @@ events:
               snappedDistanceTraveled: "478.7655562476"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375203
                 lng: -122.588681
@@ -9607,6 +9822,7 @@ events:
                 degrees: 346
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9751,6 +9967,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375264
                 lng: -122.588702
@@ -9759,6 +9976,7 @@ events:
                 degrees: 347
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "485.7439772981"
@@ -9766,6 +9984,7 @@ events:
               snappedDistanceTraveled: "485.7439772981"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375264
                 lng: -122.588702
@@ -9774,6 +9993,7 @@ events:
                 degrees: 347
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -9918,6 +10138,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375324
                 lng: -122.588722
@@ -9926,6 +10147,7 @@ events:
                 degrees: 19
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "492.5961390055"
@@ -9933,6 +10155,7 @@ events:
               snappedDistanceTraveled: "492.5961390055"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375324
                 lng: -122.588722
@@ -9941,6 +10164,7 @@ events:
                 degrees: 19
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10085,6 +10309,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37537
                 lng: -122.588699
@@ -10093,6 +10318,7 @@ events:
                 degrees: 20
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "498.0174375504"
@@ -10100,6 +10326,7 @@ events:
               snappedDistanceTraveled: "498.0174375504"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37537
                 lng: -122.588699
@@ -10108,6 +10335,7 @@ events:
                 degrees: 20
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10252,6 +10480,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375415
                 lng: -122.588676
@@ -10260,6 +10489,7 @@ events:
                 degrees: 31
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "503.3339511870"
@@ -10267,6 +10497,7 @@ events:
               snappedDistanceTraveled: "503.3339511870"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375415
                 lng: -122.588676
@@ -10275,6 +10506,7 @@ events:
                 degrees: 31
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10419,6 +10651,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375483
                 lng: -122.588617
@@ -10427,6 +10660,7 @@ events:
                 degrees: 42
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "512.1889414215"
@@ -10434,6 +10668,7 @@ events:
               snappedDistanceTraveled: "512.1889414215"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375483
                 lng: -122.588617
@@ -10442,6 +10677,7 @@ events:
                 degrees: 42
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10586,6 +10822,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375521
                 lng: -122.588569
@@ -10594,6 +10831,7 @@ events:
                 degrees: 42
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "517.8379367016"
@@ -10601,6 +10839,7 @@ events:
               snappedDistanceTraveled: "517.8379367016"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375521
                 lng: -122.588569
@@ -10609,6 +10848,7 @@ events:
                 degrees: 42
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10753,6 +10993,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375559
                 lng: -122.58852
@@ -10761,6 +11002,7 @@ events:
                 degrees: 51
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "523.5390715729"
@@ -10768,6 +11010,7 @@ events:
               snappedDistanceTraveled: "523.5390715729"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375559
                 lng: -122.58852
@@ -10776,6 +11019,7 @@ events:
                 degrees: 51
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -10920,6 +11164,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37561
                 lng: -122.588432
@@ -10928,6 +11173,7 @@ events:
                 degrees: 61
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "532.4501193805"
@@ -10935,6 +11181,7 @@ events:
               snappedDistanceTraveled: "532.4501193805"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37561
                 lng: -122.588432
@@ -10943,6 +11190,7 @@ events:
                 degrees: 61
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11087,6 +11335,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375634
                 lng: -122.588371
@@ -11095,6 +11344,7 @@ events:
                 degrees: 62
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "537.9112655969"
@@ -11102,6 +11352,7 @@ events:
               snappedDistanceTraveled: "537.9112655969"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375634
                 lng: -122.588371
@@ -11110,6 +11361,7 @@ events:
                 degrees: 62
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11254,6 +11506,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375657
                 lng: -122.58831
@@ -11262,6 +11515,7 @@ events:
                 degrees: 72
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "543.3189429970"
@@ -11269,6 +11523,7 @@ events:
               snappedDistanceTraveled: "543.3189429970"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375657
                 lng: -122.58831
@@ -11277,6 +11532,7 @@ events:
                 degrees: 72
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11421,6 +11677,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37568
                 lng: -122.588212
@@ -11429,6 +11686,7 @@ events:
                 degrees: 72
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "551.3896162157"
@@ -11436,6 +11694,7 @@ events:
               snappedDistanceTraveled: "551.3896162157"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37568
                 lng: -122.588212
@@ -11444,6 +11703,7 @@ events:
                 degrees: 72
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11531,6 +11791,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375703
                 lng: -122.588114
@@ -11539,6 +11800,7 @@ events:
                 degrees: 115
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "559.4602864803"
@@ -11546,6 +11808,7 @@ events:
               snappedDistanceTraveled: "559.4602864803"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375703
                 lng: -122.588114
@@ -11554,6 +11817,7 @@ events:
                 degrees: 115
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11641,6 +11905,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375667
                 lng: -122.588002
@@ -11649,6 +11914,7 @@ events:
                 degrees: 115
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "569.0809116182"
@@ -11656,6 +11922,7 @@ events:
               snappedDistanceTraveled: "569.0809116182"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375667
                 lng: -122.588002
@@ -11664,6 +11931,7 @@ events:
                 degrees: 115
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11751,6 +12019,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375631
                 lng: -122.58789
@@ -11759,6 +12028,7 @@ events:
                 degrees: 113
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "578.7015418205"
@@ -11766,6 +12036,7 @@ events:
               snappedDistanceTraveled: "578.7015418205"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375631
                 lng: -122.58789
@@ -11774,6 +12045,7 @@ events:
                 degrees: 113
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11861,6 +12133,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375604
                 lng: -122.587801
@@ -11869,6 +12142,7 @@ events:
                 degrees: 114
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "586.2738968190"
@@ -11876,6 +12150,7 @@ events:
               snappedDistanceTraveled: "586.2738968190"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375604
                 lng: -122.587801
@@ -11884,6 +12159,7 @@ events:
                 degrees: 114
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -11971,6 +12247,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375576
                 lng: -122.587713
@@ -11979,6 +12256,7 @@ events:
                 degrees: 127
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "593.8198061346"
@@ -11986,6 +12264,7 @@ events:
               snappedDistanceTraveled: "593.8198061346"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375576
                 lng: -122.587713
@@ -11994,6 +12273,7 @@ events:
                 degrees: 127
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12081,6 +12361,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375541
                 lng: -122.587646
@@ -12089,6 +12370,7 @@ events:
                 degrees: 127
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "600.3416385072"
@@ -12096,6 +12378,7 @@ events:
               snappedDistanceTraveled: "600.3416385072"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375541
                 lng: -122.587646
@@ -12104,6 +12387,7 @@ events:
                 degrees: 127
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12191,6 +12475,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375506
                 lng: -122.58758
@@ -12199,6 +12484,7 @@ events:
                 degrees: 134
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "606.8009635552"
@@ -12206,6 +12492,7 @@ events:
               snappedDistanceTraveled: "606.8009635552"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375506
                 lng: -122.58758
@@ -12214,6 +12501,7 @@ events:
                 degrees: 134
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12301,6 +12589,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375468
                 lng: -122.587524
@@ -12309,6 +12598,7 @@ events:
                 degrees: 142
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "612.8826827505"
@@ -12316,6 +12606,7 @@ events:
               snappedDistanceTraveled: "612.8826827505"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375468
                 lng: -122.587524
@@ -12324,6 +12615,7 @@ events:
                 degrees: 142
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12411,6 +12703,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375415
                 lng: -122.587466
@@ -12419,6 +12712,7 @@ events:
                 degrees: 141
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "620.3161028734"
@@ -12426,6 +12720,7 @@ events:
               snappedDistanceTraveled: "620.3161028734"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375415
                 lng: -122.587466
@@ -12434,6 +12729,7 @@ events:
                 degrees: 141
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12521,6 +12817,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375363
                 lng: -122.587407
@@ -12529,6 +12826,7 @@ events:
                 degrees: 142
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "627.7101107880"
@@ -12536,6 +12834,7 @@ events:
               snappedDistanceTraveled: "627.7101107880"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375363
                 lng: -122.587407
@@ -12544,6 +12843,7 @@ events:
                 degrees: 142
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12631,6 +12931,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37531
                 lng: -122.587349
@@ -12639,6 +12940,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "635.1435360376"
@@ -12646,6 +12948,7 @@ events:
               snappedDistanceTraveled: "635.1435360376"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37531
                 lng: -122.587349
@@ -12654,6 +12957,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12741,6 +13045,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375233
                 lng: -122.587318
@@ -12749,6 +13054,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "644.0413701763"
@@ -12756,6 +13062,7 @@ events:
               snappedDistanceTraveled: "644.0413701763"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375233
                 lng: -122.587318
@@ -12764,6 +13071,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12851,6 +13159,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375157
                 lng: -122.587287
@@ -12859,6 +13168,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "652.8322588291"
@@ -12866,6 +13176,7 @@ events:
               snappedDistanceTraveled: "652.8322588291"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375157
                 lng: -122.587287
@@ -12874,6 +13185,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -12961,6 +13273,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37508
                 lng: -122.587257
@@ -12969,6 +13282,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "661.7091563369"
@@ -12976,6 +13290,7 @@ events:
               snappedDistanceTraveled: "661.7091563369"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37508
                 lng: -122.587257
@@ -12984,6 +13299,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13071,6 +13387,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375003
                 lng: -122.587226
@@ -13079,6 +13396,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "670.6069931554"
@@ -13086,6 +13404,7 @@ events:
               snappedDistanceTraveled: "670.6069931554"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.375003
                 lng: -122.587226
@@ -13094,6 +13413,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13181,6 +13501,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374918
                 lng: -122.587191
@@ -13189,6 +13510,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "680.4460196089"
@@ -13196,6 +13518,7 @@ events:
               snappedDistanceTraveled: "680.4460196089"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374918
                 lng: -122.587191
@@ -13204,6 +13527,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13291,6 +13615,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374834
                 lng: -122.587156
@@ -13299,6 +13624,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "690.1782798524"
@@ -13306,6 +13632,7 @@ events:
               snappedDistanceTraveled: "690.1782798524"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374834
                 lng: -122.587156
@@ -13314,6 +13641,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13401,6 +13729,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374749
                 lng: -122.587121
@@ -13409,6 +13738,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "700.0173085760"
@@ -13416,6 +13746,7 @@ events:
               snappedDistanceTraveled: "700.0173085760"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374749
                 lng: -122.587121
@@ -13424,6 +13755,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13511,6 +13843,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374664
                 lng: -122.587087
@@ -13519,6 +13852,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "709.8349212196"
@@ -13526,6 +13860,7 @@ events:
               snappedDistanceTraveled: "709.8349212196"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374664
                 lng: -122.587087
@@ -13534,6 +13869,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13621,6 +13957,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37458
                 lng: -122.587052
@@ -13629,6 +13966,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "719.5671849122"
@@ -13636,6 +13974,7 @@ events:
               snappedDistanceTraveled: "719.5671849122"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37458
                 lng: -122.587052
@@ -13644,6 +13983,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13731,6 +14071,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374495
                 lng: -122.587017
@@ -13739,6 +14080,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "729.4062170477"
@@ -13746,6 +14088,7 @@ events:
               snappedDistanceTraveled: "729.4062170477"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374495
                 lng: -122.587017
@@ -13754,6 +14097,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13841,6 +14185,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374423
                 lng: -122.586987
@@ -13849,6 +14194,7 @@ events:
                 degrees: 163
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "737.7481592535"
@@ -13856,6 +14202,7 @@ events:
               snappedDistanceTraveled: "737.7481592535"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374423
                 lng: -122.586987
@@ -13864,6 +14211,7 @@ events:
                 degrees: 163
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -13951,6 +14299,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374352
                 lng: -122.586957
@@ -13959,6 +14308,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "745.9834438373"
@@ -13966,6 +14316,7 @@ events:
               snappedDistanceTraveled: "745.9834438373"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374352
                 lng: -122.586957
@@ -13974,6 +14325,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14061,6 +14413,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37428
                 lng: -122.586927
@@ -14069,6 +14422,7 @@ events:
                 degrees: 163
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "754.3253877073"
@@ -14076,6 +14430,7 @@ events:
               snappedDistanceTraveled: "754.3253877073"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37428
                 lng: -122.586927
@@ -14084,6 +14439,7 @@ events:
                 degrees: 163
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14171,6 +14527,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374209
                 lng: -122.586897
@@ -14179,6 +14536,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "762.5606739776"
@@ -14186,6 +14544,7 @@ events:
               snappedDistanceTraveled: "762.5606739776"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374209
                 lng: -122.586897
@@ -14194,6 +14553,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14281,6 +14641,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374137
                 lng: -122.586867
@@ -14289,6 +14650,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "770.9026195121"
@@ -14296,6 +14658,7 @@ events:
               snappedDistanceTraveled: "770.9026195121"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374137
                 lng: -122.586867
@@ -14304,6 +14667,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14391,6 +14755,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374055
                 lng: -122.586837
@@ -14399,6 +14764,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "780.3169258001"
@@ -14406,6 +14772,7 @@ events:
               snappedDistanceTraveled: "780.3169258001"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.374055
                 lng: -122.586837
@@ -14414,6 +14781,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14501,6 +14869,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373973
                 lng: -122.586807
@@ -14509,6 +14878,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "789.7312329341"
@@ -14516,6 +14886,7 @@ events:
               snappedDistanceTraveled: "789.7312329341"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373973
                 lng: -122.586807
@@ -14524,6 +14895,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14611,6 +14983,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373892
                 lng: -122.586776
@@ -14619,6 +14992,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "799.0578612966"
@@ -14626,6 +15000,7 @@ events:
               snappedDistanceTraveled: "799.0578612966"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373892
                 lng: -122.586776
@@ -14634,6 +15009,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14721,6 +15097,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37381
                 lng: -122.586746
@@ -14729,6 +15106,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "808.4721701116"
@@ -14736,6 +15114,7 @@ events:
               snappedDistanceTraveled: "808.4721701116"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37381
                 lng: -122.586746
@@ -14744,6 +15123,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14831,6 +15211,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373728
                 lng: -122.586716
@@ -14839,6 +15220,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "817.8864797726"
@@ -14846,6 +15228,7 @@ events:
               snappedDistanceTraveled: "817.8864797726"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373728
                 lng: -122.586716
@@ -14854,6 +15237,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -14941,6 +15325,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373646
                 lng: -122.586686
@@ -14949,6 +15334,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "827.3007902791"
@@ -14956,6 +15342,7 @@ events:
               snappedDistanceTraveled: "827.3007902791"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373646
                 lng: -122.586686
@@ -14964,6 +15351,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15051,6 +15439,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373572
                 lng: -122.586658
@@ -15059,6 +15448,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "835.8149416700"
@@ -15066,6 +15456,7 @@ events:
               snappedDistanceTraveled: "835.8149416700"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373572
                 lng: -122.586658
@@ -15074,6 +15465,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15161,6 +15553,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373496
                 lng: -122.586628
@@ -15169,6 +15562,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "844.5846550145"
@@ -15176,6 +15570,7 @@ events:
               snappedDistanceTraveled: "844.5846550145"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373496
                 lng: -122.586628
@@ -15184,6 +15579,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15271,6 +15667,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373421
                 lng: -122.586597
@@ -15279,6 +15676,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "853.2687247504"
@@ -15286,6 +15684,7 @@ events:
               snappedDistanceTraveled: "853.2687247504"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373421
                 lng: -122.586597
@@ -15294,6 +15693,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15381,6 +15781,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373345
                 lng: -122.586567
@@ -15389,6 +15790,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "862.0384397668"
@@ -15396,6 +15798,7 @@ events:
               snappedDistanceTraveled: "862.0384397668"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373345
                 lng: -122.586567
@@ -15404,6 +15807,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15491,6 +15895,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37327
                 lng: -122.586536
@@ -15499,6 +15904,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "870.7225113055"
@@ -15506,6 +15912,7 @@ events:
               snappedDistanceTraveled: "870.7225113055"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37327
                 lng: -122.586536
@@ -15514,6 +15921,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15601,6 +16009,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373194
                 lng: -122.586506
@@ -15609,6 +16018,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "879.4922279939"
@@ -15616,6 +16026,7 @@ events:
               snappedDistanceTraveled: "879.4922279939"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373194
                 lng: -122.586506
@@ -15624,6 +16035,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15711,6 +16123,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373109
                 lng: -122.586471
@@ -15719,6 +16132,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "889.3312787472"
@@ -15726,6 +16140,7 @@ events:
               snappedDistanceTraveled: "889.3312787472"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373109
                 lng: -122.586471
@@ -15734,6 +16149,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15821,6 +16237,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373025
                 lng: -122.586436
@@ -15829,6 +16246,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "899.0635635569"
@@ -15836,6 +16254,7 @@ events:
               snappedDistanceTraveled: "899.0635635569"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.373025
                 lng: -122.586436
@@ -15844,6 +16263,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -15931,6 +16351,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37294
                 lng: -122.586402
@@ -15939,6 +16360,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "908.8811981018"
@@ -15946,6 +16368,7 @@ events:
               snappedDistanceTraveled: "908.8811981018"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37294
                 lng: -122.586402
@@ -15954,6 +16377,7 @@ events:
                 degrees: 164
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16041,6 +16465,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372855
                 lng: -122.586367
@@ -16049,6 +16474,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "918.7202522673"
@@ -16056,6 +16482,7 @@ events:
               snappedDistanceTraveled: "918.7202522673"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372855
                 lng: -122.586367
@@ -16064,6 +16491,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16151,6 +16579,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372777
                 lng: -122.58634
@@ -16159,6 +16588,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "927.6462163967"
@@ -16166,6 +16596,7 @@ events:
               snappedDistanceTraveled: "927.6462163967"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372777
                 lng: -122.58634
@@ -16174,6 +16605,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16261,6 +16693,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372698
                 lng: -122.586314
@@ -16269,6 +16702,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "936.6623496102"
@@ -16276,6 +16710,7 @@ events:
               snappedDistanceTraveled: "936.6623496102"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372698
                 lng: -122.586314
@@ -16284,6 +16719,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16371,6 +16807,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37262
                 lng: -122.586287
@@ -16379,6 +16816,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "945.5883151233"
@@ -16386,6 +16824,7 @@ events:
               snappedDistanceTraveled: "945.5883151233"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37262
                 lng: -122.586287
@@ -16394,6 +16833,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16481,6 +16921,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372541
                 lng: -122.586261
@@ -16489,6 +16930,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "954.6044496068"
@@ -16496,6 +16938,7 @@ events:
               snappedDistanceTraveled: "954.6044496068"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372541
                 lng: -122.586261
@@ -16504,6 +16947,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16591,6 +17035,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372463
                 lng: -122.586234
@@ -16599,6 +17044,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "963.5304165023"
@@ -16606,6 +17052,7 @@ events:
               snappedDistanceTraveled: "963.5304165023"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372463
                 lng: -122.586234
@@ -16614,6 +17061,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16701,6 +17149,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372386
                 lng: -122.586207
@@ -16709,6 +17158,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "972.3483767893"
@@ -16716,6 +17166,7 @@ events:
               snappedDistanceTraveled: "972.3483767893"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372386
                 lng: -122.586207
@@ -16724,6 +17175,7 @@ events:
                 degrees: 165
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16811,6 +17263,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37231
                 lng: -122.586179
@@ -16819,6 +17272,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "981.0776545944"
@@ -16826,6 +17280,7 @@ events:
               snappedDistanceTraveled: "981.0776545944"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.37231
                 lng: -122.586179
@@ -16834,6 +17289,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -16921,6 +17377,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372233
                 lng: -122.586152
@@ -16929,6 +17386,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "989.8956162454"
@@ -16936,6 +17394,7 @@ events:
               snappedDistanceTraveled: "989.8956162454"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372233
                 lng: -122.586152
@@ -16944,6 +17403,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17031,6 +17491,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372156
                 lng: -122.586125
@@ -17039,6 +17500,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "998.7135785839"
@@ -17046,6 +17508,7 @@ events:
               snappedDistanceTraveled: "998.7135785839"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372156
                 lng: -122.586125
@@ -17054,6 +17517,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17141,6 +17605,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372079
                 lng: -122.586098
@@ -17149,6 +17614,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1007.5315416082"
@@ -17156,6 +17622,7 @@ events:
               snappedDistanceTraveled: "1007.5315416082"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372079
                 lng: -122.586098
@@ -17164,6 +17631,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17251,6 +17719,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372001
                 lng: -122.58607
@@ -17259,6 +17728,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1016.4762921153"
@@ -17266,6 +17736,7 @@ events:
               snappedDistanceTraveled: "1016.4762921153"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.372001
                 lng: -122.58607
@@ -17274,6 +17745,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17361,6 +17833,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371924
                 lng: -122.586043
@@ -17369,6 +17842,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1025.2942565224"
@@ -17376,6 +17850,7 @@ events:
               snappedDistanceTraveled: "1025.2942565224"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371924
                 lng: -122.586043
@@ -17384,6 +17859,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17471,6 +17947,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371846
                 lng: -122.586016
@@ -17479,6 +17956,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1034.2202288556"
@@ -17486,6 +17964,7 @@ events:
               snappedDistanceTraveled: "1034.2202288556"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371846
                 lng: -122.586016
@@ -17494,6 +17973,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17581,6 +18061,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371762
                 lng: -122.585987
@@ -17589,6 +18070,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1043.8313971688"
@@ -17596,6 +18078,7 @@ events:
               snappedDistanceTraveled: "1043.8313971688"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371762
                 lng: -122.585987
@@ -17604,6 +18087,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17691,6 +18175,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371677
                 lng: -122.585958
@@ -17699,6 +18184,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1053.5506639171"
@@ -17706,6 +18192,7 @@ events:
               snappedDistanceTraveled: "1053.5506639171"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371677
                 lng: -122.585958
@@ -17714,6 +18201,7 @@ events:
                 degrees: 167
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17801,6 +18289,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371593
                 lng: -122.58593
@@ -17809,6 +18298,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1063.1437225706"
@@ -17816,6 +18306,7 @@ events:
               snappedDistanceTraveled: "1063.1437225706"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371593
                 lng: -122.58593
@@ -17824,6 +18315,7 @@ events:
                 degrees: 166
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17865,6 +18357,7 @@ events:
                 kind: Break
                 properties: "{\"name\":\"OR 213 South\",\"distance\":1.31}"
             snapped_user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371508
                 lng: -122.585901
@@ -17873,6 +18366,7 @@ events:
                 degrees: 180
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             spoken_instruction: ~
             summary:
               distanceTraveled: "1072.8629908967"
@@ -17880,6 +18374,7 @@ events:
               snappedDistanceTraveled: "1072.8629908967"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371508
                 lng: -122.585901
@@ -17888,6 +18383,7 @@ events:
                 degrees: 180
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
             visual_instruction: ~
     timestamp: "[timestamp]"
   - event_data:
@@ -17901,6 +18397,7 @@ events:
               snappedDistanceTraveled: "1072.8629908967"
               startedAt: "[timestamp]"
             user_location:
+              altitude: ~
               coordinates:
                 lat: 45.371508
                 lng: -122.585901
@@ -17909,6 +18406,7 @@ events:
                 degrees: 180
               horizontal_accuracy: 0
               speed: ~
+              vertical_accuracy: ~
     timestamp: "[timestamp]"
 initial_route:
   bbox:

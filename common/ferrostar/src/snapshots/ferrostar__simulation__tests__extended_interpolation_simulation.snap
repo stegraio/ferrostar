@@ -11,6 +11,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332715
       lng: -122.031601
@@ -882,6 +884,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332695
       lng: -122.031601
@@ -1751,6 +1755,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332616
       lng: -122.031602
@@ -2618,6 +2624,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332616
       lng: -122.031509
@@ -3483,6 +3491,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332616
       lng: -122.031416
@@ -4346,6 +4356,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332616
       lng: -122.031309
@@ -5207,6 +5219,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332616
       lng: -122.031203
@@ -6066,6 +6080,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332615
       lng: -122.031155
@@ -6923,6 +6939,8 @@ expression: states
       degrees: 92
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332613
       lng: -122.031066
@@ -7778,6 +7796,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332612
       lng: -122.030984
@@ -8631,6 +8651,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332528
       lng: -122.030985
@@ -9482,6 +9504,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332445
       lng: -122.030986
@@ -10331,6 +10355,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332361
       lng: -122.030987
@@ -11178,6 +11204,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332277
       lng: -122.030988
@@ -12023,6 +12051,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332193
       lng: -122.030988
@@ -12866,6 +12896,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33211
       lng: -122.030989
@@ -13707,6 +13739,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.332026
       lng: -122.03099
@@ -14546,6 +14580,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331942
       lng: -122.030991
@@ -15383,6 +15419,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331911
       lng: -122.030991
@@ -16218,6 +16256,8 @@ expression: states
       degrees: 126
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331884
       lng: -122.030945
@@ -17051,6 +17091,8 @@ expression: states
       degrees: 127
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331857
       lng: -122.0309
@@ -17882,6 +17924,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331787
       lng: -122.030898
@@ -18711,6 +18755,8 @@ expression: states
       degrees: 137
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331764
       lng: -122.030871
@@ -19538,6 +19584,8 @@ expression: states
       degrees: 225
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331748
       lng: -122.030891
@@ -20363,6 +20411,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331692
       lng: -122.030891
@@ -21186,6 +21236,8 @@ expression: states
       degrees: 182
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331645
       lng: -122.030893
@@ -22007,6 +22059,8 @@ expression: states
       degrees: 132
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331626
       lng: -122.030867
@@ -22826,6 +22880,8 @@ expression: states
       degrees: 135
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.3316
       lng: -122.030835
@@ -23643,6 +23699,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331601
       lng: -122.030782
@@ -24458,6 +24516,8 @@ expression: states
       degrees: 92
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331599
       lng: -122.030713
@@ -25271,6 +25331,8 @@ expression: states
       degrees: 92
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331598
       lng: -122.030675
@@ -26082,6 +26144,8 @@ expression: states
       degrees: 186
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331559
       lng: -122.03068
@@ -26891,6 +26955,8 @@ expression: states
       degrees: 176
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331506
       lng: -122.030675
@@ -27698,6 +27764,8 @@ expression: states
       degrees: 177
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331453
       lng: -122.030671
@@ -28503,6 +28571,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33139
       lng: -122.030672
@@ -29306,6 +29376,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331326
       lng: -122.030672
@@ -30107,6 +30179,8 @@ expression: states
       degrees: 185
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331253
       lng: -122.03068
@@ -30906,6 +30980,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331212
       lng: -122.03068
@@ -31703,6 +31779,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331171
       lng: -122.030679
@@ -32498,6 +32576,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331119
       lng: -122.030679
@@ -33291,6 +33371,8 @@ expression: states
       degrees: 159
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.331039
       lng: -122.030641
@@ -34082,6 +34164,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330957
       lng: -122.030613
@@ -34871,6 +34955,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330875
       lng: -122.030586
@@ -35658,6 +35744,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330792
       lng: -122.030558
@@ -36443,6 +36531,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33071
       lng: -122.030531
@@ -37226,6 +37316,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330628
       lng: -122.030503
@@ -38007,6 +38099,8 @@ expression: states
       degrees: 226
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330618
       lng: -122.030516
@@ -38786,6 +38880,8 @@ expression: states
       degrees: 166
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330531
       lng: -122.030488
@@ -39563,6 +39659,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330457
       lng: -122.030464
@@ -40338,6 +40436,8 @@ expression: states
       degrees: 165
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330403
       lng: -122.030446
@@ -41111,6 +41211,8 @@ expression: states
       degrees: 74
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330413
       lng: -122.030402
@@ -41882,6 +41984,8 @@ expression: states
       degrees: 85
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330419
       lng: -122.030314
@@ -42651,6 +42755,8 @@ expression: states
       degrees: 103
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330406
       lng: -122.030242
@@ -43418,6 +43524,8 @@ expression: states
       degrees: 103
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330393
       lng: -122.030171
@@ -44183,6 +44291,8 @@ expression: states
       degrees: 101
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330386
       lng: -122.030126
@@ -44946,6 +45056,8 @@ expression: states
       degrees: 99
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33038
       lng: -122.030079
@@ -45707,6 +45819,8 @@ expression: states
       degrees: 82
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330383
       lng: -122.030053
@@ -46466,6 +46580,8 @@ expression: states
       degrees: 72
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330398
       lng: -122.029996
@@ -47223,6 +47339,8 @@ expression: states
       degrees: 72
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330424
       lng: -122.029896
@@ -47978,6 +48096,8 @@ expression: states
       degrees: 75
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33044
       lng: -122.029823
@@ -48731,6 +48851,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33044
       lng: -122.029774
@@ -49482,6 +49604,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330438
       lng: -122.029733
@@ -50231,6 +50355,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330426
       lng: -122.029679
@@ -50978,6 +51104,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330412
       lng: -122.029619
@@ -51723,6 +51851,8 @@ expression: states
       degrees: 103
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330405
       lng: -122.02958
@@ -52466,6 +52596,8 @@ expression: states
       degrees: 96
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330401
       lng: -122.02953
@@ -53207,6 +53339,8 @@ expression: states
       degrees: 86
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330405
       lng: -122.02945
@@ -53946,6 +54080,8 @@ expression: states
       degrees: 80
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330413
       lng: -122.029391
@@ -54683,6 +54819,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330413
       lng: -122.029344
@@ -55418,6 +55556,8 @@ expression: states
       degrees: 114
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330397
       lng: -122.0293
@@ -56151,6 +56291,8 @@ expression: states
       degrees: 135
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330359
       lng: -122.029253
@@ -56882,6 +57024,8 @@ expression: states
       degrees: 125
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330331
       lng: -122.029202
@@ -57611,6 +57755,8 @@ expression: states
       degrees: 101
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330325
       lng: -122.029162
@@ -58338,6 +58484,8 @@ expression: states
       degrees: 88
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330326
       lng: -122.029117
@@ -59063,6 +59211,8 @@ expression: states
       degrees: 73
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33034
       lng: -122.029059
@@ -59786,6 +59936,8 @@ expression: states
       degrees: 172
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330274
       lng: -122.029048
@@ -60507,6 +60659,8 @@ expression: states
       degrees: 176
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330237
       lng: -122.029045
@@ -61226,6 +61380,8 @@ expression: states
       degrees: 85
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330242
       lng: -122.028973
@@ -61943,6 +62099,8 @@ expression: states
       degrees: 124
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330207
       lng: -122.028908
@@ -62658,6 +62816,8 @@ expression: states
       degrees: 128
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330188
       lng: -122.028878
@@ -63371,6 +63531,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330188
       lng: -122.028776
@@ -64082,6 +64244,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330187
       lng: -122.028673
@@ -64791,6 +64955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330187
       lng: -122.028571
@@ -65498,6 +65664,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330186
       lng: -122.028468
@@ -66203,6 +66371,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330186
       lng: -122.028366
@@ -66906,6 +67076,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330185
       lng: -122.028264
@@ -67607,6 +67779,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330185
       lng: -122.028161
@@ -68306,6 +68480,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.028059
@@ -69003,6 +69179,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.027957
@@ -69698,6 +69876,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.027856
@@ -70391,6 +70571,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.027754
@@ -71082,6 +71264,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027653
@@ -71771,6 +71955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027551
@@ -72458,6 +72644,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.02745
@@ -73143,6 +73331,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027369
@@ -73826,6 +74016,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027278
@@ -74507,6 +74699,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027187
@@ -75186,6 +75380,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027095
@@ -75863,6 +76059,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.027004
@@ -76538,6 +76736,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.026913
@@ -77211,6 +77411,8 @@ expression: states
       degrees: 109
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330175
       lng: -122.026884
@@ -77882,6 +78084,8 @@ expression: states
       degrees: 124
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330163
       lng: -122.026862
@@ -78551,6 +78755,8 @@ expression: states
       degrees: 58
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330173
       lng: -122.026842
@@ -79218,6 +79424,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330175
       lng: -122.02673
@@ -79883,6 +80091,8 @@ expression: states
       degrees: 88
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330177
       lng: -122.026648
@@ -80546,6 +80756,8 @@ expression: states
       degrees: 135
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330166
       lng: -122.026634
@@ -81207,6 +81419,8 @@ expression: states
       degrees: 52
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330176
       lng: -122.026618
@@ -81866,6 +82080,8 @@ expression: states
       degrees: 70
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.02659
@@ -82523,6 +82739,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.02648
@@ -83178,6 +83396,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330184
       lng: -122.026369
@@ -83831,6 +84051,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.026259
@@ -84482,6 +84704,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.026148
@@ -85131,6 +85355,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.026038
@@ -85778,6 +86004,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.025927
@@ -86423,6 +86651,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330183
       lng: -122.025817
@@ -87066,6 +87296,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025707
@@ -87707,6 +87939,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025596
@@ -88346,6 +88580,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025486
@@ -88983,6 +89219,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025375
@@ -89618,6 +89856,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025265
@@ -90251,6 +90491,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330182
       lng: -122.025154
@@ -90882,6 +91124,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.025044
@@ -91511,6 +91755,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.024934
@@ -92138,6 +92384,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.024823
@@ -92763,6 +93011,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.024713
@@ -93386,6 +93636,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.024602
@@ -94007,6 +94259,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.024492
@@ -94626,6 +94880,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.024381
@@ -95243,6 +95499,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.024271
@@ -95858,6 +96116,8 @@ expression: states
       degrees: 112
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330167
       lng: -122.024231
@@ -96471,6 +96731,8 @@ expression: states
       degrees: 128
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330155
       lng: -122.024212
@@ -97082,6 +97344,8 @@ expression: states
       degrees: 43
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330171
       lng: -122.024193
@@ -97691,6 +97955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330171
       lng: -122.02409
@@ -98298,6 +98564,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330171
       lng: -122.024008
@@ -98903,6 +99171,8 @@ expression: states
       degrees: 114
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330163
       lng: -122.023985
@@ -99506,6 +99776,8 @@ expression: states
       degrees: 63
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330171
       lng: -122.023965
@@ -100107,6 +100379,8 @@ expression: states
       degrees: 66
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330179
       lng: -122.023943
@@ -100706,6 +100980,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330179
       lng: -122.023843
@@ -101303,6 +101579,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.023742
@@ -101898,6 +102176,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.023642
@@ -102491,6 +102771,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.023541
@@ -103082,6 +103364,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330181
       lng: -122.023441
@@ -103671,6 +103955,8 @@ expression: states
       degrees: 102
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330173
       lng: -122.023393
@@ -104258,6 +104544,8 @@ expression: states
       degrees: 115
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330163
       lng: -122.023366
@@ -104843,6 +105131,8 @@ expression: states
       degrees: 21
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.023358
@@ -105426,6 +105716,8 @@ expression: states
       degrees: 94
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330177
       lng: -122.023297
@@ -106007,6 +106299,8 @@ expression: states
       degrees: 94
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330174
       lng: -122.023237
@@ -106586,6 +106880,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33017
       lng: -122.023144
@@ -107163,6 +107459,8 @@ expression: states
       degrees: 137
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330158
       lng: -122.02313
@@ -107738,6 +108036,8 @@ expression: states
       degrees: 61
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330175
       lng: -122.023092
@@ -108311,6 +108611,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330177
       lng: -122.022983
@@ -108882,6 +109184,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330178
       lng: -122.022875
@@ -109451,6 +109755,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33018
       lng: -122.022766
@@ -110018,6 +110324,8 @@ expression: states
       degrees: 94
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330177
       lng: -122.022709
@@ -110583,6 +110891,8 @@ expression: states
       degrees: 95
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330173
       lng: -122.022652
@@ -111146,6 +111456,8 @@ expression: states
       degrees: 104
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330157
       lng: -122.022571
@@ -111707,6 +112019,8 @@ expression: states
       degrees: 103
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330142
       lng: -122.022489
@@ -112266,6 +112580,8 @@ expression: states
       degrees: 104
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330126
       lng: -122.022408
@@ -112823,6 +113139,8 @@ expression: states
       degrees: 127
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330108
       lng: -122.022378
@@ -113378,6 +113696,8 @@ expression: states
       degrees: 49
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330119
       lng: -122.022362
@@ -113931,6 +114251,8 @@ expression: states
       degrees: 94
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330113
       lng: -122.022265
@@ -114482,6 +114804,8 @@ expression: states
       degrees: 95
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330105
       lng: -122.022154
@@ -115031,6 +115355,8 @@ expression: states
       degrees: 139
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330094
       lng: -122.022142
@@ -115578,6 +115904,8 @@ expression: states
       degrees: 63
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330108
       lng: -122.022108
@@ -116123,6 +116451,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330103
       lng: -122.021996
@@ -116666,6 +116996,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330098
       lng: -122.021884
@@ -117207,6 +117539,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330093
       lng: -122.021772
@@ -117746,6 +118080,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330088
       lng: -122.021666
@@ -118283,6 +118619,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330083
       lng: -122.02156
@@ -118818,6 +119156,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330078
       lng: -122.021454
@@ -119351,6 +119691,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330074
       lng: -122.021348
@@ -119882,6 +120224,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330069
       lng: -122.021242
@@ -120411,6 +120755,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330064
       lng: -122.021136
@@ -120938,6 +121284,8 @@ expression: states
       degrees: 93
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330059
       lng: -122.02103
@@ -121463,6 +121811,8 @@ expression: states
       degrees: 94
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330055
       lng: -122.020958
@@ -121986,6 +122336,8 @@ expression: states
       degrees: 95
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.33005
       lng: -122.020886
@@ -122507,6 +122859,8 @@ expression: states
       degrees: 100
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330035
       lng: -122.02078
@@ -123026,6 +123380,8 @@ expression: states
       degrees: 109
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330019
       lng: -122.020722
@@ -123543,6 +123899,8 @@ expression: states
       degrees: 110
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.330002
       lng: -122.020664
@@ -124058,6 +124416,8 @@ expression: states
       degrees: 115
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329965
       lng: -122.020565
@@ -124571,6 +124931,8 @@ expression: states
       degrees: 115
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329928
       lng: -122.020466
@@ -125082,6 +125444,8 @@ expression: states
       degrees: 109
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329909
       lng: -122.020396
@@ -125591,6 +125955,8 @@ expression: states
       degrees: 110
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329889
       lng: -122.020327
@@ -126098,6 +126464,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329868
       lng: -122.020233
@@ -126603,6 +126971,8 @@ expression: states
       degrees: 105
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329847
       lng: -122.020138
@@ -127106,6 +127476,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329825
       lng: -122.020044
@@ -127607,6 +127979,8 @@ expression: states
       degrees: 105
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329804
       lng: -122.019949
@@ -128106,6 +128480,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329783
       lng: -122.019855
@@ -128603,6 +128979,8 @@ expression: states
       degrees: 122
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329759
       lng: -122.019807
@@ -129098,6 +129476,8 @@ expression: states
       degrees: 160
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329728
       lng: -122.019793
@@ -129591,6 +129971,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329639
       lng: -122.019792
@@ -130082,6 +130464,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32955
       lng: -122.019791
@@ -130571,6 +130955,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329461
       lng: -122.019791
@@ -131058,6 +131444,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329371
       lng: -122.01979
@@ -131543,6 +131931,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329282
       lng: -122.019789
@@ -132026,6 +132416,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329193
       lng: -122.019788
@@ -132507,6 +132899,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329104
       lng: -122.019787
@@ -132986,6 +133380,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.329015
       lng: -122.019787
@@ -133463,6 +133859,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328926
       lng: -122.019786
@@ -133938,6 +134336,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328837
       lng: -122.019785
@@ -134411,6 +134811,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328747
       lng: -122.019784
@@ -134882,6 +135284,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328658
       lng: -122.019783
@@ -135351,6 +135755,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328569
       lng: -122.019782
@@ -135818,6 +136224,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32848
       lng: -122.019782
@@ -136283,6 +136691,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328391
       lng: -122.019781
@@ -136746,6 +137156,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328302
       lng: -122.01978
@@ -137207,6 +137619,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328213
       lng: -122.019779
@@ -137666,6 +138080,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328123
       lng: -122.019778
@@ -138123,6 +138539,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.328034
       lng: -122.019778
@@ -138578,6 +138996,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327945
       lng: -122.019777
@@ -139031,6 +139451,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327856
       lng: -122.019776
@@ -139482,6 +139904,8 @@ expression: states
       degrees: 161
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327815
       lng: -122.019758
@@ -139931,6 +140355,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327768
       lng: -122.019757
@@ -140378,6 +140804,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327681
       lng: -122.019756
@@ -140823,6 +141251,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327594
       lng: -122.019754
@@ -141266,6 +141696,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327507
       lng: -122.019753
@@ -141707,6 +142139,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32742
       lng: -122.019751
@@ -142146,6 +142580,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327333
       lng: -122.01975
@@ -142583,6 +143019,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327246
       lng: -122.019748
@@ -143018,6 +143456,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327158
       lng: -122.019747
@@ -143451,6 +143891,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.327071
       lng: -122.019746
@@ -143882,6 +144324,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326984
       lng: -122.019744
@@ -144311,6 +144755,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326897
       lng: -122.019743
@@ -144738,6 +145184,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32681
       lng: -122.019741
@@ -145163,6 +145611,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326723
       lng: -122.01974
@@ -145586,6 +146036,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326656
       lng: -122.019738
@@ -146007,6 +146459,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326589
       lng: -122.019737
@@ -146426,6 +146880,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326521
       lng: -122.019736
@@ -146843,6 +147299,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326453
       lng: -122.019735
@@ -147258,6 +147716,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32637
       lng: -122.019735
@@ -147671,6 +148131,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326286
       lng: -122.019735
@@ -148082,6 +148544,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326203
       lng: -122.019735
@@ -148491,6 +148955,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32612
       lng: -122.019734
@@ -148898,6 +149364,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.326037
       lng: -122.019734
@@ -149303,6 +149771,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325954
       lng: -122.019734
@@ -149706,6 +150176,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32587
       lng: -122.019734
@@ -150107,6 +150579,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325787
       lng: -122.019734
@@ -150506,6 +150980,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325702
       lng: -122.019734
@@ -150903,6 +151379,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325617
       lng: -122.019734
@@ -151298,6 +151776,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325532
       lng: -122.019734
@@ -151691,6 +152171,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325448
       lng: -122.019734
@@ -152082,6 +152564,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325363
       lng: -122.019734
@@ -152471,6 +152955,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325278
       lng: -122.019734
@@ -152858,6 +153344,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325193
       lng: -122.019733
@@ -153243,6 +153731,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325108
       lng: -122.019733
@@ -153626,6 +154116,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.325023
       lng: -122.019733
@@ -154007,6 +154499,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324938
       lng: -122.019733
@@ -154386,6 +154880,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324854
       lng: -122.019733
@@ -154763,6 +155259,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324769
       lng: -122.019733
@@ -155138,6 +155636,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324684
       lng: -122.019733
@@ -155511,6 +156011,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324599
       lng: -122.019733
@@ -155882,6 +156384,8 @@ expression: states
       degrees: 211
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324561
       lng: -122.019762
@@ -156251,6 +156755,8 @@ expression: states
       degrees: 139
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32455
       lng: -122.01975
@@ -156618,6 +157124,8 @@ expression: states
       degrees: 175
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324469
       lng: -122.019742
@@ -156983,6 +157491,8 @@ expression: states
       degrees: 177
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32439
       lng: -122.019736
@@ -157346,6 +157856,8 @@ expression: states
       degrees: 100
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324375
       lng: -122.019633
@@ -157707,6 +158219,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324361
       lng: -122.019633
@@ -158066,6 +158580,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324286
       lng: -122.019634
@@ -158423,6 +158939,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324212
       lng: -122.019634
@@ -158778,6 +159296,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324137
       lng: -122.019635
@@ -159131,6 +159651,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.324075
       lng: -122.019634
@@ -159482,6 +160004,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323987
       lng: -122.019633
@@ -159831,6 +160355,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323899
       lng: -122.019633
@@ -160178,6 +160704,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323812
       lng: -122.019632
@@ -160523,6 +161051,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323724
       lng: -122.019631
@@ -160866,6 +161396,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323636
       lng: -122.019631
@@ -161207,6 +161739,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323548
       lng: -122.01963
@@ -161546,6 +162080,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323505
       lng: -122.01963
@@ -161883,6 +162419,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323434
       lng: -122.019629
@@ -162218,6 +162756,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323362
       lng: -122.019628
@@ -162551,6 +163091,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323291
       lng: -122.019627
@@ -162882,6 +163424,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323219
       lng: -122.019626
@@ -163211,6 +163755,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323153
       lng: -122.019623
@@ -163538,6 +164084,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323086
       lng: -122.01962
@@ -163863,6 +164411,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019617
@@ -164186,6 +164736,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019518
@@ -164507,6 +165059,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019419
@@ -164826,6 +165380,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.01932
@@ -165143,6 +165699,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019221
@@ -165458,6 +166016,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019122
@@ -165771,6 +166331,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.019023
@@ -166082,6 +166644,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018924
@@ -166391,6 +166955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018825
@@ -166698,6 +167264,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018736
@@ -167003,6 +167571,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018647
@@ -167306,6 +167876,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018558
@@ -167607,6 +168179,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018453
@@ -167906,6 +168480,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018348
@@ -168203,6 +168779,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018243
@@ -168498,6 +169076,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018138
@@ -168791,6 +169371,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.018033
@@ -169082,6 +169664,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017927
@@ -169371,6 +169955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017822
@@ -169658,6 +170244,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017717
@@ -169943,6 +170531,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017612
@@ -170226,6 +170816,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017507
@@ -170507,6 +171099,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017402
@@ -170786,6 +171380,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017294
@@ -171063,6 +171659,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017232
@@ -171338,6 +171936,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323018
       lng: -122.017171
@@ -171611,6 +172211,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323019
       lng: -122.017068
@@ -171882,6 +172484,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.016965
@@ -172151,6 +172755,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32302
       lng: -122.016862
@@ -172418,6 +173024,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323021
       lng: -122.016759
@@ -172683,6 +173291,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323022
       lng: -122.016669
@@ -172946,6 +173556,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323023
       lng: -122.01658
@@ -173207,6 +173819,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323024
       lng: -122.01649
@@ -173466,6 +174080,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323025
       lng: -122.016433
@@ -173723,6 +174339,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323026
       lng: -122.016375
@@ -173978,6 +174596,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323026
       lng: -122.016298
@@ -174231,6 +174851,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323027
       lng: -122.016222
@@ -174482,6 +175104,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323027
       lng: -122.016145
@@ -174731,6 +175355,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323028
       lng: -122.016044
@@ -174978,6 +175604,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323028
       lng: -122.015943
@@ -175223,6 +175851,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323029
       lng: -122.015836
@@ -175466,6 +176096,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323029
       lng: -122.015729
@@ -175707,6 +176339,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32303
       lng: -122.015622
@@ -175946,6 +176580,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323031
       lng: -122.015515
@@ -176183,6 +176819,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323031
       lng: -122.015408
@@ -176418,6 +177056,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323032
       lng: -122.015301
@@ -176651,6 +177291,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323032
       lng: -122.015194
@@ -176882,6 +177524,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323033
       lng: -122.015087
@@ -177111,6 +177755,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323033
       lng: -122.014975
@@ -177338,6 +177984,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323034
       lng: -122.014869
@@ -177563,6 +178211,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323035
       lng: -122.014763
@@ -177786,6 +178436,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323035
       lng: -122.014657
@@ -178007,6 +178659,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.014551
@@ -178226,6 +178880,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014466
@@ -178443,6 +179099,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014381
@@ -178658,6 +179316,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014304
@@ -178871,6 +179531,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014231
@@ -179082,6 +179744,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014157
@@ -179291,6 +179955,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014078
@@ -179498,6 +180164,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.014007
@@ -179703,6 +180371,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.013935
@@ -179906,6 +180576,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.013836
@@ -180107,6 +180779,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.013738
@@ -180306,6 +180980,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.013639
@@ -180503,6 +181179,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.013541
@@ -180698,6 +181376,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.013442
@@ -180891,6 +181571,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.013339
@@ -181082,6 +181764,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.013237
@@ -181271,6 +181955,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.013134
@@ -181458,6 +182144,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.013032
@@ -181643,6 +182331,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.012929
@@ -181826,6 +182516,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.012827
@@ -182007,6 +182699,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.012724
@@ -182186,6 +182880,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.012622
@@ -182363,6 +183059,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.012519
@@ -182538,6 +183236,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.012411
@@ -182711,6 +183411,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323036
       lng: -122.012303
@@ -182882,6 +183584,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.012195
@@ -183051,6 +183755,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.012087
@@ -183218,6 +183924,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.011979
@@ -183383,6 +184091,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323037
       lng: -122.011871
@@ -183546,6 +184256,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.011772
@@ -183707,6 +184419,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323038
       lng: -122.011672
@@ -183866,6 +184580,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323039
       lng: -122.011613
@@ -184023,6 +184739,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32304
       lng: -122.011553
@@ -184178,6 +184896,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323041
       lng: -122.011445
@@ -184331,6 +185051,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323041
       lng: -122.011338
@@ -184482,6 +185204,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323042
       lng: -122.01123
@@ -184631,6 +185355,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323042
       lng: -122.011122
@@ -184778,6 +185504,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323042
       lng: -122.011022
@@ -184923,6 +185651,8 @@ expression: states
       degrees: 89
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323043
       lng: -122.010923
@@ -185066,6 +185796,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323043
       lng: -122.010823
@@ -185207,6 +185939,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323043
       lng: -122.010723
@@ -185346,6 +186080,8 @@ expression: states
       degrees: 106
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323031
       lng: -122.010671
@@ -185483,6 +186219,8 @@ expression: states
       degrees: 115
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.323021
       lng: -122.010644
@@ -185618,6 +186356,8 @@ expression: states
       degrees: 138
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322977
       lng: -122.010595
@@ -185751,6 +186491,8 @@ expression: states
       degrees: 138
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322942
       lng: -122.010556
@@ -185882,6 +186624,8 @@ expression: states
       degrees: 139
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322906
       lng: -122.010517
@@ -186011,6 +186755,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32286
       lng: -122.010516
@@ -186138,6 +186884,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322813
       lng: -122.010515
@@ -186263,6 +187011,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322803
       lng: -122.010515
@@ -186386,6 +187136,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322782
       lng: -122.010514
@@ -186507,6 +187259,8 @@ expression: states
       degrees: 177
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322708
       lng: -122.010509
@@ -186626,6 +187380,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322633
       lng: -122.010505
@@ -186743,6 +187499,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322563
       lng: -122.010504
@@ -186858,6 +187616,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322493
       lng: -122.010504
@@ -186971,6 +187731,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322404
       lng: -122.010503
@@ -187082,6 +187844,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322341
       lng: -122.010502
@@ -187191,6 +187955,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322267
       lng: -122.010501
@@ -187298,6 +188064,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322192
       lng: -122.010501
@@ -187403,6 +188171,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.322111
       lng: -122.010499
@@ -187506,6 +188276,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32204
       lng: -122.010497
@@ -187607,6 +188379,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321968
       lng: -122.010495
@@ -187706,6 +188480,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321905
       lng: -122.010497
@@ -187803,6 +188579,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321842
       lng: -122.010498
@@ -187898,6 +188676,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321765
       lng: -122.010498
@@ -187991,6 +188771,8 @@ expression: states
       degrees: 181
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321688
       lng: -122.010499
@@ -188082,6 +188864,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321611
       lng: -122.010499
@@ -188171,6 +188955,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321529
       lng: -122.010499
@@ -188258,6 +189044,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321447
       lng: -122.010498
@@ -188343,6 +189131,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321365
       lng: -122.010498
@@ -188426,6 +189216,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321301
       lng: -122.010498
@@ -188507,6 +189299,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321238
       lng: -122.010498
@@ -188586,6 +189380,8 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321174
       lng: -122.010498
@@ -188663,6 +189459,8 @@ expression: states
       degrees: 128
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32114
       lng: -122.010444
@@ -188738,6 +189536,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321097
       lng: -122.010442
@@ -188811,6 +189611,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.321053
       lng: -122.010441
@@ -188882,6 +189684,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320979
       lng: -122.010439
@@ -188951,6 +189755,8 @@ expression: states
       degrees: 182
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320896
       lng: -122.010443
@@ -189018,6 +189824,8 @@ expression: states
       degrees: 182
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320812
       lng: -122.010447
@@ -189083,6 +189891,8 @@ expression: states
       degrees: 198
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320728
       lng: -122.010482
@@ -189146,6 +189956,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.32067
       lng: -122.01048
@@ -189207,6 +190019,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320612
       lng: -122.010478
@@ -189266,6 +190080,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320532
       lng: -122.010475
@@ -189323,6 +190139,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320453
       lng: -122.010472
@@ -189378,6 +190196,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320373
       lng: -122.01047
@@ -189431,6 +190251,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320294
       lng: -122.010467
@@ -189482,6 +190304,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320214
       lng: -122.010464
@@ -189531,6 +190355,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320135
       lng: -122.010461
@@ -189578,6 +190404,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.320055
       lng: -122.010459
@@ -189623,6 +190451,8 @@ expression: states
       degrees: 178
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319999
       lng: -122.010457
@@ -189666,6 +190496,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319942
       lng: -122.010456
@@ -189707,6 +190539,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319942
       lng: -122.01038
@@ -189746,6 +190580,8 @@ expression: states
       degrees: 91
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319941
       lng: -122.010305
@@ -189783,6 +190619,8 @@ expression: states
       degrees: 90
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319941
       lng: -122.010229
@@ -189818,6 +190656,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319867
       lng: -122.010227
@@ -189851,6 +190691,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319792
       lng: -122.010226
@@ -189882,6 +190724,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319708
       lng: -122.010225
@@ -189911,6 +190755,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319623
       lng: -122.010224
@@ -189938,6 +190784,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319539
       lng: -122.010223
@@ -189963,6 +190811,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319454
       lng: -122.010222
@@ -189986,6 +190836,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.31937
       lng: -122.010221
@@ -190007,6 +190859,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319285
       lng: -122.01022
@@ -190026,6 +190880,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319223
       lng: -122.010219
@@ -190043,6 +190899,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.319162
       lng: -122.010218
@@ -190058,6 +190916,8 @@ expression: states
       degrees: 179
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations:
     - lat: 37.3191
       lng: -122.010217
@@ -190071,5 +190931,7 @@ expression: states
       degrees: 180
       accuracy: 5
     speed: ~
+    altitude: ~
+    vertical_accuracy: ~
   remaining_locations: []
   bias: None

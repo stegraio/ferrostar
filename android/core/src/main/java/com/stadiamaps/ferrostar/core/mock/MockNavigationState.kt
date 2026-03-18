@@ -31,7 +31,9 @@ fun UserLocation.Companion.pedestrianExample(): UserLocation {
       horizontalAccuracy = 1.0,
       courseOverGround = CourseOverGround(90u, 1u),
       timestamp = Instant.now(),
-      speed = Speed(1.0, 1.0))
+      speed = Speed(1.0, 1.0),
+      altitude = null,
+      verticalAccuracy = null)
 }
 
 fun AnnotationWrapper.Companion.pedestrianExample():

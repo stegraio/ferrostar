@@ -26,7 +26,9 @@ extension CLLocation {
             horizontalAccuracy: horizontalAccuracy,
             courseOverGround: ffiCourse,
             timestamp: timestamp,
-            speed: ffiSpeed
+            speed: ffiSpeed,
+            altitude: verticalAccuracy >= 0 ? altitude : nil,
+            verticalAccuracy: verticalAccuracy >= 0 ? verticalAccuracy : nil
         )
     }
 
@@ -45,9 +47,9 @@ extension CLLocation {
 
         self.init(
             coordinate: CLLocationCoordinate2D(geographicCoordinates: userLocation.coordinates),
-            altitude: invalid,
+            altitude: userLocation.altitude ?? invalid,
             horizontalAccuracy: userLocation.horizontalAccuracy,
-            verticalAccuracy: invalid,
+            verticalAccuracy: userLocation.verticalAccuracy ?? invalid,
             course: courseDegrees,
             courseAccuracy: courseAccuracy,
             speed: invalid,
@@ -135,7 +137,9 @@ public extension UserLocation {
                   horizontalAccuracy: horizontalAccuracy,
                   courseOverGround: CourseOverGround(course: course, courseAccuracy: courseAccuracy),
                   timestamp: timestamp,
-                  speed: ffiSpeed(speed, accuracy: speedAccuracy))
+                  speed: ffiSpeed(speed, accuracy: speedAccuracy),
+                  altitude: nil,
+                  verticalAccuracy: nil)
     }
 
     /// Initialize a UserLocation with a coordinate only.
@@ -147,7 +151,9 @@ public extension UserLocation {
                   horizontalAccuracy: 0,
                   courseOverGround: nil,
                   timestamp: Date(),
-                  speed: nil)
+                  speed: nil,
+                  altitude: nil,
+                  verticalAccuracy: nil)
     }
 
     /// Initialize a UserLocation from an Apple CoreLocation CLLocation
@@ -164,7 +170,9 @@ public extension UserLocation {
                 courseAccuracy: clLocation.courseAccuracy
             ),
             timestamp: clLocation.timestamp,
-            speed: ffiSpeed(clLocation.speed, accuracy: clLocation.speedAccuracy)
+            speed: ffiSpeed(clLocation.speed, accuracy: clLocation.speedAccuracy),
+            altitude: clLocation.verticalAccuracy >= 0 ? clLocation.altitude : nil,
+            verticalAccuracy: clLocation.verticalAccuracy >= 0 ? clLocation.verticalAccuracy : nil
         )
     }
 
@@ -187,9 +195,9 @@ public extension UserLocation {
 
         return CLLocation(
             coordinate: coordinates.clLocationCoordinate2D,
-            altitude: 0,
+            altitude: altitude ?? 0,
             horizontalAccuracy: horizontalAccuracy,
-            verticalAccuracy: -1,
+            verticalAccuracy: verticalAccuracy ?? -1,
             course: courseDegrees,
             courseAccuracy: courseAccuracy,
             speed: clSpeed,

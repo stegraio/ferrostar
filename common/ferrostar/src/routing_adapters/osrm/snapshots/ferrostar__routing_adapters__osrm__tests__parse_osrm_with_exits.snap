@@ -1,6 +1,5 @@
 ---
 source: ferrostar/src/routing_adapters/osrm/mod.rs
-assertion_line: 486
 expression: routes
 ---
 - geometry:

@@ -249,7 +249,7 @@ class FerrostarCore(
 
     val startingLocation =
         locationProvider.lastLocation
-            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
+            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null, null, null)
 
     val initialNavState = navigationSession.getInitialState(startingLocation)
     val newState = NavigationState(tripState = initialNavState.tripState, route.geometry, false)
@@ -281,7 +281,7 @@ class FerrostarCore(
 
     val startingLocation =
         locationProvider.lastLocation
-            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
+            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null, null, null)
 
     val newState = NavigationState(tripState = navState.tripState, route.geometry, false)
     handleStateUpdate(navState, startingLocation)
@@ -311,7 +311,7 @@ class FerrostarCore(
 
     val startingLocation =
         locationProvider.lastLocation
-            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null)
+            ?: UserLocation(route.geometry.first(), 0.0, null, Instant.now(), null, null, null)
 
     _queuedUtteranceIds.clear()
     spokenInstructionObserver?.stopAndClearQueue()

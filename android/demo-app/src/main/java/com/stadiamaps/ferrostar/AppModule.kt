@@ -84,7 +84,14 @@ object AppModule {
       SimulatedLocationProvider().apply {
         warpFactor = 2u
         lastLocation =
-            UserLocation(GeographicCoordinate(51.049315, 13.73552), 1.0, null, Instant.now(), null)
+            UserLocation(
+                GeographicCoordinate(51.049315, 13.73552),
+                1.0,
+                null,
+                Instant.now(),
+                null,
+                null,
+                null)
       }
     } else {
       FusedLocationProvider(appContext)

@@ -197,6 +197,8 @@ export class FerrostarCore implements LocationUpdateListener {
         courseOverGround: undefined,
         timestamp: new Date(),
         speed: undefined,
+        altitude: undefined,
+        verticalAccuracy: undefined,
       });
 
     const initialTripState = controller.getInitialState(startingLocation);
@@ -241,6 +243,8 @@ export class FerrostarCore implements LocationUpdateListener {
         courseOverGround: undefined,
         timestamp: new Date(),
         speed: undefined,
+        altitude: undefined,
+        verticalAccuracy: undefined,
       });
 
     this._navigationController = controller;

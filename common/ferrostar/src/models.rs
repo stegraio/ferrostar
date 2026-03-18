@@ -269,6 +269,10 @@ pub struct UserLocation {
     #[cfg_attr(feature = "wasm-bindgen", serde(with = "system_time_format"))]
     pub timestamp: SystemTime,
     pub speed: Option<Speed>,
+    /// The altitude above the WGS84 ellipsoid, in meters.
+    pub altitude: Option<f64>,
+    /// The estimated accuracy of the altitude value, in meters.
+    pub vertical_accuracy: Option<f64>,
 }
 
 impl From<UserLocation> for Point {

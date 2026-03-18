@@ -22,7 +22,8 @@ class SimulatedLocationProviderTest {
   @Test
   fun `set location`() {
     val locationProvider = SimulatedLocationProvider()
-    val location = UserLocation(GeographicCoordinate(42.02, 24.0), 12.0, null, Instant.now(), null)
+    val location =
+        UserLocation(GeographicCoordinate(42.02, 24.0), 12.0, null, Instant.now(), null, null, null)
 
     locationProvider.lastLocation = location
 
@@ -33,7 +34,8 @@ class SimulatedLocationProviderTest {
   fun `test listener events`() {
     val latch = CountDownLatch(1)
     val locationProvider = SimulatedLocationProvider()
-    val location = UserLocation(GeographicCoordinate(42.02, 24.0), 12.0, null, Instant.now(), null)
+    val location =
+        UserLocation(GeographicCoordinate(42.02, 24.0), 12.0, null, Instant.now(), null, null, null)
 
     val listener =
         object : LocationUpdateListener {

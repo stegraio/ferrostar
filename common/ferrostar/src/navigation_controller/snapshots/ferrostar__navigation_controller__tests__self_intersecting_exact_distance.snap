@@ -13,6 +13,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.377106
@@ -22,6 +24,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -194,6 +198,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376869
@@ -203,6 +209,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -375,6 +383,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376812
@@ -384,6 +394,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -556,6 +568,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376755
@@ -565,6 +579,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -737,6 +753,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 224
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376698
@@ -746,6 +764,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 224
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -918,6 +938,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376641
@@ -927,6 +949,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -1099,6 +1123,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376584
@@ -1108,6 +1134,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -1280,6 +1308,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376527
@@ -1289,6 +1319,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -1461,6 +1493,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376469
@@ -1470,6 +1504,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -1642,6 +1678,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376411
@@ -1651,6 +1689,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -1823,6 +1863,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376353
@@ -1832,6 +1874,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2004,6 +2048,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376295
@@ -2013,6 +2059,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2185,6 +2233,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376238
@@ -2194,6 +2244,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2366,6 +2418,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37618
@@ -2375,6 +2429,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2547,6 +2603,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376122
@@ -2556,6 +2614,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2728,6 +2788,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376064
@@ -2737,6 +2799,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -2909,6 +2973,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.376006
@@ -2918,6 +2984,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3090,6 +3158,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375948
@@ -3099,6 +3169,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3271,6 +3343,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375888
@@ -3280,6 +3354,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3452,6 +3528,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375829
@@ -3461,6 +3539,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3633,6 +3713,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375769
@@ -3642,6 +3724,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3814,6 +3898,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375709
@@ -3823,6 +3909,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -3995,6 +4083,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37565
@@ -4004,6 +4094,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -4176,6 +4268,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37559
@@ -4185,6 +4279,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -4357,6 +4453,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37553
@@ -4366,6 +4464,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -4538,6 +4638,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375471
@@ -4547,6 +4649,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 225
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.377106
@@ -4719,6 +4823,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375411
@@ -4728,6 +4834,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -4878,6 +4986,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37536
@@ -4887,6 +4997,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5037,6 +5149,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375308
@@ -5046,6 +5160,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5196,6 +5312,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375257
@@ -5205,6 +5323,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5355,6 +5475,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375206
@@ -5364,6 +5486,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5514,6 +5638,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375154
@@ -5523,6 +5649,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5673,6 +5801,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375103
@@ -5682,6 +5812,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5832,6 +5964,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375051
@@ -5841,6 +5975,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -5991,6 +6127,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375
@@ -6000,6 +6138,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6150,6 +6290,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374949
@@ -6159,6 +6301,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 234
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6309,6 +6453,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374897
@@ -6318,6 +6464,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 235
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6468,6 +6616,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 246
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374846
@@ -6477,6 +6627,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 246
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6627,6 +6779,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 245
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374827
@@ -6636,6 +6790,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 245
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6786,6 +6942,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 254
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374808
@@ -6795,6 +6953,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 254
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -6945,6 +7105,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 253
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374795
@@ -6954,6 +7116,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 253
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7104,6 +7268,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 264
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374781
@@ -7113,6 +7279,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 264
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7263,6 +7431,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 275
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374774
@@ -7272,6 +7442,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 275
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7422,6 +7594,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 280
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37478
@@ -7431,6 +7605,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 280
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7581,6 +7757,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 291
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374789
@@ -7590,6 +7768,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 291
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7740,6 +7920,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 300
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374812
@@ -7749,6 +7931,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 300
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -7899,6 +8083,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 303
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374849
@@ -7908,6 +8094,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 303
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8058,6 +8246,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 312
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37488
@@ -8067,6 +8257,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 312
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8217,6 +8409,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 326
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374919
@@ -8226,6 +8420,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 326
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8376,6 +8572,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 328
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374978
@@ -8385,6 +8583,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 328
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8535,6 +8735,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 337
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375024
@@ -8544,6 +8746,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 337
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8694,6 +8898,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 348
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375075
@@ -8703,6 +8909,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 348
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -8853,6 +9061,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 347
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375143
@@ -8862,6 +9072,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 347
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9012,6 +9224,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 346
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375203
@@ -9021,6 +9235,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 346
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9171,6 +9387,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 347
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375264
@@ -9180,6 +9398,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 347
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9330,6 +9550,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 19
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375324
@@ -9339,6 +9561,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 19
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9489,6 +9713,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 20
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37537
@@ -9498,6 +9724,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 20
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9648,6 +9876,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 31
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375415
@@ -9657,6 +9887,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 31
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9807,6 +10039,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 42
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375483
@@ -9816,6 +10050,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 42
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -9966,6 +10202,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 42
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375521
@@ -9975,6 +10213,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 42
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10125,6 +10365,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 51
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375559
@@ -10134,6 +10376,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 51
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10284,6 +10528,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 61
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37561
@@ -10293,6 +10539,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 61
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10443,6 +10691,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 62
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375634
@@ -10452,6 +10702,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 62
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10602,6 +10854,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 72
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375657
@@ -10611,6 +10865,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 72
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10761,6 +11017,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 72
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37568
@@ -10770,6 +11028,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 72
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375411
@@ -10920,6 +11180,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 115
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375703
@@ -10929,6 +11191,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 115
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11022,6 +11286,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 115
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375667
@@ -11031,6 +11297,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 115
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11124,6 +11392,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 113
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375631
@@ -11133,6 +11403,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 113
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11226,6 +11498,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 114
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375604
@@ -11235,6 +11509,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 114
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11328,6 +11604,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 127
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375576
@@ -11337,6 +11615,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 127
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11430,6 +11710,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 127
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375541
@@ -11439,6 +11721,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 127
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11532,6 +11816,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 134
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375506
@@ -11541,6 +11827,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 134
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11634,6 +11922,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 142
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375468
@@ -11643,6 +11933,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 142
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11736,6 +12028,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 141
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375415
@@ -11745,6 +12039,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 141
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11838,6 +12134,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 142
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375363
@@ -11847,6 +12145,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 142
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -11940,6 +12240,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37531
@@ -11949,6 +12251,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12042,6 +12346,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375233
@@ -12051,6 +12357,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12144,6 +12452,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375157
@@ -12153,6 +12463,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12246,6 +12558,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37508
@@ -12255,6 +12569,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12348,6 +12664,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.375003
@@ -12357,6 +12675,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12450,6 +12770,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374918
@@ -12459,6 +12781,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12552,6 +12876,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374834
@@ -12561,6 +12887,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12654,6 +12982,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374749
@@ -12663,6 +12993,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12756,6 +13088,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374664
@@ -12765,6 +13099,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12858,6 +13194,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37458
@@ -12867,6 +13205,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -12960,6 +13300,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374495
@@ -12969,6 +13311,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13062,6 +13406,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 163
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374423
@@ -13071,6 +13417,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 163
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13164,6 +13512,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374352
@@ -13173,6 +13523,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13266,6 +13618,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 163
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37428
@@ -13275,6 +13629,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 163
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13368,6 +13724,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374209
@@ -13377,6 +13735,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13470,6 +13830,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374137
@@ -13479,6 +13841,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13572,6 +13936,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.374055
@@ -13581,6 +13947,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13674,6 +14042,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373973
@@ -13683,6 +14053,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13776,6 +14148,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373892
@@ -13785,6 +14159,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13878,6 +14254,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37381
@@ -13887,6 +14265,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -13980,6 +14360,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373728
@@ -13989,6 +14371,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14082,6 +14466,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373646
@@ -14091,6 +14477,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14184,6 +14572,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373572
@@ -14193,6 +14583,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14286,6 +14678,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373496
@@ -14295,6 +14689,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14388,6 +14784,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373421
@@ -14397,6 +14795,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14490,6 +14890,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373345
@@ -14499,6 +14901,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14592,6 +14996,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37327
@@ -14601,6 +15007,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14694,6 +15102,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373194
@@ -14703,6 +15113,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14796,6 +15208,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373109
@@ -14805,6 +15219,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -14898,6 +15314,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.373025
@@ -14907,6 +15325,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15000,6 +15420,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37294
@@ -15009,6 +15431,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 164
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15102,6 +15526,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372855
@@ -15111,6 +15537,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15204,6 +15632,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372777
@@ -15213,6 +15643,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15306,6 +15738,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372698
@@ -15315,6 +15749,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15408,6 +15844,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37262
@@ -15417,6 +15855,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15510,6 +15950,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372541
@@ -15519,6 +15961,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15612,6 +16056,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372463
@@ -15621,6 +16067,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15714,6 +16162,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372386
@@ -15723,6 +16173,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 165
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15816,6 +16268,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.37231
@@ -15825,6 +16279,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -15918,6 +16374,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372233
@@ -15927,6 +16385,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16020,6 +16480,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372156
@@ -16029,6 +16491,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16122,6 +16586,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372079
@@ -16131,6 +16597,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16224,6 +16692,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.372001
@@ -16233,6 +16703,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16326,6 +16798,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371924
@@ -16335,6 +16809,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16428,6 +16904,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371846
@@ -16437,6 +16915,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16530,6 +17010,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371762
@@ -16539,6 +17021,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16632,6 +17116,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371677
@@ -16641,6 +17127,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 167
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16734,6 +17222,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371593
@@ -16743,6 +17233,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 166
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.375703
@@ -16836,6 +17328,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 180
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     snapped_user_location:
       coordinates:
         lat: 45.371508
@@ -16845,6 +17339,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 180
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     remaining_steps:
       - geometry:
           - lat: 45.371508
@@ -16891,6 +17387,8 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
         degrees: 180
         accuracy: 5
       speed: ~
+      altitude: ~
+      vertical_accuracy: ~
     summary:
       distanceTraveled: "1072.8629908967"
       snappedDistanceTraveled: "1072.8629908967"

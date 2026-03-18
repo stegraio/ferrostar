@@ -1,12 +1,12 @@
 use crate::models::{GeographicCoordinate, Route, UserLocation};
-use crate::routing_adapters::{RouteResponseParser, osrm::OsrmResponseParser};
-use geo::{Coord, coord};
+use crate::routing_adapters::{osrm::OsrmResponseParser, RouteResponseParser};
+use geo::{coord, Coord};
 use proptest::prop_compose;
 
 use insta::_macro_support::Content;
 use insta::internals::ContentPath;
-use serde::Serialize;
 use serde::de::DeserializeOwned;
+use serde::Serialize;
 #[cfg(all(feature = "std", not(feature = "web-time")))]
 use std::time::SystemTime;
 #[cfg(feature = "web-time")]
@@ -22,6 +22,8 @@ pub fn make_user_location(coord: Coord, horizontal_accuracy: f64) -> UserLocatio
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     }
 }
 

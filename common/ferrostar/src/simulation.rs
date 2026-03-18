@@ -41,14 +41,14 @@
 
 use crate::algorithms::trunc_float;
 use crate::models::{CourseOverGround, GeographicCoordinate, Route, UserLocation};
-use geo::{Bearing, Densify, Geodesic, Haversine, LineString, Point, coord};
+use geo::{coord, Bearing, Densify, Geodesic, Haversine, LineString, Point};
 use polyline::decode_polyline;
 
 #[cfg(any(test, feature = "wasm-bindgen"))]
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "wasm-bindgen")]
-use wasm_bindgen::{JsValue, prelude::*};
+use wasm_bindgen::{prelude::*, JsValue};
 
 #[cfg(feature = "wasm-bindgen")]
 use tsify::Tsify;
@@ -146,6 +146,8 @@ pub fn location_simulation_from_coordinates(
                 course_over_ground: Some(CourseOverGround::new(bearing, Some(5))),
                 timestamp: SystemTime::now(),
                 speed: None,
+                altitude: None,
+                vertical_accuracy: None,
             };
             let remaining_locations = if let Some(distance) = resample_distance {
                 // Interpolate so that there are no points further apart than the resample distance.
@@ -300,6 +302,8 @@ pub fn advance_location_simulation(state: &LocationSimulationState) -> LocationS
             course_over_ground: Some(CourseOverGround::new(bearing, Some(5))),
             timestamp: SystemTime::now(),
             speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
 
         LocationSimulationState {

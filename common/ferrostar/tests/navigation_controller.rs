@@ -9,8 +9,8 @@ use ferrostar::navigation_controller::models::{
 use ferrostar::navigation_controller::step_advance::conditions::{
     DistanceToEndOfStepCondition, ManualStepCondition,
 };
-use ferrostar::routing_adapters::RouteResponseParser;
 use ferrostar::routing_adapters::osrm::OsrmResponseParser;
+use ferrostar::routing_adapters::RouteResponseParser;
 use std::sync::Arc;
 
 #[cfg(all(feature = "std", not(feature = "web-time")))]
@@ -43,6 +43,8 @@ fn same_location_results_in_identical_state() {
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
 
     let controller = create_navigator(
@@ -85,6 +87,8 @@ fn simple_route_state_machine_manual_advance() {
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
     let user_location_end_of_first_step = UserLocation {
         coordinates: *route.steps[0].geometry.last().unwrap(),
@@ -92,6 +96,8 @@ fn simple_route_state_machine_manual_advance() {
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
 
     let controller = create_navigator(
@@ -159,6 +165,8 @@ fn simple_route_state_machine_advances_with_location_change() {
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
     let user_location_end_of_first_step = UserLocation {
         coordinates: *route.steps[0].geometry.last().unwrap(),
@@ -166,6 +174,8 @@ fn simple_route_state_machine_advances_with_location_change() {
         course_over_ground: None,
         timestamp: SystemTime::now(),
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
 
     let controller = create_navigator(

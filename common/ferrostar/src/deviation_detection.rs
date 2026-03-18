@@ -330,7 +330,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state = get_navigating_trip_state(
             user_location_on_route.clone(),
@@ -353,7 +355,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_random = get_navigating_trip_state(
             user_location_random.clone(),
@@ -403,7 +407,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_on_route = get_navigating_trip_state(
             user_location_on_route.clone(),
@@ -426,7 +432,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_random = get_navigating_trip_state(
             user_location_random.clone(),
@@ -477,7 +485,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_on_route = get_navigating_trip_state(
             user_location_on_route.clone(),
@@ -502,7 +512,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_random = get_navigating_trip_state(
             user_location_random.clone(),
@@ -546,7 +558,9 @@ proptest! {
             horizontal_accuracy,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state = get_navigating_trip_state(
             user_location_on_route.clone(),
@@ -571,7 +585,9 @@ proptest! {
             horizontal_accuracy: 0.0,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_random = get_navigating_trip_state(
             user_location_random.clone(),
@@ -631,6 +647,8 @@ proptest! {
             course_over_ground: Some(crate::models::CourseOverGround { degrees: 270, accuracy: None }),
             timestamp: SystemTime::now(),
             speed: Some(crate::models::Speed { value: 10.0, accuracy: None }),
+            altitude: None,
+            vertical_accuracy: None,
         };
 
         let trip_state = get_navigating_trip_state(
@@ -695,6 +713,8 @@ proptest! {
             course_over_ground: Some(crate::models::CourseOverGround { degrees: 90, accuracy: None }),
             timestamp: SystemTime::now(),
             speed: Some(crate::models::Speed { value: 10.0, accuracy: None }),
+            altitude: None,
+            vertical_accuracy: None,
         };
 
         let trip_state = get_navigating_trip_state(
@@ -734,7 +754,9 @@ proptest! {
             horizontal_accuracy: horizontal_accuracy as f64,
             course_over_ground: None,
             timestamp: SystemTime::now(),
-            speed: None
+            speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         };
         let trip_state_random = get_navigating_trip_state(
             user_location_random.clone(),

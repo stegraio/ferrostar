@@ -184,6 +184,8 @@ class FerrostarCoreTest {
                   courseOverGround = null,
                   timestamp = Instant.now(),
                   speed = null,
+                  altitude = null,
+                  verticalAccuracy = null,
               ),
           waypoints =
               listOf(
@@ -240,6 +242,8 @@ class FerrostarCoreTest {
                     courseOverGround = null,
                     timestamp = Instant.now(),
                     speed = null,
+                    altitude = null,
+                    verticalAccuracy = null,
                 ),
             waypoints =
                 listOf(
@@ -294,6 +298,8 @@ class FerrostarCoreTest {
                     courseOverGround = null,
                     timestamp = Instant.now(),
                     speed = null,
+                    altitude = null,
+                    verticalAccuracy = null,
                 ),
             waypoints =
                 listOf(
@@ -355,6 +361,8 @@ class FerrostarCoreTest {
                     courseOverGround = null,
                     timestamp = Instant.now(),
                     speed = null,
+                    altitude = null,
+                    verticalAccuracy = null,
                 ),
             waypoints =
                 listOf(
@@ -444,6 +452,8 @@ class FerrostarCoreTest {
                     courseOverGround = null,
                     timestamp = Instant.now(),
                     speed = null,
+                    altitude = null,
+                    verticalAccuracy = null,
                 ),
             waypoints =
                 listOf(
@@ -460,6 +470,8 @@ class FerrostarCoreTest {
             courseOverGround = null,
             timestamp = Instant.now(),
             speed = null,
+            altitude = null,
+            verticalAccuracy = null,
         )
     core.startNavigation(
         routes.first(),

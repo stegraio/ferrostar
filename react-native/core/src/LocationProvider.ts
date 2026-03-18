@@ -105,6 +105,11 @@ export class LocationProvider implements LocationProviderInterface {
                 }
               : undefined,
           timestamp: new Date(timestamp),
+          altitude: coords.altitude !== null ? coords.altitude : undefined,
+          verticalAccuracy:
+            coords.altitudeAccuracy !== null
+              ? coords.altitudeAccuracy
+              : undefined,
         });
         this.lastLocation = userLocation;
         listener.onLocationUpdate(userLocation);

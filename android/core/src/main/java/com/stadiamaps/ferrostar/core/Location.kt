@@ -231,6 +231,16 @@ fun UserLocation.toAndroidLocation(): android.location.Location {
     location.speed = speed.value.toFloat()
   }
 
+  val alt = this.altitude
+  if (alt != null) {
+    location.altitude = alt
+  }
+
+  val vertAcc = this.verticalAccuracy
+  if (vertAcc != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    location.verticalAccuracyMeters = vertAcc.toFloat()
+  }
+
   // NOTE: We have a lot of checks in place which we could remove (+ improve correctness)
   // if we supported API 26.
   val course = this.courseOverGround
@@ -280,7 +290,13 @@ fun android.location.Location.toUserLocation(): UserLocation {
           Speed(speed.toDouble(), null)
         } else {
           null
-        })
+        },
+        if (hasAltitude()) altitude else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+            hasAltitude() &&
+            hasVerticalAccuracy())
+            verticalAccuracyMeters.toDouble()
+        else null)
   } else {
     UserLocation(
         GeographicCoordinate(latitude, longitude),
@@ -299,6 +315,8 @@ fun android.location.Location.toUserLocation(): UserLocation {
           Speed(speed.toDouble(), null)
         } else {
           null
-        })
+        },
+        if (hasAltitude()) altitude else null,
+        null)
   }
 }

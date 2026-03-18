@@ -128,6 +128,8 @@ mod tests {
             course_over_ground: None,
             timestamp: SystemTime::now(),
             speed: None,
+            altitude: None,
+            vertical_accuracy: None,
         }
     }
 

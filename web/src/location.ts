@@ -29,6 +29,8 @@ export function ferrostarUserLocation(position: GeolocationPosition): object {
     },
     timestamp: position.timestamp,
     speed: speed,
+    altitude: position.coords.altitude,
+    verticalAccuracy: position.coords.altitudeAccuracy,
   };
 }
 

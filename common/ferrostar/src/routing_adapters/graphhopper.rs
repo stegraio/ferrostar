@@ -6,7 +6,7 @@ use crate::routing_adapters::error::{InstantiationError, RoutingRequestGeneratio
 use crate::routing_adapters::{RouteRequest, RouteRequestGenerator};
 
 use serde::{Deserialize, Serialize};
-use serde_json::{Map, Value as JsonValue, json};
+use serde_json::{json, Map, Value as JsonValue};
 #[cfg(feature = "std")]
 use std::collections::HashMap;
 #[cfg(feature = "wasm-bindgen")]
@@ -246,6 +246,8 @@ mod tests {
         course_over_ground: None,
         timestamp: SystemTime::UNIX_EPOCH,
         speed: None,
+        altitude: None,
+        vertical_accuracy: None,
     };
     const WAYPOINTS: [Waypoint; 2] = [
         Waypoint {
