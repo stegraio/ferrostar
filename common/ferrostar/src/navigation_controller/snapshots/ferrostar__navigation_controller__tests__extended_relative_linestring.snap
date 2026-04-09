@@ -71089,7 +71089,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "50.6369880402"
     summary:
       distanceTraveled: "1435.4021358900"
-      snappedDistanceTraveled: "1435.4240965573"
+      snappedDistanceTraveled: "1435.4021358900"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71197,7 +71197,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "49.2821620864"
     summary:
       distanceTraveled: "1442.9141731354"
-      snappedDistanceTraveled: "1442.9361338027"
+      snappedDistanceTraveled: "1442.9141731354"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71305,7 +71305,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "47.9118892662"
     summary:
       distanceTraveled: "1450.5251367887"
-      snappedDistanceTraveled: "1450.5470974560"
+      snappedDistanceTraveled: "1450.5251367887"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71413,7 +71413,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "46.2206014355"
     summary:
       distanceTraveled: "1459.9055234117"
-      snappedDistanceTraveled: "1459.9274840790"
+      snappedDistanceTraveled: "1459.9055234117"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71521,7 +71521,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "44.5242800101"
     summary:
       distanceTraveled: "1469.3470537817"
-      snappedDistanceTraveled: "1469.3690144490"
+      snappedDistanceTraveled: "1469.3470537817"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71629,7 +71629,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "42.8329921795"
     summary:
       distanceTraveled: "1478.7274359353"
-      snappedDistanceTraveled: "1478.7493966026"
+      snappedDistanceTraveled: "1478.7274359353"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71737,7 +71737,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "41.1417043487"
     summary:
       distanceTraveled: "1488.1078158701"
-      snappedDistanceTraveled: "1488.1297765374"
+      snappedDistanceTraveled: "1488.1078158701"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71845,7 +71845,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "39.4504165180"
     summary:
       distanceTraveled: "1497.4881935854"
-      snappedDistanceTraveled: "1497.5101542526"
+      snappedDistanceTraveled: "1497.4881935854"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -71953,7 +71953,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "37.7540950926"
     summary:
       distanceTraveled: "1506.9297154490"
-      snappedDistanceTraveled: "1506.9516761163"
+      snappedDistanceTraveled: "1506.9297154490"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72061,7 +72061,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "36.0628072620"
     summary:
       distanceTraveled: "1516.3100886949"
-      snappedDistanceTraveled: "1516.3320493622"
+      snappedDistanceTraveled: "1516.3100886949"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72169,7 +72169,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "34.3715194312"
     summary:
       distanceTraveled: "1525.6904597219"
-      snappedDistanceTraveled: "1525.7124203892"
+      snappedDistanceTraveled: "1525.6904597219"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72277,7 +72277,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "33.8082464237"
     summary:
       distanceTraveled: "1528.8172495710"
-      snappedDistanceTraveled: "1528.8392102383"
+      snappedDistanceTraveled: "1528.8172495710"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72385,7 +72385,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "32.1016365972"
     summary:
       distanceTraveled: "1538.2966124731"
-      snappedDistanceTraveled: "1538.3185731403"
+      snappedDistanceTraveled: "1538.2966124731"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72493,7 +72493,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "30.3950267707"
     summary:
       distanceTraveled: "1547.7759731494"
-      snappedDistanceTraveled: "1547.7979338167"
+      snappedDistanceTraveled: "1547.7759731494"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72601,7 +72601,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "28.7038724558"
     summary:
       distanceTraveled: "1557.1563367181"
-      snappedDistanceTraveled: "1557.1782973854"
+      snappedDistanceTraveled: "1557.1563367181"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72709,7 +72709,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "26.9972626293"
     summary:
       distanceTraveled: "1566.6356929725"
-      snappedDistanceTraveled: "1566.6576536397"
+      snappedDistanceTraveled: "1566.6356929725"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72817,7 +72817,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "25.2802216078"
     summary:
       distanceTraveled: "1576.1534892826"
-      snappedDistanceTraveled: "1576.1754499499"
+      snappedDistanceTraveled: "1576.1534892826"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -72925,7 +72925,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "23.5736117813"
     summary:
       distanceTraveled: "1585.6328410857"
-      snappedDistanceTraveled: "1585.6548017530"
+      snappedDistanceTraveled: "1585.6328410857"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73033,7 +73033,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "21.8824574663"
     summary:
       distanceTraveled: "1595.0131956881"
-      snappedDistanceTraveled: "1595.0351563554"
+      snappedDistanceTraveled: "1595.0131956881"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73141,7 +73141,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "20.1758476399"
     summary:
       distanceTraveled: "1604.4925430691"
-      snappedDistanceTraveled: "1604.5145037364"
+      snappedDistanceTraveled: "1604.4925430691"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73249,7 +73249,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "18.6032665064"
     summary:
       distanceTraveled: "1613.2245230154"
-      snappedDistanceTraveled: "1613.2464836827"
+      snappedDistanceTraveled: "1613.2245230154"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73357,7 +73357,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "17.0047976806"
     summary:
       distanceTraveled: "1622.0938171098"
-      snappedDistanceTraveled: "1622.1157777771"
+      snappedDistanceTraveled: "1622.0938171098"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73465,7 +73465,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "15.4322165471"
     summary:
       distanceTraveled: "1630.8257932491"
-      snappedDistanceTraveled: "1630.8477539164"
+      snappedDistanceTraveled: "1630.8257932491"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73573,7 +73573,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "13.8441632579"
     summary:
       distanceTraveled: "1639.6570302411"
-      snappedDistanceTraveled: "1639.6789909083"
+      snappedDistanceTraveled: "1639.6570302411"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73681,7 +73681,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "12.2611665879"
     summary:
       distanceTraveled: "1648.4274863844"
-      snappedDistanceTraveled: "1648.4494470516"
+      snappedDistanceTraveled: "1648.4274863844"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73789,7 +73789,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "10.6885854545"
     summary:
       distanceTraveled: "1657.1594568261"
-      snappedDistanceTraveled: "1657.1814174934"
+      snappedDistanceTraveled: "1657.1594568261"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -73897,7 +73897,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "9.0901166288"
     summary:
       distanceTraveled: "1666.0287411611"
-      snappedDistanceTraveled: "1666.0507018284"
+      snappedDistanceTraveled: "1666.0287411611"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74005,7 +74005,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "7.5175354953"
     summary:
       distanceTraveled: "1674.7607077964"
-      snappedDistanceTraveled: "1674.7826684636"
+      snappedDistanceTraveled: "1674.7607077964"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74113,7 +74113,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "6.0955133965"
     summary:
       distanceTraveled: "1682.6463648272"
-      snappedDistanceTraveled: "1682.6683254945"
+      snappedDistanceTraveled: "1682.6463648272"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74221,7 +74221,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "4.6684850376"
     summary:
       distanceTraveled: "1690.5931365472"
-      snappedDistanceTraveled: "1690.6150972145"
+      snappedDistanceTraveled: "1690.5931365472"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74329,7 +74329,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "3.2464629387"
     summary:
       distanceTraveled: "1698.4787904003"
-      snappedDistanceTraveled: "1698.5007510676"
+      snappedDistanceTraveled: "1698.4787904003"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74437,7 +74437,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "1.8244408401"
     summary:
       distanceTraveled: "1706.3644426756"
-      snappedDistanceTraveled: "1706.3864033429"
+      snappedDistanceTraveled: "1706.3644426756"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74545,7 +74545,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "0.9097462148"
     summary:
       distanceTraveled: "1711.4588584878"
-      snappedDistanceTraveled: "1711.4808191551"
+      snappedDistanceTraveled: "1711.4588584878"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74615,7 +74615,7 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       durationRemaining: "0.0000000000"
     summary:
       distanceTraveled: "1716.4928929978"
-      snappedDistanceTraveled: "1716.5148536651"
+      snappedDistanceTraveled: "1716.4928929978"
       startedAt: "[timestamp]"
       endedAt: "[none]"
     deviation: NoDeviation
@@ -74636,6 +74636,6 @@ expression: "states.into_iter().map(|state| state.trip_state()).collect::<Vec<_>
       vertical_accuracy: ~
     summary:
       distanceTraveled: "1716.4928929978"
-      snappedDistanceTraveled: "1716.5148536651"
+      snappedDistanceTraveled: "1716.4928929978"
       startedAt: "[timestamp]"
       endedAt: "[timestamp]"

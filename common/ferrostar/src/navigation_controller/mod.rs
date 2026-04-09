@@ -25,7 +25,7 @@ use crate::{
     navigation_session::{recording::NavigationRecorder, NavigationObserver, NavigationSession},
 };
 use chrono::Utc;
-use geo::geometry::LineString;
+use geo::geometry::{Coord, LineString};
 use models::{NavState, NavigationControllerConfig, StepAdvanceStatus, TripState};
 use std::clone::Clone;
 use std::sync::Arc;
@@ -113,23 +113,12 @@ impl Navigator for NavigationController {
             if let Some(deviation) =
                 crate::algorithms::deviation_from_line(&user_point, &linestring)
             {
-                eprintln!(
-                    "[get_initial_state] step {} deviation={:.2}m (geometry points={})",
-                    idx,
-                    deviation,
-                    linestring.0.len()
-                );
                 if deviation < min_deviation {
                     min_deviation = deviation;
                     closest_step_idx = Some(idx);
                 }
             }
         }
-
-        eprintln!(
-            "[get_initial_state] total_steps={}, closest_step_idx={:?}, min_deviation={:.2}m, accuracy={:.1}m",
-            remaining_steps.len(), closest_step_idx, min_deviation, location.horizontal_accuracy
-        );
 
         // Always start from the closest step (no distance threshold).
         // The snapper already verified the user is near the route; gating
@@ -139,20 +128,9 @@ impl Navigator for NavigationController {
         if location.horizontal_accuracy <= 20.0 {
             if let Some(idx) = closest_step_idx {
                 if idx > 0 && idx < remaining_steps.len() {
-                    eprintln!(
-                        "[get_initial_state] Draining steps 0..{}, starting from step {}",
-                        idx, idx
-                    );
                     remaining_steps.drain(0..idx);
-                } else {
-                    eprintln!("[get_initial_state] Closest is step 0, no drain needed");
                 }
             }
-        } else {
-            eprintln!(
-                "[get_initial_state] Accuracy {:.1}m > 20m gate, skipping step-skip",
-                location.horizontal_accuracy
-            );
         }
 
         // Proactive step advancement: if the user is near the end of the
@@ -165,7 +143,6 @@ impl Navigator for NavigationController {
         // used during navigation, so we always pre-advance past steps that
         // would immediately trigger step-advance in update_user_location.
         const NEAR_END_THRESHOLD: f64 = 20.0;
-        let mut proactive_advances = 0u32;
         while remaining_steps.len() > 1 {
             let step_linestring = remaining_steps[0].get_linestring();
             if crate::algorithms::is_within_threshold_to_end_of_linestring(
@@ -173,21 +150,10 @@ impl Navigator for NavigationController {
                 &step_linestring,
                 NEAR_END_THRESHOLD,
             ) {
-                proactive_advances += 1;
-                eprintln!(
-                    "[get_initial_state] Proactive advance #{}: user within {}m of end of step, draining",
-                    proactive_advances, NEAR_END_THRESHOLD
-                );
                 remaining_steps.drain(0..1);
             } else {
                 break;
             }
-        }
-        if proactive_advances > 0 {
-            eprintln!(
-                "[get_initial_state] Proactively advanced past {} step(s), now on step with {} remaining",
-                proactive_advances, remaining_steps.len()
-            );
         }
 
         let initial_summary = TripSummary {
@@ -202,13 +168,18 @@ impl Navigator for NavigationController {
             return NavState::complete(location, initial_summary);
         };
 
-        // TODO: We could move this to the Route struct or NavigationController directly to only calculate it once.
         let current_step_linestring = current_route_step.get_linestring();
-        let (current_step_geometry_index, snapped_user_location) =
-            self.snap_user_to_line(location, &current_step_linestring);
+        let nearby_linestring = Self::build_nearby_linestring(&remaining_steps, 4);
+        let (_, snapped_user_location) = self.snap_user_to_line(location, &nearby_linestring);
+        let current_step_snapped_user_location =
+            snap_user_location_to_line(location, &current_step_linestring);
+        let current_step_geometry_index = index_of_closest_segment_origin(
+            current_step_snapped_user_location,
+            &current_step_linestring,
+        );
 
         let progress = calculate_trip_progress(
-            &snapped_user_location.into(),
+            &current_step_snapped_user_location.into(),
             &current_step_linestring,
             &remaining_steps,
         );
@@ -477,10 +448,19 @@ impl NavigationController {
                 summary: previous_summary,
                 ..
             } => {
-                // Find the nearest point on the route line
                 let current_step_linestring = current_step.get_linestring();
-                let (current_step_geometry_index, snapped_user_location) =
-                    self.snap_user_to_line(current_user_location, &current_step_linestring);
+                let nearby_linestring = Self::build_nearby_linestring(&remaining_steps, 4);
+
+                // Keep the displayed puck and snapped course aligned to a short forward route
+                // window, while step-relative data stays anchored to the current step geometry.
+                let (_, snapped_user_location) =
+                    self.snap_user_to_line(current_user_location, &nearby_linestring);
+                let current_step_snapped_user_location =
+                    snap_user_location_to_line(current_user_location, &current_step_linestring);
+                let current_step_geometry_index = index_of_closest_segment_origin(
+                    current_step_snapped_user_location,
+                    &current_step_linestring,
+                );
 
                 // Update trip summary with accumulated distance
                 let updated_summary = previous_summary.update(
@@ -491,7 +471,7 @@ impl NavigationController {
                 );
 
                 let progress = calculate_trip_progress(
-                    &snapped_user_location.into(),
+                    &current_step_snapped_user_location.into(),
                     &current_step_linestring,
                     &remaining_steps,
                 );
@@ -551,6 +531,32 @@ impl NavigationController {
         };
 
         (current_step_geometry_index, snapped_with_course)
+    }
+
+    /// Builds a LineString from the first `max_steps` remaining steps.
+    ///
+    /// A short forward-looking window keeps the puck moving smoothly across
+    /// step boundaries without scanning or snapping against the full route.
+    fn build_nearby_linestring(remaining_steps: &[RouteStep], max_steps: usize) -> LineString {
+        let mut coords: Vec<Coord> = Vec::new();
+        let steps_to_use = remaining_steps.len().min(max_steps);
+
+        for step in &remaining_steps[..steps_to_use] {
+            let step_linestring = step.get_linestring();
+            for (index, coord) in step_linestring.coords().enumerate() {
+                if index == 0 {
+                    if let Some(last_coord) = coords.last() {
+                        if *last_coord == *coord {
+                            continue;
+                        }
+                    }
+                }
+
+                coords.push(*coord);
+            }
+        }
+
+        LineString::new(coords)
     }
 
     /// Process waypoint advance
