@@ -49,7 +49,9 @@ public extension NavigationState {
             horizontalAccuracy: 10,
             courseOverGround: CourseOverGround(degrees: 0, accuracy: 10),
             timestamp: Date(),
-            speed: Speed(value: 0, accuracy: 2)
+            speed: Speed(value: 0, accuracy: 2),
+            altitude: nil,
+            verticalAccuracy: nil
         )
 
         let remainingLocations = Array(samplePedestrianWaypoints.dropFirst(n))
