@@ -5938,18 +5938,34 @@ public struct UserLocation: Equatable, Hashable, Codable {
     public var courseOverGround: CourseOverGround?
     public var timestamp: Date
     public var speed: Speed?
+    /**
+     * The altitude above the WGS84 ellipsoid, in meters.
+     */
+    public var altitude: Double?
+    /**
+     * The estimated accuracy of the altitude value, in meters.
+     */
+    public var verticalAccuracy: Double?
 
     // Default memberwise initializers are never public by default, so we
     // declare one manually.
     public init(coordinates: GeographicCoordinate, 
         /**
          * The estimated accuracy of the coordinate (in meters)
-         */horizontalAccuracy: Double, courseOverGround: CourseOverGround?, timestamp: Date, speed: Speed?) {
+         */horizontalAccuracy: Double, courseOverGround: CourseOverGround?, timestamp: Date, speed: Speed?, 
+        /**
+         * The altitude above the WGS84 ellipsoid, in meters.
+         */altitude: Double?, 
+        /**
+         * The estimated accuracy of the altitude value, in meters.
+         */verticalAccuracy: Double?) {
         self.coordinates = coordinates
         self.horizontalAccuracy = horizontalAccuracy
         self.courseOverGround = courseOverGround
         self.timestamp = timestamp
         self.speed = speed
+        self.altitude = altitude
+        self.verticalAccuracy = verticalAccuracy
     }
 
     
@@ -5972,7 +5988,9 @@ public struct FfiConverterTypeUserLocation: FfiConverterRustBuffer {
                 horizontalAccuracy: FfiConverterDouble.read(from: &buf), 
                 courseOverGround: FfiConverterOptionTypeCourseOverGround.read(from: &buf), 
                 timestamp: FfiConverterTimestamp.read(from: &buf), 
-                speed: FfiConverterOptionTypeSpeed.read(from: &buf)
+                speed: FfiConverterOptionTypeSpeed.read(from: &buf), 
+                altitude: FfiConverterOptionDouble.read(from: &buf), 
+                verticalAccuracy: FfiConverterOptionDouble.read(from: &buf)
         )
     }
 
@@ -5982,6 +6000,8 @@ public struct FfiConverterTypeUserLocation: FfiConverterRustBuffer {
         FfiConverterOptionTypeCourseOverGround.write(value.courseOverGround, into: &buf)
         FfiConverterTimestamp.write(value.timestamp, into: &buf)
         FfiConverterOptionTypeSpeed.write(value.speed, into: &buf)
+        FfiConverterOptionDouble.write(value.altitude, into: &buf)
+        FfiConverterOptionDouble.write(value.verticalAccuracy, into: &buf)
     }
 }
 
@@ -7477,6 +7497,7 @@ public enum ManeuverModifier: Equatable, Hashable, Codable {
     case slightLeft
     case left
     case sharpLeft
+    case bird
 
 
 
@@ -7513,6 +7534,8 @@ public struct FfiConverterTypeManeuverModifier: FfiConverterRustBuffer {
         case 7: return .left
         
         case 8: return .sharpLeft
+        
+        case 9: return .bird
         
         default: throw UniffiInternalError.unexpectedEnumCase
         }
@@ -7552,6 +7575,10 @@ public struct FfiConverterTypeManeuverModifier: FfiConverterRustBuffer {
         
         case .sharpLeft:
             writeInt(&buf, Int32(8))
+        
+        
+        case .bird:
+            writeInt(&buf, Int32(9))
         
         }
     }
@@ -7599,6 +7626,7 @@ public enum ManeuverType: Equatable, Hashable, Codable {
     case notification
     case exitRoundabout
     case exitRotary
+    case bird
 
 
 
@@ -7651,6 +7679,8 @@ public struct FfiConverterTypeManeuverType: FfiConverterRustBuffer {
         case 15: return .exitRoundabout
         
         case 16: return .exitRotary
+        
+        case 17: return .bird
         
         default: throw UniffiInternalError.unexpectedEnumCase
         }
@@ -7722,6 +7752,10 @@ public struct FfiConverterTypeManeuverType: FfiConverterRustBuffer {
         
         case .exitRotary:
             writeInt(&buf, Int32(16))
+        
+        
+        case .bird:
+            writeInt(&buf, Int32(17))
         
         }
     }
@@ -8213,6 +8247,34 @@ public enum RouteDeviationTracking {
          */maxAcceptableDeviation: Double
     )
     /**
+     * Detects deviation using distance from the current step's route line,
+     * with an additional heading check to catch wrong-direction travel.
+     *
+     * Only checks the current step. When the user is close to the step line
+     * but heading in the opposite direction (e.g. turned around), this flags off-route
+     * even though the perpendicular distance is small.
+     */
+    case staticThresholdWithHeading(
+        /**
+         * The minimum required horizontal accuracy of the user location, in meters.
+         * Values larger than this will not trigger route deviation warnings.
+         */minimumHorizontalAccuracy: UInt16, 
+        /**
+         * The maximum acceptable deviation from the route line, in meters.
+         */maxAcceptableDeviation: Double, 
+        /**
+         * If the angle between the user's heading and the nearest segment bearing
+         * is greater than or equal to this value (in degrees), the user is flagged off-route.
+         * A typical value is 90.0 to 120.0 degrees.
+         */maxHeadingDeviationDegrees: Double, 
+        /**
+         * The minimum speed (in m/s) required before the heading check is applied.
+         * Below this speed, only the distance check is used.
+         * This avoids false positives when the user is stationary or moving slowly
+         * (where course_over_ground is unreliable).
+         */minSpeedForHeadingCheck: Double
+    )
+    /**
      * An arbitrary user-defined implementation.
      * You decide with your own [`RouteDeviationDetector`] implementation!
      */
@@ -8244,7 +8306,10 @@ public struct FfiConverterTypeRouteDeviationTracking: FfiConverterRustBuffer {
         case 2: return .staticThreshold(minimumHorizontalAccuracy: try FfiConverterUInt16.read(from: &buf), maxAcceptableDeviation: try FfiConverterDouble.read(from: &buf)
         )
         
-        case 3: return .custom(detector: try FfiConverterTypeRouteDeviationDetector.read(from: &buf)
+        case 3: return .staticThresholdWithHeading(minimumHorizontalAccuracy: try FfiConverterUInt16.read(from: &buf), maxAcceptableDeviation: try FfiConverterDouble.read(from: &buf), maxHeadingDeviationDegrees: try FfiConverterDouble.read(from: &buf), minSpeedForHeadingCheck: try FfiConverterDouble.read(from: &buf)
+        )
+        
+        case 4: return .custom(detector: try FfiConverterTypeRouteDeviationDetector.read(from: &buf)
         )
         
         default: throw UniffiInternalError.unexpectedEnumCase
@@ -8265,8 +8330,16 @@ public struct FfiConverterTypeRouteDeviationTracking: FfiConverterRustBuffer {
             FfiConverterDouble.write(maxAcceptableDeviation, into: &buf)
             
         
-        case let .custom(detector):
+        case let .staticThresholdWithHeading(minimumHorizontalAccuracy,maxAcceptableDeviation,maxHeadingDeviationDegrees,minSpeedForHeadingCheck):
             writeInt(&buf, Int32(3))
+            FfiConverterUInt16.write(minimumHorizontalAccuracy, into: &buf)
+            FfiConverterDouble.write(maxAcceptableDeviation, into: &buf)
+            FfiConverterDouble.write(maxHeadingDeviationDegrees, into: &buf)
+            FfiConverterDouble.write(minSpeedForHeadingCheck, into: &buf)
+            
+        
+        case let .custom(detector):
+            writeInt(&buf, Int32(4))
             FfiConverterTypeRouteDeviationDetector.write(detector, into: &buf)
             
         }

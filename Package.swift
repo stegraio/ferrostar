@@ -5,7 +5,7 @@ import PackageDescription
 
 let binaryTarget: Target
 let maplibreSwiftUIDSLPackage: Package.Dependency
-let useLocalFramework = false
+let useLocalFramework = true
 let useLocalMapLibreSwiftUIDSL = false
 
 if useLocalFramework {
@@ -16,7 +16,11 @@ if useLocalFramework {
         path: "./common/target/ios/libferrostar-rs.xcframework"
     )
 } else {
-    let releaseTag = "0.47.0"
+    // Stegra fork version (parity with Android libs.versions.toml `ferrostar = "0.47.137"`).
+    // Unused while `useLocalFramework = true` (which is the default for this fork);
+    // documentary marker only. Checksum below is from upstream 0.47.0 and is invalid for 0.47.137 —
+    // recompute if/when this fork ever publishes its own XCFramework release.
+    let releaseTag = "0.47.137"
     let releaseChecksum = "dca5014d77e90fc0935a3f23d49d6bd599f1a7d753df9ad046d5cbab02a34715"
     binaryTarget = .binaryTarget(
         name: "FerrostarCoreRS",
