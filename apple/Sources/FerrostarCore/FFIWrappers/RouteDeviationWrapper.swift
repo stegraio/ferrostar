@@ -20,6 +20,13 @@ public enum SwiftRouteDeviationTracking {
 
     case staticThreshold(minimumHorizontalAccuracy: UInt16, maxAcceptableDeviation: Double)
 
+    case staticThresholdWithHeading(
+        minimumHorizontalAccuracy: UInt16,
+        maxAcceptableDeviation: Double,
+        maxHeadingDeviationDegrees: Double,
+        minSpeedForHeadingCheck: Double
+    )
+
     case custom(detector: @Sendable (Route, TripState) -> RouteDeviation)
 
     var ffiValue: FerrostarCoreFFI.RouteDeviationTracking {
@@ -33,6 +40,18 @@ public enum SwiftRouteDeviationTracking {
             .staticThreshold(
                 minimumHorizontalAccuracy: minimumHorizontalAccuracy,
                 maxAcceptableDeviation: maxAcceptableDeviation
+            )
+        case let .staticThresholdWithHeading(
+            minimumHorizontalAccuracy: minimumHorizontalAccuracy,
+            maxAcceptableDeviation: maxAcceptableDeviation,
+            maxHeadingDeviationDegrees: maxHeadingDeviationDegrees,
+            minSpeedForHeadingCheck: minSpeedForHeadingCheck
+        ):
+            .staticThresholdWithHeading(
+                minimumHorizontalAccuracy: minimumHorizontalAccuracy,
+                maxAcceptableDeviation: maxAcceptableDeviation,
+                maxHeadingDeviationDegrees: maxHeadingDeviationDegrees,
+                minSpeedForHeadingCheck: minSpeedForHeadingCheck
             )
         case let .custom(detector: detectorFunc):
             .custom(detector: DetectorImpl(detectorFunc: detectorFunc))
