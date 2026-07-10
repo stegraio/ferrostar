@@ -3,3 +3,13 @@
 # See https://docs.rs/getrandom/latest/getrandom/#opt-in-backends
 [target.wasm32-unknown-unknown]
 rustflags = ['--cfg', 'getrandom_backend="wasm_js"']
+
+# Android 64-bit targets: ensure ELF LOAD segments are 16 KB-aligned for
+# Android 15+ devices using a 16 KB page size.
+# See https://developer.android.com/guide/practices/page-sizes
+# (NDK r28+ does this by default, but we currently build with r26.)
+[target.aarch64-linux-android]
+rustflags = ['-C', 'link-arg=-Wl,-z,max-page-size=16384', '-C', 'link-arg=-Wl,-z,common-page-size=16384']
+
+[target.x86_64-linux-android]
+rustflags = ['-C', 'link-arg=-Wl,-z,max-page-size=16384', '-C', 'link-arg=-Wl,-z,common-page-size=16384']
