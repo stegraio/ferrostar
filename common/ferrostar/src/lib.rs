@@ -23,6 +23,21 @@
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
+/// Internal diagnostics for the navigation state machine.
+///
+/// Compiled out of release builds: these fire on every location update
+/// (several per update in the deviation checker), and the formatting work
+/// alone is measurable on the location thread.
+macro_rules! debug_eprintln {
+    ($($arg:tt)*) => {{
+        #[cfg(debug_assertions)]
+        {
+            eprintln!($($arg)*);
+        }
+    }};
+}
+pub(crate) use debug_eprintln;
+
 #[cfg(target_os = "android")]
 use android_logger::Config;
 

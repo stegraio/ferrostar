@@ -13,14 +13,15 @@
 //! we suggest enforcing a similar separation of concerns.
 
 use crate::algorithms::deviation_from_line;
-use crate::algorithms::nearest_segment_bearing_deg;
-use crate::models::Route;
+use crate::algorithms::segment_bearings_within;
+use crate::debug_eprintln;
+use crate::models::{Route, RouteStep};
 use crate::navigation_controller::models::TripState;
 #[cfg(test)]
 use crate::{models::UserLocation, navigation_controller::test_helpers::get_navigating_trip_state};
 #[cfg(feature = "alloc")]
 use alloc::sync::Arc;
-use geo::{LineString, Point};
+use geo::Point;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "wasm-bindgen")]
 use tsify::Tsify;
@@ -40,6 +41,15 @@ use std::time::SystemTime;
 #[cfg(all(test, feature = "web-time"))]
 use web_time::SystemTime;
 
+/// How many remaining steps (current + upcoming) the deviation check inspects.
+///
+/// Matches the forward window used for puck snapping
+/// (`NavigationController::build_nearby_linestring`). Large enough that a user
+/// matched one or two steps ahead (short steps around a maneuver, GPS noise,
+/// self-intersections) is not falsely off-route; small enough that a parallel
+/// but unrelated road far ahead cannot mask a genuine deviation for long.
+pub(crate) const DEVIATION_STEP_WINDOW: usize = 4;
+
 /// Determines if the user has deviated from the expected route.
 #[derive(Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "uniffi", derive(uniffi::Enum))]
@@ -49,6 +59,12 @@ pub enum RouteDeviationTracking {
     /// No checks will be done, and we assume the user is always following the route.
     None,
     /// Detects deviation from the route using a configurable static distance threshold from the route line.
+    ///
+    /// The distance is measured against a short forward window of steps
+    /// ([`DEVIATION_STEP_WINDOW`]): the user is off-route only when farther
+    /// than the threshold from EVERY step in the window. Checking the current
+    /// step alone reported false off-route whenever the user was matched
+    /// slightly ahead of it.
     #[cfg_attr(feature = "wasm-bindgen", serde(rename_all = "camelCase"))]
     StaticThreshold {
         /// The minimum required horizontal accuracy of the user location, in meters.
@@ -60,12 +76,20 @@ pub enum RouteDeviationTracking {
         /// is greater than this threshold, it will be flagged as an off route condition.
         max_acceptable_deviation: f64,
     },
-    /// Detects deviation using distance from the current step's route line,
+    /// Detects deviation using distance from a short forward window of steps,
     /// with an additional heading check to catch wrong-direction travel.
     ///
-    /// Only checks the current step. When the user is close to the step line
-    /// but heading in the opposite direction (e.g. turned around), this flags off-route
-    /// even though the perpendicular distance is small.
+    /// Distance: the user is off-route when they are farther than the
+    /// threshold from EVERY step in the window (current + the next few).
+    /// Checking only the current step reported false off-route whenever the
+    /// user was matched slightly ahead (short steps, GPS noise at a maneuver,
+    /// self-intersecting geometry).
+    ///
+    /// Heading: when moving fast enough, the user is flagged off-route if
+    /// their course disagrees with EVERY window segment they are plausibly on.
+    /// On overlapping geometry (out-and-back roads, U-turn bridges) several
+    /// directions are legitimate at once and alignment with any of them
+    /// counts as on-course.
     #[cfg_attr(feature = "wasm-bindgen", serde(rename_all = "camelCase"))]
     StaticThresholdWithHeading {
         /// The minimum required horizontal accuracy of the user location, in meters.
@@ -134,15 +158,17 @@ impl RouteDeviationTracking {
                         return RouteDeviation::NoDeviation;
                     }
 
-                    let Some(current_step) = remaining_steps.first() else {
-                        return RouteDeviation::NoDeviation;
-                    };
-
-                    self.static_threshold_deviation_from_line(
-                        &Point::from(*user_location),
-                        &current_step.get_linestring(),
-                        *max_acceptable_deviation,
-                    )
+                    let user_pt = Point::from(*user_location);
+                    match Self::min_deviation_over_step_window(&user_pt, remaining_steps) {
+                        Some(deviation)
+                            if deviation > 0.0 && deviation > *max_acceptable_deviation =>
+                        {
+                            RouteDeviation::OffRoute {
+                                deviation_from_route_line: deviation,
+                            }
+                        }
+                        _ => RouteDeviation::NoDeviation,
+                    }
                 }
             },
             RouteDeviationTracking::Custom { detector } => {
@@ -162,90 +188,85 @@ impl RouteDeviationTracking {
                 } => {
                     // Accuracy gate
                     if user_location.horizontal_accuracy > f64::from(*minimum_horizontal_accuracy) {
-                        eprintln!(
+                        debug_eprintln!(
                             "[HeadingCheck] SKIP: accuracy {:.1} > threshold {}",
-                            user_location.horizontal_accuracy, minimum_horizontal_accuracy
+                            user_location.horizontal_accuracy,
+                            minimum_horizontal_accuracy
                         );
                         return RouteDeviation::NoDeviation;
                     }
 
-                    let Some(current_step) = remaining_steps.first() else {
-                        eprintln!("[HeadingCheck] SKIP: no remaining steps");
-                        return RouteDeviation::NoDeviation;
-                    };
-
                     let user_pt = Point::from(*user_location);
-                    let step_ls = current_step.get_linestring();
 
-                    if step_ls.0.len() < 2 {
-                        eprintln!("[HeadingCheck] SKIP: step linestring has < 2 points");
+                    let Some(deviation_m) =
+                        Self::min_deviation_over_step_window(&user_pt, remaining_steps)
+                    else {
+                        debug_eprintln!("[HeadingCheck] SKIP: no usable step geometry in window");
                         return RouteDeviation::NoDeviation;
-                    }
-
-                    // Distance check against current step only
-                    let deviation_m = match deviation_from_line(&user_pt, &step_ls) {
-                        Some(d) => d,
-                        None => {
-                            eprintln!("[HeadingCheck] SKIP: deviation_from_line returned None");
-                            return RouteDeviation::NoDeviation;
-                        }
                     };
 
-                    eprintln!(
-                        "[HeadingCheck] deviation_m={:.2}, max_acceptable={:.1}",
-                        deviation_m, max_acceptable_deviation
-                    );
-
-                    if deviation_m > 0.0 && deviation_m > *max_acceptable_deviation {
-                        eprintln!("[HeadingCheck] OFF_ROUTE by distance: {:.2}m", deviation_m);
+                    if deviation_m > *max_acceptable_deviation {
+                        debug_eprintln!(
+                            "[HeadingCheck] OFF_ROUTE by distance: {:.2}m",
+                            deviation_m
+                        );
                         return RouteDeviation::OffRoute {
                             deviation_from_route_line: deviation_m,
                         };
                     }
 
-                    // Heading check: only when moving fast enough and course is available
+                    // Heading check: only when moving fast enough and course is available.
                     let speed_mps = user_location.speed.map(|s| s.value).unwrap_or(0.0);
-                    let has_cog = user_location.course_over_ground.is_some();
-                    eprintln!(
-                        "[HeadingCheck] speed={:.2} m/s (min={:.1}), has_cog={}, cog={:?}",
-                        speed_mps,
-                        min_speed_for_heading_check,
-                        has_cog,
-                        user_location.course_over_ground
-                    );
-
                     if speed_mps >= *min_speed_for_heading_check {
                         if let Some(cog) = user_location.course_over_ground {
                             let user_heading = normalize_deg(cog.degrees as f64);
-                            if let Some(seg_bearing) =
-                                nearest_segment_bearing_deg(&user_pt, &step_ls).map(normalize_deg)
-                            {
-                                let delta = smallest_angle_diff_deg(user_heading, seg_bearing);
-                                eprintln!(
-                                    "[HeadingCheck] user_heading={:.1}, seg_bearing={:.1}, delta={:.1}, threshold={:.1}",
-                                    user_heading, seg_bearing, delta, max_heading_deviation_degrees
-                                );
-                                if delta >= *max_heading_deviation_degrees {
-                                    eprintln!(
-                                        "[HeadingCheck] OFF_ROUTE by heading: delta={:.1}°",
-                                        delta
-                                    );
-                                    return RouteDeviation::OffRoute {
-                                        deviation_from_route_line: deviation_m.max(1.0),
-                                    };
+
+                            // Bearings of EVERY window segment the user is
+                            // plausibly on (within the distance tolerance).
+                            // Overlapping geometry puts several directions
+                            // under the user at once; only disagreement with
+                            // ALL of them is wrong-direction travel.
+                            let mut candidate_bearings: Vec<f64> = Vec::new();
+                            for step in remaining_steps.iter().take(DEVIATION_STEP_WINDOW) {
+                                let step_ls = step.get_linestring();
+                                if step_ls.0.len() < 2 {
+                                    continue;
                                 }
-                            } else {
-                                eprintln!(
-                                    "[HeadingCheck] nearest_segment_bearing_deg returned None"
+                                candidate_bearings.extend(segment_bearings_within(
+                                    &user_pt,
+                                    &step_ls,
+                                    *max_acceptable_deviation,
+                                ));
+                            }
+
+                            let misaligned_with_all = !candidate_bearings.is_empty()
+                                && candidate_bearings.iter().all(|bearing| {
+                                    smallest_angle_diff_deg(user_heading, normalize_deg(*bearing))
+                                        >= *max_heading_deviation_degrees
+                                });
+                            if misaligned_with_all {
+                                debug_eprintln!(
+                                    "[HeadingCheck] OFF_ROUTE by heading: heading={:.1}° disagrees with all {} nearby segments",
+                                    user_heading,
+                                    candidate_bearings.len()
                                 );
+                                // The 1 m floor marks heading trips until a
+                                // structured deviation kind is exposed over
+                                // FFI; the true perpendicular distance here is
+                                // near zero and downstream treats the value as
+                                // informational.
+                                return RouteDeviation::OffRoute {
+                                    deviation_from_route_line: deviation_m.max(1.0),
+                                };
                             }
                         } else {
-                            eprintln!("[HeadingCheck] SKIP heading: no course_over_ground");
+                            debug_eprintln!("[HeadingCheck] SKIP heading: no course_over_ground");
                         }
                     } else {
-                        eprintln!(
+                        debug_eprintln!(
                             "[HeadingCheck] SKIP heading: speed too low ({:.2} < {:.1})",
-                            speed_mps, min_speed_for_heading_check
+                            speed_mps,
+                            min_speed_for_heading_check
                         );
                     }
 
@@ -255,23 +276,27 @@ impl RouteDeviationTracking {
         }
     }
 
-    /// Get the `RouteDeviation` status for a given location on a line string.
-    /// This can be used with a Route or `RouteStep`.
-    fn static_threshold_deviation_from_line(
-        &self,
-        point: &Point,
-        line: &LineString,
-        max_acceptable_deviation: f64,
-    ) -> RouteDeviation {
-        deviation_from_line(point, line).map_or(RouteDeviation::NoDeviation, |deviation| {
-            if deviation > 0.0 && deviation > max_acceptable_deviation {
-                RouteDeviation::OffRoute {
-                    deviation_from_route_line: deviation,
-                }
-            } else {
-                RouteDeviation::NoDeviation
+    /// Minimum distance (in meters) from the user to any step in the forward
+    /// deviation window ([`DEVIATION_STEP_WINDOW`]).
+    ///
+    /// Returns `None` when no step in the window has usable geometry.
+    fn min_deviation_over_step_window(
+        user_pt: &Point,
+        remaining_steps: &[RouteStep],
+    ) -> Option<f64> {
+        let mut min_deviation: Option<f64> = None;
+        for step in remaining_steps.iter().take(DEVIATION_STEP_WINDOW) {
+            let step_ls = step.get_linestring();
+            if step_ls.0.len() < 2 {
+                continue;
             }
-        })
+            if let Some(d) = deviation_from_line(user_pt, &step_ls) {
+                if min_deviation.map_or(true, |m| d < m) {
+                    min_deviation = Some(d);
+                }
+            }
+        }
+        min_deviation
     }
 }
 
@@ -685,9 +710,9 @@ proptest! {
             RouteDeviation::OffRoute { .. } => { /* expected */ }
             RouteDeviation::NoDeviation => {
                 // Debug: compute the values manually to understand the failure
-                let user_pt = geo::Point::new(midpoint_lng, midpoint_lat);
+                let user_pt = Point::new(midpoint_lng, midpoint_lat);
                 let step_ls = current_route_step.get_linestring();
-                let dev = crate::algorithms::deviation_from_line(&user_pt, &step_ls);
+                let dev = deviation_from_line(&user_pt, &step_ls);
                 let seg_brg = crate::algorithms::nearest_segment_bearing_deg(&user_pt, &step_ls);
                 let user_heading = normalize_deg(270.0);
                 let delta = seg_brg.map(|b| smallest_angle_diff_deg(user_heading, normalize_deg(b)));
@@ -787,5 +812,153 @@ proptest! {
             tracking.check_route_deviation(&route, &trip_state_random),
             RouteDeviation::NoDeviation
         );
+    }
+}
+
+#[cfg(test)]
+mod window_and_heading_tests {
+    use super::*;
+    use crate::models::{CourseOverGround, GeographicCoordinate, Speed, UserLocation};
+    use crate::navigation_controller::test_helpers::{
+        gen_dummy_route_step, gen_route_from_steps, gen_route_step_with_coords,
+        get_navigating_trip_state,
+    };
+    use geo::coord;
+
+    fn tracking() -> RouteDeviationTracking {
+        // The Stegra production configuration.
+        RouteDeviationTracking::StaticThresholdWithHeading {
+            minimum_horizontal_accuracy: 15,
+            max_acceptable_deviation: 50.0,
+            max_heading_deviation_degrees: 110.0,
+            min_speed_for_heading_check: 2.0,
+        }
+    }
+
+    fn location(
+        lng: f64,
+        lat: f64,
+        course_deg: Option<u16>,
+        speed_mps: Option<f64>,
+    ) -> UserLocation {
+        UserLocation {
+            coordinates: GeographicCoordinate { lng, lat },
+            horizontal_accuracy: 5.0,
+            course_over_ground: course_deg.map(|degrees| CourseOverGround {
+                degrees,
+                accuracy: None,
+            }),
+            timestamp: SystemTime::now(),
+            speed: speed_mps.map(|value| Speed {
+                value,
+                accuracy: None,
+            }),
+            altitude: None,
+            vertical_accuracy: None,
+        }
+    }
+
+    /// A user physically on the NEXT step must not be off-route just because
+    /// the current step is far behind them (short steps, GPS matched ahead).
+    #[test]
+    fn window_allows_user_on_future_step() {
+        let step0 = gen_dummy_route_step(0.0, 0.0, 0.005, 0.0);
+        let step1 = gen_dummy_route_step(0.005, 0.0, 0.01, 0.0);
+        let route = gen_route_from_steps(vec![step0.clone(), step1.clone()]);
+
+        // ~278 m past step0's end, ~11 m from step1's line.
+        let user = location(0.0075, 0.0001, None, None);
+        let trip_state = get_navigating_trip_state(
+            user,
+            vec![step0, step1],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        assert_eq!(
+            tracking().check_route_deviation(&route, &trip_state),
+            RouteDeviation::NoDeviation
+        );
+    }
+
+    /// A user far from every window step is still flagged, and the reported
+    /// deviation is the true distance to the nearest window step.
+    #[test]
+    fn window_flags_genuine_deviation_with_true_distance() {
+        let step0 = gen_dummy_route_step(0.0, 0.0, 0.005, 0.0);
+        let step1 = gen_dummy_route_step(0.005, 0.0, 0.01, 0.0);
+        let route = gen_route_from_steps(vec![step0.clone(), step1.clone()]);
+
+        // ~550 m north of the whole route.
+        let user = location(0.0075, 0.005, None, None);
+        let trip_state = get_navigating_trip_state(
+            user,
+            vec![step0, step1],
+            vec![],
+            RouteDeviation::NoDeviation,
+        );
+
+        match tracking().check_route_deviation(&route, &trip_state) {
+            RouteDeviation::OffRoute {
+                deviation_from_route_line,
+            } => {
+                assert!(
+                    deviation_from_route_line > 500.0,
+                    "expected the true distance (~550 m), got {deviation_from_route_line:.1}"
+                );
+            }
+            RouteDeviation::NoDeviation => panic!("expected OffRoute"),
+        }
+    }
+
+    /// On an out-and-back (anti-parallel legs within GPS noise of each other),
+    /// travel in EITHER direction counts as on-course — comparing against only
+    /// the single nearest segment made this flip arbitrarily.
+    #[test]
+    fn heading_allows_both_directions_on_overlapping_legs() {
+        let step = gen_route_step_with_coords(vec![
+            coord! { x: 0.0, y: 0.0 },
+            coord! { x: 0.004, y: 0.0 },
+            coord! { x: 0.004, y: 0.0002 },
+            coord! { x: 0.0, y: 0.0002 },
+        ]);
+        let route = gen_route_from_steps(vec![step.clone()]);
+
+        for course in [90u16, 270u16] {
+            let user = location(0.002, 0.0001, Some(course), Some(10.0));
+            let trip_state = get_navigating_trip_state(
+                user,
+                vec![step.clone()],
+                vec![],
+                RouteDeviation::NoDeviation,
+            );
+            assert_eq!(
+                tracking().check_route_deviation(&route, &trip_state),
+                RouteDeviation::NoDeviation,
+                "course {course}° should be on-course between anti-parallel legs"
+            );
+        }
+    }
+
+    /// On a plain one-way line, wrong-direction travel is still flagged.
+    #[test]
+    fn heading_flags_wrong_way_on_simple_line() {
+        let step = gen_dummy_route_step(0.0, 0.0, 0.004, 0.0);
+        let route = gen_route_from_steps(vec![step.clone()]);
+
+        let user = location(0.002, 0.0, Some(270), Some(10.0));
+        let trip_state =
+            get_navigating_trip_state(user, vec![step], vec![], RouteDeviation::NoDeviation);
+
+        match tracking().check_route_deviation(&route, &trip_state) {
+            RouteDeviation::OffRoute {
+                deviation_from_route_line,
+            } => {
+                // Heading trips report the 1 m floor (true perpendicular
+                // distance is ~0 here).
+                assert!(deviation_from_route_line >= 1.0);
+            }
+            RouteDeviation::NoDeviation => panic!("expected wrong-way OffRoute"),
+        }
     }
 }
