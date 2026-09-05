@@ -22,7 +22,7 @@ use crate::{
         models::TripSummary,
         waypoint_advance::{WaypointAdvanceChecker, WaypointAdvanceResult, WaypointCheckEvent},
     },
-    navigation_session::{recording::NavigationRecorder, NavigationObserver, NavigationSession},
+    navigation_session::{NavigationObserver, NavigationSession, recording::NavigationRecorder},
 };
 use chrono::Utc;
 use geo::geometry::{Coord, LineString};
@@ -30,7 +30,7 @@ use models::{NavState, NavigationControllerConfig, StepAdvanceStatus, TripState}
 use std::clone::Clone;
 use std::sync::Arc;
 #[cfg(feature = "wasm-bindgen")]
-use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
+use wasm_bindgen::{JsValue, prelude::wasm_bindgen};
 
 /// Core interface for navigation functionalities.
 ///
@@ -102,29 +102,77 @@ impl Navigator for NavigationController {
     fn get_initial_state(&self, location: UserLocation) -> NavState {
         let mut remaining_steps = self.route.steps.clone();
 
-        // Find the closest step to the user's current location so we can
-        // start navigation from that step instead of the very beginning.
-        let user_point = location.into();
-        let mut closest_step_idx: Option<usize> = None;
-        let mut min_deviation = std::f64::MAX;
-
-        for (idx, step) in remaining_steps.iter().enumerate() {
-            let linestring = step.get_linestring();
-            if let Some(deviation) =
-                crate::algorithms::deviation_from_line(&user_point, &linestring)
-            {
-                if deviation < min_deviation {
-                    min_deviation = deviation;
-                    closest_step_idx = Some(idx);
-                }
-            }
-        }
-
-        // Always start from the closest step (no distance threshold).
-        // The snapper already verified the user is near the route; gating
-        // on a per-step distance caused fallback to step 0 when the user
-        // was between steps (e.g. mid-turn), leading to immediate 300m+
+        // Find the step to start navigation from, instead of always the very
+        // beginning. Selection prefers the EARLIEST plausible step, with a
+        // heading tie-break, over the globally closest one: on
+        // self-overlapping routes (out-and-back legs, U-turn bridges) the
+        // outbound and return legs are both within GPS noise of the user, and
+        // strictly-closest seeded whichever leg was marginally nearer —
+        // sometimes the anti-parallel one, putting the very first emission
+        // off-route by heading.
+        //
+        // Among steps within `INITIAL_STEP_SLACK_M` of the minimum deviation:
+        // take the earliest whose bearing aligns with the user's course (when
+        // the course is trustworthy), otherwise the earliest.
+        //
+        // No absolute distance threshold on the jump itself: the caller
+        // already verified the user is near the route, and gating on a
+        // per-step distance caused fallback to step 0 when the user was
+        // between steps (e.g. mid-turn), leading to immediate 300m+
         // deviation. The accuracy gate remains to avoid jumping on bad GPS.
+        const INITIAL_STEP_SLACK_M: f64 = 25.0;
+        const INITIAL_STEP_MIN_SPEED_MPS: f64 = 2.0;
+        const INITIAL_STEP_MAX_HEADING_DELTA_DEG: f64 = 100.0;
+
+        let user_point: geo::Point = location.into();
+        let step_deviations: Vec<(usize, f64)> = remaining_steps
+            .iter()
+            .enumerate()
+            .filter_map(|(idx, step)| {
+                crate::algorithms::deviation_from_line(&user_point, &step.get_linestring())
+                    .map(|deviation| (idx, deviation))
+            })
+            .collect();
+
+        let closest_step_idx: Option<usize> = if let Some(min_deviation) = step_deviations
+            .iter()
+            .map(|(_, d)| *d)
+            .fold(None, |acc: Option<f64>, d| {
+                Some(acc.map_or(d, |m: f64| m.min(d)))
+            }) {
+            let plausible: Vec<usize> = step_deviations
+                .iter()
+                .filter(|(_, d)| *d <= min_deviation + INITIAL_STEP_SLACK_M)
+                .map(|(idx, _)| *idx)
+                .collect();
+
+            let course_is_trustworthy = location.course_over_ground.is_some()
+                && location.speed.map(|s| s.value).unwrap_or(0.0) >= INITIAL_STEP_MIN_SPEED_MPS;
+
+            let heading_aligned_idx = if course_is_trustworthy {
+                let heading = location.course_over_ground.unwrap().degrees as f64;
+                plausible
+                    .iter()
+                    .find(|idx| {
+                        crate::algorithms::nearest_segment_bearing_deg(
+                            &user_point,
+                            &remaining_steps[**idx].get_linestring(),
+                        )
+                        .is_some_and(|bearing| {
+                            let delta = ((heading - bearing + 540.0) % 360.0 - 180.0).abs();
+                            delta <= INITIAL_STEP_MAX_HEADING_DELTA_DEG
+                        })
+                    })
+                    .copied()
+            } else {
+                None
+            };
+
+            heading_aligned_idx.or_else(|| plausible.first().copied())
+        } else {
+            None
+        };
+
         if location.horizontal_accuracy <= 20.0 {
             if let Some(idx) = closest_step_idx {
                 if idx > 0 && idx < remaining_steps.len() {
@@ -332,27 +380,36 @@ impl Navigator for NavigationController {
                     WaypointAdvanceResult::Changed(new_waypoints) => new_waypoints,
                 };
 
-                let deviation = self
-                    .config
-                    .route_deviation_tracking
-                    .check_route_deviation(&self.route, &state.trip_state());
-
-                eprintln!(
-                    "[NavController] update_user_location: new_loc=({:.6},{:.6}) speed={:?} cog={:?} | deviation_check used PREVIOUS state's user_location",
-                    location.coordinates.lng, location.coordinates.lat,
-                    location.speed.map(|s| s.value),
-                    location.course_over_ground.map(|c| c.degrees),
-                );
-
                 let is_arriving = remaining_steps.len() <= 2;
+
+                // Build the intermediate state for THIS location first
+                // (carrying the previous deviation as a placeholder), then
+                // evaluate deviation against it — so the verdict reflects the
+                // fix being processed, not the previous one. The old order
+                // checked deviation against the incoming (previous) state,
+                // lagging every transition by one tick: the first update
+                // after leaving the route still reported NoDeviation, and the
+                // first update after rejoining still reported OffRoute. The
+                // step-advance gate below (`calculate_while_off_route`) reads
+                // the same value, so it lagged identically.
+                let previous_deviation = state
+                    .trip_state()
+                    .deviation()
+                    .unwrap_or(RouteDeviation::NoDeviation);
                 let intermediate_trip_state = self.create_intermediate_trip_state(
                     state.trip_state(),
                     location,
                     current_step,
                     remaining_steps,
                     remaining_waypoints,
-                    deviation,
+                    previous_deviation,
                 );
+
+                let deviation = self
+                    .config
+                    .route_deviation_tracking
+                    .check_route_deviation(&self.route, &intermediate_trip_state);
+                let intermediate_trip_state = intermediate_trip_state.with_deviation(deviation);
 
                 // Get the step advance condition result.
                 let step_advance_result = if is_arriving {
@@ -396,9 +453,10 @@ impl Navigator for NavigationController {
                                     &new_step_ls,
                                 ) {
                                     if dist > max_dev {
-                                        eprintln!(
+                                        crate::debug_eprintln!(
                                             "[NavController] speed-run BLOCKED: user is {:.1}m from new step polyline (threshold {:.1}m), staying on current step",
-                                            dist, max_dev
+                                            dist,
+                                            max_dev
                                         );
                                         return intermediate_nav_state;
                                     }
@@ -646,9 +704,9 @@ mod tests {
     };
     use crate::routing_adapters::osrm::models::OsrmWaypointProperties;
     use crate::simulation::{
-        advance_location_simulation, location_simulation_from_route, LocationBias,
+        LocationBias, advance_location_simulation, location_simulation_from_route,
     };
-    use crate::test_utils::{redact_properties, TestRoute};
+    use crate::test_utils::{TestRoute, redact_properties};
     use std::sync::Arc;
 
     fn test_full_route_state_snapshot(
@@ -823,5 +881,144 @@ mod tests {
                     ".**.remaining_waypoints[].properties" => insta::dynamic_redaction(redact_properties::<OsrmWaypointProperties>),
                 });
         });
+    }
+
+    // ── Deviation timing + initial-step seeding regressions ─────────────
+
+    use crate::deviation_detection::RouteDeviationTracking;
+    use crate::models::{CourseOverGround, GeographicCoordinate, Speed};
+    use crate::navigation_controller::models::{CourseFiltering, WaypointAdvanceMode};
+    use crate::navigation_controller::test_helpers::{gen_dummy_route_step, gen_route_from_steps};
+    use std::time::SystemTime;
+
+    fn test_location(
+        lng: f64,
+        lat: f64,
+        course_deg: Option<u16>,
+        speed_mps: Option<f64>,
+    ) -> UserLocation {
+        UserLocation {
+            coordinates: GeographicCoordinate { lng, lat },
+            horizontal_accuracy: 5.0,
+            course_over_ground: course_deg.map(|degrees| CourseOverGround {
+                degrees,
+                accuracy: None,
+            }),
+            timestamp: SystemTime::now(),
+            speed: speed_mps.map(|value| Speed {
+                value,
+                accuracy: None,
+            }),
+            altitude: None,
+            vertical_accuracy: None,
+        }
+    }
+
+    fn simple_config(tracking: RouteDeviationTracking) -> NavigationControllerConfig {
+        NavigationControllerConfig {
+            waypoint_advance: WaypointAdvanceMode::WaypointWithinRange(100.0),
+            route_deviation_tracking: tracking,
+            snapped_location_course_filtering: CourseFiltering::Raw,
+            step_advance_condition: Arc::new(DistanceToEndOfStepCondition {
+                distance: 15,
+                minimum_horizontal_accuracy: 25,
+            }),
+            arrival_step_advance_condition: Arc::new(DistanceToEndOfStepCondition {
+                distance: 15,
+                minimum_horizontal_accuracy: 25,
+            }),
+        }
+    }
+
+    /// The deviation on each emitted state must reflect the location update
+    /// being processed, not the previous one. The old evaluation order lagged
+    /// every transition by one tick in both directions.
+    #[test]
+    fn deviation_reflects_current_fix_not_previous() {
+        let step = gen_dummy_route_step(0.0, 0.0, 0.02, 0.0);
+        let route = gen_route_from_steps(vec![step]);
+        let controller = NavigationController::new(
+            route,
+            simple_config(RouteDeviationTracking::StaticThreshold {
+                minimum_horizontal_accuracy: 50,
+                max_acceptable_deviation: 50.0,
+            }),
+        );
+
+        let state = controller.get_initial_state(test_location(0.001, 0.0, None, None));
+        assert_eq!(
+            state.trip_state().deviation(),
+            Some(RouteDeviation::NoDeviation)
+        );
+
+        // ~220 m north of the line: the VERY FIRST update off the route must
+        // already report OffRoute.
+        let off_state =
+            controller.update_user_location(test_location(0.0012, 0.002, None, None), state);
+        match off_state.trip_state().deviation() {
+            Some(RouteDeviation::OffRoute {
+                deviation_from_route_line,
+            }) => {
+                assert!(
+                    deviation_from_route_line > 50.0,
+                    "expected a real distance, got {deviation_from_route_line:.1}"
+                );
+            }
+            other => panic!("expected OffRoute on the first off-route fix, got {other:?}"),
+        }
+
+        // Back on the line: the very first update after rejoining must
+        // already report NoDeviation.
+        let back_state =
+            controller.update_user_location(test_location(0.0014, 0.0, None, None), off_state);
+        assert_eq!(
+            back_state.trip_state().deviation(),
+            Some(RouteDeviation::NoDeviation)
+        );
+    }
+
+    /// Starting (or swapping a route in place) between the anti-parallel legs
+    /// of an out-and-back must seed onto the leg matching the user's travel
+    /// direction — not whichever leg is marginally closer.
+    #[test]
+    fn initial_state_seeding_is_direction_aware_on_overlapping_legs() {
+        let step_out = gen_dummy_route_step(0.0, 0.0, 0.01, 0.0);
+        let step_back = gen_dummy_route_step(0.01, 0.00018, 0.0, 0.00018);
+        let route = gen_route_from_steps(vec![step_out, step_back]);
+        let controller =
+            NavigationController::new(route, simple_config(RouteDeviationTracking::None));
+
+        let remaining_count = |state: &NavState| match state.trip_state() {
+            TripState::Navigating {
+                remaining_steps, ..
+            } => remaining_steps.len(),
+            other => panic!("expected Navigating, got {other:?}"),
+        };
+
+        // Heading west between the legs → the westbound return leg.
+        let west =
+            controller.get_initial_state(test_location(0.005, 0.00009, Some(270), Some(10.0)));
+        assert_eq!(
+            remaining_count(&west),
+            1,
+            "westbound course should seed the return leg"
+        );
+
+        // Heading east → the eastbound outbound leg (both steps remain).
+        let east =
+            controller.get_initial_state(test_location(0.005, 0.00009, Some(90), Some(10.0)));
+        assert_eq!(
+            remaining_count(&east),
+            2,
+            "eastbound course should seed the outbound leg"
+        );
+
+        // No trustworthy course → the earliest plausible leg.
+        let unknown = controller.get_initial_state(test_location(0.005, 0.00009, None, None));
+        assert_eq!(
+            remaining_count(&unknown),
+            2,
+            "no course should fall back to the earliest leg"
+        );
     }
 }

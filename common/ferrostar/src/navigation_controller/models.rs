@@ -285,6 +285,41 @@ impl TripState {
             _ => None,
         }
     }
+
+    /// Returns the state with the deviation replaced (no-op for non-navigating states).
+    ///
+    /// Used by the controller to patch a freshly computed deviation into an
+    /// intermediate state that was necessarily built before the check could run.
+    pub(crate) fn with_deviation(self, new_deviation: RouteDeviation) -> TripState {
+        match self {
+            TripState::Navigating {
+                current_step_geometry_index,
+                user_location,
+                snapped_user_location,
+                remaining_steps,
+                remaining_waypoints,
+                progress,
+                summary,
+                deviation: _,
+                visual_instruction,
+                spoken_instruction,
+                annotation_json,
+            } => TripState::Navigating {
+                current_step_geometry_index,
+                user_location,
+                snapped_user_location,
+                remaining_steps,
+                remaining_waypoints,
+                progress,
+                summary,
+                deviation: new_deviation,
+                visual_instruction,
+                spoken_instruction,
+                annotation_json,
+            },
+            other => other,
+        }
+    }
 }
 
 #[allow(clippy::large_enum_variant)]
