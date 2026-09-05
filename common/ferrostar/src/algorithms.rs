@@ -13,8 +13,6 @@ use geo::{
     Length, LineLocatePoint, LineString, Point,
 };
 
-use geo::algorithm::haversine_distance::HaversineDistance;
-
 #[cfg(test)]
 use {
     crate::navigation_controller::test_helpers::gen_dummy_route_step,
@@ -246,20 +244,32 @@ pub(crate) fn advance_step(remaining_steps: &[RouteStep]) -> StepAdvanceStatus {
     }
 }
 
+/// Perpendicular (projected) distance in meters from `p` to the segment `a`–`b`.
+///
+/// Reuses [`deviation_from_line`] on a two-point linestring so the metric is
+/// identical to the one the deviation threshold checks use.
+pub(crate) fn point_to_segment_deviation_m(p: &Point<f64>, a: Coord, b: Coord) -> Option<f64> {
+    let segment = LineString::from(geo::Line::new(a, b));
+    deviation_from_line(p, &segment)
+}
+
 /// Find bearing (deg) of the segment in `line` that is nearest to point `p`.
+///
+/// "Nearest" is the true projected point-to-segment distance. An earlier
+/// version ranked segments by the distance to their endpoints and midpoint,
+/// which mid-way along a long segment leaves a gap of up to a quarter of the
+/// segment length — a short unrelated segment nearby (the anti-parallel leg of
+/// a U-turn, a turn's micro-segment) could win and return a bearing up to 180°
+/// off while the user was riding the long segment correctly. That mis-ranking
+/// was a confirmed source of false wrong-direction deviations.
 pub fn nearest_segment_bearing_deg(p: &Point<f64>, line: &LineString<f64>) -> Option<f64> {
     let mut best: Option<(f64, f64)> = None;
     for w in line.0.windows(2) {
-        let a = Point::new(w[0].x, w[0].y);
-        let b = Point::new(w[1].x, w[1].y);
-        let mid = Point::new((a.x() + b.x()) * 0.5, (a.y() + b.y()) * 0.5);
+        let Some(d) = point_to_segment_deviation_m(p, w[0], w[1]) else {
+            continue;
+        };
 
-        // New API: Distance::<Haversine>
-        let d = p.haversine_distance(&a)
-            .min(p.haversine_distance(&b))
-            .min(p.haversine_distance(&mid));
-
-        let bearing = initial_bearing_deg(&a, &b);
+        let bearing = initial_bearing_deg(&Point::from(w[0]), &Point::from(w[1]));
         match best {
             None => best = Some((d, bearing)),
             Some((best_d, _)) if d < best_d => best = Some((d, bearing)),
@@ -269,6 +279,33 @@ pub fn nearest_segment_bearing_deg(p: &Point<f64>, line: &LineString<f64>) -> Op
     best.map(|(_, brg)| brg)
 }
 
+/// Bearings (deg) of every segment of `line` whose projected distance to `p`
+/// is within `tolerance_m`.
+///
+/// Used by heading-aware deviation detection: on overlapping or anti-parallel
+/// geometry (out-and-back roads, hairpins, U-turn bridges) several segments
+/// with very different bearings are legitimately "under" the user at once, and
+/// the user should count as on-course if their heading aligns with ANY of
+/// them. Comparing against only the single nearest segment made the answer
+/// flip arbitrarily between the overlapping legs.
+pub(crate) fn segment_bearings_within(
+    p: &Point<f64>,
+    line: &LineString<f64>,
+    tolerance_m: f64,
+) -> Vec<f64> {
+    line.0
+        .windows(2)
+        .filter_map(|w| {
+            let d = point_to_segment_deviation_m(p, w[0], w[1])?;
+            if d <= tolerance_m {
+                Some(initial_bearing_deg(&Point::from(w[0]), &Point::from(w[1])))
+            } else {
+                None
+            }
+        })
+        .collect()
+}
+
 pub fn initial_bearing_deg(a: &Point<f64>, b: &Point<f64>) -> f64 {
     let (lat1, lon1) = (a.y().to_radians(), a.x().to_radians());
     let (lat2, lon2) = (b.y().to_radians(), b.x().to_radians());
@@ -276,7 +313,6 @@ pub fn initial_bearing_deg(a: &Point<f64>, b: &Point<f64>) -> f64 {
     let x = lat1.cos() * lat2.sin() - lat1.sin() * lat2.cos() * (lon2 - lon1).cos();
     (y.atan2(x).to_degrees() + 360.0) % 360.0
 }
-
 
 /// Computes the distance that a point lies along a linestring,
 /// assuming that units are latitude and longitude for the geometries.
@@ -695,6 +731,66 @@ mod bearing_snapping_tests {
                 degrees: 90,
                 accuracy: None
             })
+        );
+    }
+}
+
+#[cfg(test)]
+mod segment_bearing_tests {
+    use super::*;
+
+    /// Regression: a rider mid-way along a LONG segment, with a short
+    /// anti-parallel segment nearby (a U-turn return leg). The old
+    /// endpoint/midpoint ranking picked the short segment (its points are
+    /// closer than the long segment's endpoints/midpoint) and returned a
+    /// bearing ~180° off; projected distance must pick the long segment the
+    /// rider is actually on.
+    #[test]
+    fn nearest_segment_uses_projected_distance() {
+        // Long segment due east (~445 m at the equator), then a short
+        // anti-parallel segment ~33 m north of the rider's position.
+        let line = LineString::new(vec![
+            coord! { x: 0.0, y: 0.0 },
+            coord! { x: 0.004, y: 0.0 },
+            // short westbound segment above the rider
+            coord! { x: 0.0012, y: 0.0003 },
+            coord! { x: 0.0008, y: 0.0003 },
+        ]);
+        // Rider ON the long segment, 25% along (~111 m from its start).
+        let rider = point! { x: 0.001, y: 0.0 };
+
+        let bearing = nearest_segment_bearing_deg(&rider, &line).expect("bearing");
+        assert!(
+            (bearing - 90.0).abs() < 5.0,
+            "expected ~90° (eastbound long segment), got {bearing:.1}°"
+        );
+    }
+
+    #[test]
+    fn segment_bearings_within_returns_all_overlapping_directions() {
+        // Out-and-back: eastbound leg at y=0, westbound leg ~22 m north.
+        let line = LineString::new(vec![
+            coord! { x: 0.0, y: 0.0 },
+            coord! { x: 0.004, y: 0.0 },
+            coord! { x: 0.004, y: 0.0002 },
+            coord! { x: 0.0, y: 0.0002 },
+        ]);
+        // Rider between the legs (~11 m from each).
+        let rider = point! { x: 0.002, y: 0.0001 };
+
+        let bearings = segment_bearings_within(&rider, &line, 50.0);
+        let has_east = bearings.iter().any(|b| (b - 90.0).abs() < 10.0);
+        let has_west = bearings.iter().any(|b| (b - 270.0).abs() < 10.0);
+        assert!(
+            has_east && has_west,
+            "expected both directions within tolerance, got {bearings:?}"
+        );
+
+        // A tight tolerance keeps only the genuinely near segments.
+        let none = segment_bearings_within(&rider, &line, 1.0);
+        assert!(
+            none.is_empty(),
+            "expected no segments within 1 m, got {none:?}"
         );
     }
 }
