@@ -8233,6 +8233,12 @@ public enum RouteDeviationTracking {
     case none
     /**
      * Detects deviation from the route using a configurable static distance threshold from the route line.
+     *
+     * The distance is measured against a short forward window of steps
+     * ([`DEVIATION_STEP_WINDOW`]): the user is off-route only when farther
+     * than the threshold from EVERY step in the window. Checking the current
+     * step alone reported false off-route whenever the user was matched
+     * slightly ahead of it.
      */
     case staticThreshold(
         /**
@@ -8247,12 +8253,20 @@ public enum RouteDeviationTracking {
          */maxAcceptableDeviation: Double
     )
     /**
-     * Detects deviation using distance from the current step's route line,
+     * Detects deviation using distance from a short forward window of steps,
      * with an additional heading check to catch wrong-direction travel.
      *
-     * Only checks the current step. When the user is close to the step line
-     * but heading in the opposite direction (e.g. turned around), this flags off-route
-     * even though the perpendicular distance is small.
+     * Distance: the user is off-route when they are farther than the
+     * threshold from EVERY step in the window (current + the next few).
+     * Checking only the current step reported false off-route whenever the
+     * user was matched slightly ahead (short steps, GPS noise at a maneuver,
+     * self-intersecting geometry).
+     *
+     * Heading: when moving fast enough, the user is flagged off-route if
+     * their course disagrees with EVERY window segment they are plausibly on.
+     * On overlapping geometry (out-and-back roads, U-turn bridges) several
+     * directions are legitimate at once and alignment with any of them
+     * counts as on-course.
      */
     case staticThresholdWithHeading(
         /**
