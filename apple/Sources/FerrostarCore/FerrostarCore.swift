@@ -68,6 +68,15 @@ public protocol FerrostarCoreDelegate: AnyObject {
 ///
 /// NOTE: it is the responsibility of the caller to ensure that the location provider is authorized to get
 /// live user location with high precision.
+///
+/// Threading (Stegra fork): each location fix's ``NavigationSession`` update runs on a private serial queue, not on
+/// the thread that delivers the fix. The update moves the whole `NavState` (every remaining step and coordinate)
+/// across the FFI twice, so it costs O(remaining route); on a long route it blocked the main thread for 150-200 ms
+/// per fix in Debug builds. Updates run one at a time, in order, each from the previous update's state; a fix that
+/// arrives while an update runs waits, and a newer fix replaces it (coalescing). New state is still published on
+/// the main thread, in order: a state older than one already published is dropped (before, the start state could
+/// be re-published after the first fix's), and so are results from a session that was stopped or replaced meanwhile.
+/// Navigation observers and custom route deviation detectors are therefore called on that queue.
 // TODO: See about making FerrostarCore its own actor; then we can verify that we've published things back on the main actor. Need to see if this is possible with obj-c interop. See https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md#actor-interoperability-with-objective-c
 @objc public class FerrostarCore: NSObject {
     /// The delegate which will receive Ferrostar core events.
@@ -89,7 +98,6 @@ public protocol FerrostarCoreDelegate: AnyObject {
     public var minimumMovementBeforeRecalculation = CLLocationDistance(50)
 
     /// The observable state of the model (for easy binding in SwiftUI views).
-    @Published private var coreNavState: NavState?
     @Published public private(set) var state: NavigationState?
     @Published public private(set) var route: Route?
 
@@ -101,7 +109,33 @@ public protocol FerrostarCoreDelegate: AnyObject {
     private let locationProvider: LocationProviding
 
     private let sessionBuilder: FerrostarSessionBuilder
-    private var navigationSession: NavigationSession?
+
+    /// The session being navigated and the newest state it produced: the base for the next update.
+    private struct UpdateBase {
+        let session: NavigationSession
+        var state: NavState
+        let generation: UInt64
+        /// 0 for the start state, +1 for each update.
+        var sequence: UInt64 = 0
+    }
+
+    /// Runs the per-fix session updates (see the threading note above). Serial: one update at a time, in order.
+    private let updateQueue = DispatchQueue(label: "com.stadiamaps.ferrostar.navigation-update", qos: .userInitiated)
+    /// Guards `updateBase`, `sessionGeneration`, `pendingLocation`, `drainScheduled` and `drainTicket`.
+    private let updateLock = NSLock()
+    private var updateBase: UpdateBase?
+    /// Bumped whenever navigation starts, resumes or stops. A result from an older generation is dropped.
+    private var sessionGeneration: UInt64 = 0
+    /// The newest fix not yet handed to the session. A newer fix replaces it (coalescing).
+    private var pendingLocation: UserLocation?
+    /// Whether a drain of `pendingLocation` is queued and has not started yet.
+    private var drainScheduled = false
+    /// Identifies the queued drain. A drain whose ticket is not the current one, or that runs when none is
+    /// scheduled, was cancelled (by an advance that took its fix, or by a start or stop) and does nothing.
+    private var drainTicket: UInt64 = 0
+    /// Main thread only: the generation and sequence of the last state published by `update`.
+    private var publishedGeneration: UInt64 = 0
+    private var publishedSequence: UInt64 = 0
 
     private var routeRequestInFlight = false
     private var lastAutomaticRecalculation: Date?
@@ -332,21 +366,20 @@ public protocol FerrostarCoreDelegate: AnyObject {
 
         // Create the navigation session.
         let navigationSession = sessionBuilder.build(for: route, with: config?.ffiValue)
-        self.navigationSession = navigationSession
 
         locationProvider.startUpdating()
 
         self.route = route
 
         let navState = navigationSession.getInitialState(location: location)
-        coreNavState = navState
+        let generation = resetUpdates(to: (navigationSession, navState))
         state = NavigationState(
             navState: navState,
             routeGeometry: route.geometry
         )
 
         DispatchQueue.main.async {
-            self.update(navState, location: location)
+            self.update(navState, location: location, generation: generation, sequence: 0)
         }
     }
 
@@ -368,38 +401,63 @@ public protocol FerrostarCoreDelegate: AnyObject {
         // TODO: We should be able to circumvent this and simply start updating, wait and start nav.
 
         let (navigationSession, route, navState) = try sessionBuilder.buildResumedSession()
-        self.navigationSession = navigationSession
 
         locationProvider.startUpdating()
 
         self.route = route
 
-        coreNavState = navState
+        let generation = resetUpdates(to: (navigationSession, navState))
         state = NavigationState(
             navState: navState,
             routeGeometry: route.geometry
         )
 
         DispatchQueue.main.async {
-            self.update(navState, location: location)
+            self.update(navState, location: location, generation: generation, sequence: 0)
         }
     }
 
+    /// Advances to the next step. Like a location fix, this runs on the update queue and its state is published on
+    /// the main thread. It goes in where it was asked for: a fix still waiting is applied first, and a fix that
+    /// arrives later is applied after it. If navigation stops, or a new route starts, before it runs, it is dropped.
     public func advanceToNextStep() {
-        guard let session = navigationSession, let state = coreNavState, let lastLocation
-        else {
+        updateLock.lock()
+        guard let generation = updateBase?.generation else {
+            updateLock.unlock()
+            return
+        }
+        // Take the waiting fix and cancel its drain: the next fix queues a new drain, behind this advance.
+        let waiting = pendingLocation
+        pendingLocation = nil
+        drainScheduled = false
+        updateLock.unlock()
+
+        guard let location = waiting ?? lastLocation else {
             return
         }
 
-        let newState = session.advanceToNextStep(state: state)
-        update(newState, location: lastLocation)
+        updateQueue.async { [weak self] in
+            guard let self else {
+                return
+            }
+            if let waiting {
+                guard runUpdate(generation: generation, location: waiting, recordsLocation: true, { session, state in
+                    session.updateUserLocation(location: waiting, state: state)
+                }) else {
+                    return
+                }
+            }
+            runUpdate(generation: generation, location: location, recordsLocation: false) { session, state in
+                session.advanceToNextStep(state: state)
+            }
+        }
     }
 
     // TODO: Ability to pause without totally stopping and clearing state
 
     /// Stops navigation and stops requesting location updates (to save battery).
     public func stopNavigation() {
-        navigationSession = nil
+        resetUpdates(to: nil)
         route = nil
         state = nil
         queuedUtteranceIDs.removeAll()
@@ -409,12 +467,138 @@ public protocol FerrostarCoreDelegate: AnyObject {
         lastRecalculationLocation = nil
     }
 
-    /// Internal state update.
+    // MARK: Off-main session updates
+
+    /// Points updates at a new session (start, resume) or at none (stop). A fix still waiting is dropped, and so is
+    /// the result of an update still running for the previous session. Returns the new generation.
+    @discardableResult
+    private func resetUpdates(to new: (session: NavigationSession, state: NavState)?) -> UInt64 {
+        updateLock.lock()
+        defer { updateLock.unlock() }
+        sessionGeneration &+= 1
+        pendingLocation = nil
+        drainScheduled = false
+        updateBase = new.map { UpdateBase(session: $0.session, state: $0.state, generation: sessionGeneration) }
+        return sessionGeneration
+    }
+
+    private func currentUpdateBase() -> UpdateBase? {
+        updateLock.lock()
+        defer { updateLock.unlock() }
+        return updateBase
+    }
+
+    private func isCurrent(_ generation: UInt64) -> Bool {
+        updateLock.lock()
+        defer { updateLock.unlock() }
+        return generation == sessionGeneration
+    }
+
+    /// Makes `state` the base for the next update and returns its sequence; nil when the session changed while it
+    /// was computed.
+    private func commit(_ state: NavState, from base: UpdateBase) -> UInt64? {
+        updateLock.lock()
+        defer { updateLock.unlock() }
+        guard var current = updateBase, current.generation == base.generation else {
+            return nil
+        }
+        current.state = state
+        current.sequence += 1
+        updateBase = current
+        return current.sequence
+    }
+
+    /// Queues `location` for the session. A fix already waiting is replaced; at most one drain is queued.
+    private func enqueueUpdate(_ location: UserLocation) {
+        updateLock.lock()
+        // Not navigating: the fix is ignored, as before.
+        guard updateBase != nil else {
+            updateLock.unlock()
+            return
+        }
+        pendingLocation = location
+        var ticket: UInt64?
+        if !drainScheduled {
+            drainScheduled = true
+            drainTicket &+= 1
+            ticket = drainTicket
+        }
+        updateLock.unlock()
+
+        if let ticket {
+            updateQueue.async { [weak self] in
+                self?.drainPendingLocation(ticket: ticket)
+            }
+        }
+    }
+
+    /// On `updateQueue`: runs the session update for the newest waiting fix and publishes the result.
+    private func drainPendingLocation(ticket: UInt64) {
+        updateLock.lock()
+        guard drainScheduled, drainTicket == ticket else {
+            // Cancelled: an advance took the fix, or navigation started or stopped.
+            updateLock.unlock()
+            return
+        }
+        drainScheduled = false
+        let location = pendingLocation
+        pendingLocation = nil
+        let generation = updateBase?.generation
+        updateLock.unlock()
+        guard let location, let generation else {
+            return
+        }
+
+        runUpdate(generation: generation, location: location, recordsLocation: true) { session, state in
+            session.updateUserLocation(location: location, state: state)
+        }
+    }
+
+    /// On `updateQueue`: computes the next state from the current one, without holding the lock, makes it the base
+    /// for the next update and publishes it. Does nothing, and returns false, when the session is no longer the
+    /// one of `generation` (navigation stopped or a new route started).
+    @discardableResult
+    private func runUpdate(
+        generation: UInt64,
+        location: UserLocation,
+        recordsLocation: Bool,
+        _ next: (NavigationSession, NavState) -> NavState
+    ) -> Bool {
+        guard let base = currentUpdateBase(), base.generation == generation else {
+            return false
+        }
+        let newState = next(base.session, base.state)
+        guard let sequence = commit(newState, from: base) else {
+            return false
+        }
+        update(newState, location: location, generation: generation, sequence: sequence,
+               recordsLocation: recordsLocation)
+        return true
+    }
+
+    /// Internal state update. Publishes on the main thread, unless the session it came from was stopped or
+    /// replaced in the meantime, or a newer state of the session was already published.
     ///
     /// You should call this rather than setting properties directly
-    private func update(_ state: NavState, location: UserLocation) {
+    private func update(
+        _ state: NavState,
+        location: UserLocation,
+        generation: UInt64,
+        sequence: UInt64,
+        recordsLocation: Bool = false
+    ) {
         DispatchQueue.main.async {
-            self.coreNavState = state
+            guard self.isCurrent(generation) else {
+                return
+            }
+            if generation == self.publishedGeneration, sequence < self.publishedSequence {
+                return
+            }
+            self.publishedGeneration = generation
+            self.publishedSequence = sequence
+            if recordsLocation {
+                self.lastLocation = location
+            }
             self.state?.tripState = state.tripState
 
             switch state.tripState {
@@ -523,19 +707,14 @@ public protocol FerrostarCoreDelegate: AnyObject {
 }
 
 extension FerrostarCore: LocationManagingDelegate {
+    /// Hands the newest fix to the navigation session. The update runs off the calling thread (see the
+    /// threading note on ``FerrostarCore``); its state is published on the main thread.
     public func locationManager(_: LocationProviding, didUpdateLocations locations: [UserLocation]) {
-        guard let location = locations.last,
-              let navState = coreNavState,
-              let newState = navigationSession?.updateUserLocation(
-                  location: location, state: navState
-              )
-        else {
+        guard let location = locations.last else {
             return
         }
 
-        lastLocation = location
-
-        update(newState, location: location)
+        enqueueUpdate(location)
     }
 
     public func locationManager(_: LocationProviding, didUpdateHeading _: Heading) {
